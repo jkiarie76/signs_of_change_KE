@@ -1,0 +1,68 @@
+---
+import ArticleCard from "./ArticleCard.astro";
+import FeaturedArticleCard from "./FeaturedArticleCard.astro";
+---
+
+<section class="latest-articles">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+
+                Latest Stories
+
+            </span>
+
+            <h2>
+
+                Discover What's New
+
+            </h2>
+
+            <p>
+
+                Stories, culture, sign language and community updates from across Kenya.
+
+            </p>
+
+        </div>
+
+        <div class="articles-grid">
+
+            <FeaturedArticleCard />
+
+            <div class="article-stack">
+
+                <ArticleCard
+                    image="/public/uploads/home/oldpost_2.jpg"
+                    category="Deaf Culture"
+                    title="Breaking Communication Barriers Through Kenyan Sign Language"
+                    author="Stacy Njoroge"
+                    readTime="5 min read"
+                />
+
+                <ArticleCard
+                    image="/public/uploads/home/olderpost_1.jpg"
+                    category="Learn Sign"
+                    title="Five Everyday Signs Every Kenyan Should Know"
+                    author="Signs Of Change KE"
+                    readTime="3 min read"
+                />
+
+                <ArticleCard
+                    image="/uploads/home/culture_1.jpg"
+                    category="Deaf World"
+                    title="Community Event Bringing Deaf and Hearing Youth Together"
+                    author="John Kiarie"
+                    readTime="6 min read"
+                />
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

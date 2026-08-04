@@ -1,0 +1,99 @@
+---
+interface Props{
+
+    image:string;
+
+    badge:string;
+
+    author:string;
+
+    date:string;
+
+    title:string;
+
+    excerpt:string;
+
+    href:string;
+
+}
+
+const{
+
+    image,
+
+    badge,
+
+    author,
+
+    date,
+
+    title,
+
+    excerpt,
+
+    href
+
+}=Astro.props;
+---
+
+<article class="article-card">
+
+    <div class="card-image-wrap">
+
+        <img
+            src={image}
+            alt={title}
+        />
+
+        <span class="card-badge">
+
+            {badge}
+
+        </span>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="card-meta">
+
+            <span class="author">
+
+                By {author}
+
+            </span>
+
+            <span class="dot">•</span>
+
+            <span class="date">
+
+                {date}
+
+            </span>
+
+        </div>
+
+        <h3 class="card-title">
+
+            {title}
+
+        </h3>
+
+        <p class="card-excerpt">
+
+            {excerpt}
+
+        </p>
+
+        <a
+            href={href}
+            class="read-more-btn"
+        >
+
+            Read Article →
+
+        </a>
+
+    </div>
+
+</article>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+import Hero from "../../components/deaf-culture/Hero.astro";
+
+import PreviewCard from "../../components/deaf-culture/PreviewCard.astro";
+
+import FeaturedArticleCard from "../../components/deaf-culture/FeaturedArticleCard.astro";
+
+import PreviewCollection from "../../components/deaf-culture/PreviewCollection.astro";
+
+import CardGrid from "../../components/deaf-culture/CardGrid.astro";
+
+import EtiquettePreview from "../../components/deaf-culture/EtiquettePreview.astro";
+
+import HistoryPreview from "../../components/deaf-culture/HistoryPreview.astro";
+
+import MythsPreview from "../../components/deaf-culture/MythsPreview.astro";
+
+import DeafCultureCTA from "../../components/deaf-culture/DeafCultureCTA.astro";
+
+---
+<BaseLayout
+    title="Deaf Culture 101 | Signs Of Change KE"
+    description="Learn about Deaf culture, history, etiquette and myths."
+    activePage="culture"
+>
+
+    <main>
+
+        <Hero />
+
+        <EtiquettePreview />
+
+        <HistoryPreview />
+
+        <MythsPreview />
+
+        <DeafCultureCTA />
+
+    </main>
+
+</BaseLayout>

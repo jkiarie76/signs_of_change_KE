@@ -1,0 +1,80 @@
+---
+interface Props{
+
+    image:string;
+
+    category:string;
+
+    title:string;
+
+    author:string;
+
+    readTime:string;
+
+}
+
+const{
+
+    image,
+
+    category,
+
+    title,
+
+    author,
+
+    readTime
+
+}=Astro.props;
+---
+
+<article class="article-card compact-card">
+
+    <img
+        src={image}
+        alt={title}
+    >
+
+    
+    <div class="compact-content">
+
+        <span class="article-category">
+
+            {category}
+
+        </span>
+
+        <h3>
+
+            {title}
+
+        </h3>
+
+        <div class="compact-meta">
+
+            <span>
+
+                👤 {author}
+
+            </span>
+
+            <span>
+
+                🕒 {readTime}
+
+            </span>
+
+        </div>
+
+        <a
+            href="#"
+            class="read-story"
+        >
+
+            Read Story →
+
+        </a>
+
+    </div>
+
+</article>

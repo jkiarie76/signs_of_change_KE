@@ -1,0 +1,56 @@
+---
+interface Props{
+
+    title:string;
+
+    description:string;
+
+    viewAllHref:string;
+
+}
+
+const{
+
+    title,
+
+    description,
+
+    viewAllHref
+
+}=Astro.props;
+---
+
+<section class="preview-collection">
+
+    <div class="container">
+
+        <div class="collection-header">
+
+            <div>
+
+                <h2>{title}</h2>
+
+                <p>{description}</p>
+
+            </div>
+
+            <a
+                href={viewAllHref}
+                class="view-all-link"
+            >
+
+                Explore {title} →
+
+            </a>
+
+        </div>
+
+        <div class="collection-content">
+
+            <slot />
+
+        </div>
+
+    </div>
+
+</section>

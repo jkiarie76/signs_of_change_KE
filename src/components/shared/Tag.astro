@@ -1,0 +1,27 @@
+---
+interface Props{
+
+label:string;
+
+active?:boolean;
+
+}
+
+const{
+
+label,
+
+active=false
+
+}=Astro.props;
+---
+
+<button
+
+class={`tag ${active ? "active" : ""}`}
+
+>
+
+{label}
+
+</button>

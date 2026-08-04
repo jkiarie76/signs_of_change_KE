@@ -1,0 +1,33 @@
+---
+interface Props {
+
+    placeholder?: string;
+
+}
+
+const {
+
+placeholder="Search articles..."
+
+}=Astro.props;
+---
+
+<div class="search-wrapper">
+
+    <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+
+            id="search-input"
+
+            type="text"
+
+            placeholder={placeholder}
+
+        />
+
+    </div>
+
+</div>

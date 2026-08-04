@@ -1,0 +1,93 @@
+---
+interface Props{
+
+    image:string;
+
+    category:string;
+
+    title:string;
+
+    excerpt:string;
+
+    author:string;
+
+    readTime:string;
+
+    href:string;
+
+}
+
+const{
+
+    image,
+
+    category,
+
+    title,
+
+    excerpt,
+
+    author,
+
+    readTime,
+
+    href
+
+}=Astro.props;
+---
+
+<article class="featured-preview">
+
+    <img
+        src={image}
+        alt={title}
+    >
+
+    <div class="featured-preview-content">
+
+        <span class="preview-category">
+
+            {category}
+
+        </span>
+
+        <h2>
+
+            {title}
+
+        </h2>
+
+        <p>
+
+            {excerpt}
+
+        </p>
+
+        <div class="preview-meta">
+
+            <span>
+
+                By {author}
+
+            </span>
+
+            <span>
+
+                {readTime}
+
+            </span>
+
+        </div>
+
+        <a
+            href={href}
+            class="read-story"
+        >
+
+            Read Story →
+
+        </a>
+
+    </div>
+
+</article>

@@ -1,0 +1,334 @@
+---
+interface Props {
+    activePage?: string;
+}
+
+const { activePage = "home" } = Astro.props;
+---
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <a href="/" class="logo">
+
+            <span class="logo-initials">
+                S&gt;C
+            </span>
+
+            <div class="logo-text">
+
+                <span class="brand-name">
+                    Signs Of Change KE
+                </span>
+
+                <span class="tagline">
+                    Deaf culture, told well
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- Desktop Navigation -->
+
+        <nav class="desktop-nav">
+
+            <ul>
+
+            <li>
+
+            <a
+            href="/"
+            class={activePage==="home" ? "active" : ""}
+            >
+
+            Home
+
+            </a>
+
+            </li>
+
+            <!-- Deaf Culture -->
+
+            <li class="dropdown">
+
+            <a
+            href="/deaf-culture"
+            class={activePage==="culture" ? "active" : ""}
+            >
+
+            Deaf Culture 101
+
+            <span class="arrow">▼</span>
+
+            </a>
+
+            <ul class="dropdown-menu">
+
+            <li>
+            <a href="/deaf-culture">
+            Overview
+            </a>
+            </li>
+
+            <li>
+            <a href="/deaf-culture/history">
+            History
+            </a>
+            </li>
+
+            <li>
+            <a href="/deaf-culture/etiquette">
+            Etiquette
+            </a>
+            </li>
+
+            <li>
+            <a href="/deaf-culture/myths">
+            Myths & Facts
+            </a>
+            </li>
+
+            </ul>
+
+            </li>
+
+            <!-- Deaf World -->
+
+            <li class="dropdown">
+
+            <a
+            href="/deaf-world"
+            class={activePage==="world" ? "active" : ""}
+            >
+
+            Deaf World
+
+            <span class="arrow">▼</span>
+
+            </a>
+
+            <ul class="dropdown-menu">
+
+            <li><a href="/deaf-world">Overview</a></li>
+
+            <li><a href="/deaf-world/stories">Stories</a></li>
+
+            <li><a href="/events">Events</a></li>
+
+            <li><a href="/deaf-world/advocacy">Advocacy</a></li>
+
+            </ul>
+
+            </li>
+
+            <!-- Learn -->
+
+            <li class="dropdown">
+
+            <a
+            href="/learn-sign"
+            class={activePage==="learn" ? "active" : ""}
+            >
+
+            Learn Sign
+
+            <span class="arrow">▼</span>
+
+            </a>
+
+            <ul class="dropdown-menu">
+
+            <li>
+            <a href="/learn-sign">
+            Overview
+            </a>
+            </li>
+
+            <li>
+            <a href="/learn-sign/videos">
+            Explore Videos
+            </a>
+            </li>
+
+            </ul>
+
+            </li>
+
+            <li>
+
+            <a
+            href="/connect"
+            class={activePage==="connect" ? "active" : ""}
+            >
+
+            Connect
+
+            </a>
+
+            </li>
+
+            </ul>
+
+            </nav>
+
+        <!-- Mobile Button -->
+
+        <button
+            class="mobile-menu-btn"
+            id="mobile-menu-btn"
+            aria-label="Toggle Menu"
+            aria-expanded="false"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+
+    <!-- Mobile Navigation -->
+
+    <nav class="mobile-nav" id="mobile-nav">
+
+    <ul>
+
+       <li>
+            <a href="/">
+
+                <i class="fa-solid fa-house"></i>
+
+                Home
+
+            </a>
+        </li>
+
+        <!-- Deaf Culture -->
+
+        <li class="mobile-dropdown">
+
+            <button class="mobile-dropdown-toggle">
+
+                <span class="menu-title">
+
+                    <span>
+
+                       <i class="fa-solid fa-chevron-down"></i>
+
+                        Deaf Culture 101
+
+                    </span>
+
+                    <span class="arrow">
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </span>
+
+                </span>
+
+            </button>
+
+            <ul class="mobile-submenu">
+
+                <li><a href="/deaf-culture">Overview</a></li>
+                <li><a href="/deaf-culture/history">History</a></li>
+                <li><a href="/deaf-culture/etiquette">Etiquette</a></li>
+                <li><a href="/deaf-culture/myths">Myths & Facts</a></li>
+
+            </ul>
+
+        </li>
+
+        <!-- Deaf World -->
+
+        <li class="mobile-dropdown">
+
+            <button class="mobile-dropdown-toggle">
+
+                <span class="menu-title">
+
+                    <span>
+
+                       <i class="fa-solid fa-earth-africa"></i>
+
+                        Deaf World
+
+                    </span>
+
+                    <span class="arrow">
+
+                        <i class="fa-solid fa-earth-africa"></i>
+
+                    </span>
+
+                </span>
+
+            </button>
+
+            <ul class="mobile-submenu">
+
+                <li><a href="/deaf-world">Overview</a></li>
+                <li><a href="/deaf-world/stories">Stories</a></li>
+                <li><a href="/deaf-world/events">Events</a></li>
+                <li><a href="/deaf-world/advocacy">Advocacy</a></li>
+
+            </ul>
+
+        </li>
+
+        <!-- Learn Sign -->
+
+        <li class="mobile-dropdown">
+
+            <button class="mobile-dropdown-toggle">
+
+                <span class="menu-title">
+
+                    <span>
+
+                        <i class="fa-solid fa-book-open"></i>
+
+                        Learn Sign
+
+                    </span>
+
+                    <span class="arrow">
+
+                        <i class="fa-solid fa-hands"></i>
+
+                    </span>
+
+                </span>
+
+            </button>
+
+            <ul class="mobile-submenu">
+
+                <li><a href="/learn-sign">Overview</a></li>
+                <li><a href="/learn-sign/videos">Videos</a></li>
+
+            </ul>
+
+        </li>
+
+        <li>
+        <a href="/">
+
+          <i class="fa-solid fa-comments"></i>
+
+                Connect
+
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+</header>
+
+<div class="mobile-overlay" id="mobile-overlay"></div>

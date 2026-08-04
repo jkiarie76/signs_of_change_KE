@@ -1,0 +1,76 @@
+---
+import CategoryCard from "./CategoryCard.astro";
+
+import {
+    Hand,
+    BookOpen,
+    Globe,
+    HeartHandshake
+} from "lucide-astro";
+---
+
+<section class="browse-categories">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+
+                Explore
+
+            </span>
+
+            <h2>
+
+                Browse by Category
+
+            </h2>
+
+            <p>
+
+                Discover articles, sign language lessons and inspiring stories from every corner of the Deaf community.
+
+            </p>
+
+        </div>
+
+        <div class="category-grid">
+
+            <CategoryCard
+                icon={Hand}
+                title="Learn Sign"
+                description="Master Kenyan Sign Language through beginner-friendly lessons."
+                href="/learn-sign"
+                cta="Start Learning"
+            />
+
+            <CategoryCard
+                icon={BookOpen}
+                title="Deaf Culture"
+                description="Explore Deaf history, etiquette, identity and traditions."
+                href="/deaf-culture"
+                cta="Read Articles"
+            />
+
+            <CategoryCard
+                icon={Globe}
+                title="Deaf World"
+                description="Discover inspiring stories, events and community initiatives."
+                href="/deaf-world"
+                cta="Discover Stories"
+            />
+
+            <CategoryCard
+                icon={HeartHandshake}
+                title="Advocacy"
+                description="Support inclusion and learn about campaigns creating change."
+                href="/deaf-world/advocacy"
+                cta="Get Involved"
+            />
+
+        </div>
+
+    </div>
+
+</section>

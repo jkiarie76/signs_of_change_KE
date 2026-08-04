@@ -1,0 +1,41 @@
+---
+interface Props{
+
+current:number;
+
+total:number;
+
+}
+
+const{
+
+current,
+
+total
+
+}=Astro.props;
+---
+
+<div class="pagination">
+
+{
+
+Array.from({length:total}).map((_,i)=>(
+
+<a
+
+href={`?page=${i+1}`}
+
+class={current===i+1 ? "active" : ""}
+
+>
+
+{i+1}
+
+</a>
+
+))
+
+}
+
+</div>

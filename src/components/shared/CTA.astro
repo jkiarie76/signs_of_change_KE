@@ -1,0 +1,47 @@
+---
+interface Props{
+
+title:string;
+
+button:string;
+
+href:string;
+
+}
+
+const{
+
+title,
+
+button,
+
+href
+
+}=Astro.props;
+---
+
+<section class="cta">
+
+<div class="cta-content">
+
+<h2>
+
+{title}
+
+</h2>
+
+<a
+
+href={href}
+
+class="btn btn-primary"
+
+>
+
+{button}
+
+</a>
+
+</div>
+
+</section>

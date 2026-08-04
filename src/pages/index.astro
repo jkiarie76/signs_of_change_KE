@@ -1,17 +1,42 @@
 ---
+import "../styles/home.css";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import HeroFeatured from "../components/home/HeroFeatured.astro";
+
+import FeaturedSidebar from "../components/home/FeaturedSidebar.astro";
+
+import NewsLetterCTA from "../components/home/NewsLetterCTA.astro";
+
+import FooterCTA from "../components/home/FooterCTA.astro";
+
+import LatestArticles from "../components/home/LatestArticles/LatestArticles.astro";
+
+import BrowseCategories from "../components/home/BrowseCategories/BrowseCategories.astro";
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+    title="Signs Of Change KE"
+    description="Bridging the Deaf and Hearing communities."
+    activePage="home"
+>
+
+<main>
+
+    <HeroFeatured />
+
+    <LatestArticles/>
+
+    <BrowseCategories />
+
+    <NewsLetterCTA />
+
+    <FooterCTA />
+
+</main>
+
+
+
+</BaseLayout>

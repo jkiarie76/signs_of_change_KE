@@ -1,0 +1,112 @@
+---
+interface Props {
+    myth: string;
+    fact: string;
+    category: string;
+}
+
+const { myth, fact, category } = Astro.props;
+---
+
+<div
+    class="flip-card"
+    role="button"
+    tabindex="0"
+    aria-label="Flip myth and fact card"
+>
+
+    <div class="flip-card-inner">
+
+        <!-- FRONT -->
+
+        <div class="flip-card-front">
+
+            <div class="myth-head">
+
+                <div class="flip-card-tags">
+
+                    <span class="card-meta-tag">
+
+                        ❌ MYTH
+
+                    </span>
+
+                    <span class="category-badge">
+
+                        {category}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="flip-content">
+
+                <p>
+
+                    {myth}
+
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="flip-footer"
+            >
+
+                💡 Tap to discover the truth
+
+            </button>
+
+        </div>
+
+        <!-- BACK -->
+
+        <div class="flip-card-back">
+
+            <div class="fact-head">
+
+                <div class="flip-card-tags">
+
+                    <span class="card-meta-tag">
+
+                        ✅ FACT
+
+                    </span>
+
+                    <span class="category-badge">
+
+                        {category}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="flip-content">
+
+                <p>
+
+                    {fact}
+
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="flip-footer"
+            >
+
+                ↺ Show Myth Again
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

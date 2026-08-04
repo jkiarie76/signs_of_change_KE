@@ -1,0 +1,111 @@
+---
+import ArticleCard from "../shared/ArticleCard.astro";
+
+const historyArticles = [
+
+    {
+        image:"/uploads/history/history1.jpg",
+        badge:"Education & Policy",
+        author:"Admin",
+        date:"Oct 14, 2025",
+        title:"The Milan Conference of 1880 & Its Lasting Impact",
+        excerpt:"A deep dive into one of the most influential moments in Deaf education.",
+        href:"#"
+    },
+
+    {
+        image:"/uploads/history/history2.jpg",
+        badge:"Foundational Leaders",
+        author:"Admin",
+        date:"Nov 2, 2025",
+        title:"Laurent Clerc & Thomas Gallaudet",
+        excerpt:"The story behind the pioneers who shaped Deaf education.",
+        href:"#"
+    },
+
+    {
+        image:"/uploads/history/history3.jpg",
+        badge:"Civil Rights",
+        author:"Admin",
+        date:"Dec 18, 2025",
+        title:"Deaf President Now",
+        excerpt:"The movement that changed Deaf leadership forever.",
+        href:"#"
+    }
+
+];
+---
+
+<section
+    id="history"
+    class="deaf-history-section"
+>
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="eyebrow">
+
+                02 · HISTORY & HERITAGE
+
+            </span>
+
+            <h2>
+
+                Discover the stories that shaped Deaf history
+
+            </h2>
+
+        </div>
+
+        <p class="section-intro-text">
+
+            From the evolution of Kenyan Sign Language to important movements around the world, explore the people and events that continue to shape Deaf identity today.
+
+        </p>
+
+        <div class="preview-grid">
+
+            {
+                historyArticles.map(article => (
+
+                    <ArticleCard
+
+                        image={article.image}
+
+                        badge={article.badge}
+
+                        author={article.author}
+
+                        date={article.date}
+
+                        title={article.title}
+
+                        excerpt={article.excerpt}
+
+                        href={article.href}
+
+                    />
+
+                ))
+            }
+
+        </div>
+
+        <div class="history-actions-wrapper">
+
+            <a
+                href="/deaf-culture/history"
+                class="btn-explore-page"
+            >
+
+                Explore History →
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

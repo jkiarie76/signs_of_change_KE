@@ -1,0 +1,85 @@
+---
+import FlipCard from "../shared/FlipCard.astro";
+
+const myths = [
+
+    {
+        id: 1,
+
+        myth: "Sign language is universal.",
+
+        fact: "There are over 300 different sign languages used around the world. Kenyan Sign Language is one of them.",
+
+        category: "Language"
+
+    },
+
+    {   
+        id: 2,
+
+        myth: "All Deaf people can read lips.",
+
+        fact: "Lip reading only provides part of spoken language. Most Deaf people rely on sign language for full communication.",
+
+        category: "Communication"
+
+    }
+
+];
+---
+
+<section id="myths" class="section-myths">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="eyebrow">
+                03 · MYTH-BUSTING LIBRARY
+            </span>
+
+            <h3>
+                Myths, gently corrected
+            </h3>
+
+        </div>
+
+        <p class="section-intro-text">
+            You don't have to be embarrassed if you believed any of these — most hearing people do.
+            What matters is what you do with the correction.
+        </p>
+
+        <div class="myths-grid">
+
+            {
+                myths.map((item) => (
+
+                    <FlipCard
+
+                        myth={item.myth}
+
+                        fact={item.fact}
+
+                        category={item.category}
+
+                    />
+
+                ))
+            }
+
+        </div>
+
+        <div class="btn-bottom">
+
+            <a
+                href="/deaf-culture/myths-facts"
+                class="btn-myths-facts"
+            >
+                Explore Myths & Facts →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,64 @@
+---
+
+interface Props{
+
+    icon:any;
+
+    title:string;
+
+    description:string;
+
+    href:string;
+
+    cta:string;
+
+}
+
+const{
+
+    icon: Icon,
+
+    title,
+
+    description,
+
+    href,
+
+    cta
+
+}=Astro.props;
+---
+
+<a
+    href={href}
+    class="category-card"
+>
+
+    <div class="category-icon">
+
+        <Icon
+            size={34}
+            strokeWidth={2}
+        />
+
+    </div>
+
+    <h3>
+
+        {title}
+
+    </h3>
+
+    <p>
+
+         {description}
+
+    </p>
+
+    <span class="category-link">
+
+         {cta} →
+
+    </span>
+
+</a>
