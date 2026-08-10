@@ -1,0 +1,84 @@
+---
+interface Props {
+
+    myth: string;
+
+    fact: string;
+
+    category: string;
+
+    badge: string;
+
+}
+
+const {
+
+    myth,
+
+    fact,
+
+    category,
+
+    badge
+
+} = Astro.props;
+---
+
+<article
+    class="myth-card"
+    data-category={category}
+>
+
+    <div class="myth-card-inner">
+
+        <!-- FRONT -->
+
+        <div class="myth-face myth-front">
+
+            <span class="myth-badge">
+
+                {badge}
+
+            </span>
+
+            <h3>
+
+                "{myth}"
+
+            </h3>
+
+            <div class="card-footer">
+
+                Click to reveal the truth →
+
+            </div>
+
+        </div>
+
+        <!-- BACK -->
+
+        <div class="myth-face myth-back">
+
+            <span class="fact-badge">
+
+                FACT
+
+            </span>
+
+            <p>
+
+                {fact}
+
+            </p>
+
+            <div class="card-footer">
+
+                ← Back to myth
+
+            </div>
+
+        </div>
+
+    </div>
+
+</article>

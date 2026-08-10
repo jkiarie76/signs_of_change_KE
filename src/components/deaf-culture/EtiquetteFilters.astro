@@ -1,0 +1,83 @@
+---
+const filters = [
+
+    {
+        label:"All Guidance",
+        value:"all"
+    },
+
+    {
+        label:"Attention",
+        value:"attention"
+    },
+
+    {
+        label:"Conversation",
+        value:"conversation"
+    },
+
+    {
+        label:"Interpreters",
+        value:"interpreters"
+    },
+
+    {
+        label:"Public Spaces",
+        value:"public"
+    },
+
+    {
+        label:"Workplace",
+        value:"workplace"
+    },
+
+    {
+        label:"Schools",
+        value:"schools"
+    }
+
+];
+---
+
+<section class="collection-filters">
+
+    <div class="container">
+
+        <h2 class="filters-title">
+
+            Browse by Situation
+
+        </h2>
+
+        <div
+            class="filters-wrapper"
+            data-filter-group
+            data-target=".etiquette-page-grid"
+        >   
+
+            <div class="filters-grid">
+
+                {
+
+                    filters.map((filter, index) => (
+
+                        <button
+                            class={`filter-chip ${index === 0 ? "active" : ""}`}
+                            data-filter={filter.value}
+                        >
+
+                            {filter.label}
+
+                        </button>
+
+                    ))
+
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

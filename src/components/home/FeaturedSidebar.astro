@@ -1,40 +1,41 @@
 ---
-import MythCard from "./MythFactCard.astro";
+
 import QuoteCard from "./QuoteCard.astro";
-import VocabularyCard from "./VocabularyCard.astro";
-import NewsletterCard from "./NewsLetterCard.astro";
+import SignOfTheWeekCard from "./SignOfTheWeekCard.astro";
+import NewsLetterCard from "./NewsLetterCard.astro";
+
+import HomepageMythCard from "./HomepageMythCard.astro";
 
 ---
 
 <div class="featured-sidebar">
-    <div class="sidebar-heading">
 
-        <span class="sidebar-heading-label">
+    <HomepageMythCard
 
-            ✨ THIS WEEK
+        category="Communication"
 
-        </span>
+        myth="All Deaf people can read lips."
 
-        <h2>
+        fact="Only some Deaf people use lip-reading. Even skilled lip-readers usually understand only part of spoken conversation."
 
-            Learn. Connect. Be Inspired.
+    />
 
-        </h2>
+    <QuoteCard
 
-        <p>
+    quote="Sign language is not just a way to communicate. It is a way of belonging."
 
-            Discover Deaf culture, learn a new sign, challenge common myths and stay connected with our growing community.
+    author="Kenyan Deaf Community"
 
-        </p>
+    />
 
-    </div>
+    <SignOfTheWeekCard
+    media="/uploads/home/olderpost_1.jpg"
+    mediaType="image"
+    sign="THANK YOU"
+    description="One of the first signs every beginner should learn."
+    difficulty="★ Easy"
+    />
 
-    <MythCard/>
-
-    <QuoteCard />
-
-    <VocabularyCard />
-
-    <NewsletterCard />
+    <NewsLetterCard />
 
 </div>

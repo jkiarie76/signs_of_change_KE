@@ -5,6 +5,8 @@ interface Props{
 
     badge:string;
 
+    category:string;
+
     author:string;
 
     date:string;
@@ -13,7 +15,7 @@ interface Props{
 
     excerpt:string;
 
-    href:string;
+    slug:string;
 
 }
 
@@ -23,6 +25,8 @@ const{
 
     badge,
 
+    category,
+
     author,
 
     date,
@@ -31,12 +35,15 @@ const{
 
     excerpt,
 
-    href
+    slug
 
 }=Astro.props;
 ---
 
-<article class="article-card">
+<article
+    class="article-card"
+    data-category={category}
+>
 
     <div class="card-image-wrap">
 
@@ -86,7 +93,7 @@ const{
         </p>
 
         <a
-            href={href}
+            href={`/deaf-culture/history/${slug}`}
             class="read-more-btn"
         >
 

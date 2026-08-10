@@ -1,61 +1,68 @@
 ---
-interface Crumb {
+interface Props {
 
-label:string;
+    items: {
 
-href?:string;
+        label: string;
 
-}
+        href?: string;
 
-interface Props{
-
-items:Crumb[];
+    }[];
 
 }
 
-const {items}=Astro.props;
+const { items } = Astro.props;
 ---
 
-<nav class="breadcrumb">
+<nav
+    class="breadcrumb"
+    aria-label="Breadcrumb"
+>
 
-{
+    {
+        items.map((item, index) => (
 
-items.map((item,index)=>(
+            <>
 
-<>
+                {
 
-{item.href ? (
+                    item.href ? (
 
-<a href={item.href}>
+                        <a href={item.href}>
 
-{item.label}
+                            {item.label}
 
-</a>
+                        </a>
 
-):(
+                    ) : (
 
-<span>
+                        <span class="current">
 
-{item.label}
+                            {item.label}
 
-</span>
+                        </span>
 
-)}
+                    )
 
-{index < items.length-1 &&
+                }
 
-<span class="separator">
+                {
 
-/
+                    index < items.length - 1 && (
 
-</span>
+                        <span class="separator">
 
-}
+                            &gt;
 
-</>
+                        </span>
 
-))
+                    )
 
-}
+                }
+
+            </>
+
+        ))
+    }
 
 </nav>

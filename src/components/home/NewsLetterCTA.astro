@@ -1,0 +1,82 @@
+---
+interface Props{
+
+    eyebrow?: string;
+
+    title?: string;
+
+    description?: string;
+
+    placeholder?: string;
+
+    buttonText?: string;
+
+}
+
+const{
+
+    eyebrow="STAY CONNECTED",
+
+    title="Join the Signs of Change KE Newsletter",
+
+    description="Receive inspiring stories, Deaf culture insights, events, advocacy updates and practical sign language resources directly in your inbox.",
+
+    placeholder="Enter your email address",
+
+    buttonText="Subscribe"
+
+}=Astro.props;
+---
+
+<section class="newsletter-section">
+
+    <div class="container">
+
+        <div class="newsletter-wrapper">
+
+            <span class="newsletter-eyebrow">
+
+                {eyebrow}
+
+            </span>
+
+            <h2>
+
+                {title}
+
+            </h2>
+
+            <p>
+
+                {description}
+
+            </p>
+
+            <form class="newsletter-form">
+
+                <input
+
+                    type="email"
+
+                    placeholder={placeholder}
+
+                    required
+
+                />
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+
+                    {buttonText}
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>

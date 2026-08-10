@@ -1,0 +1,106 @@
+---
+interface Props{
+
+    myth:string;
+
+    fact:string;
+
+    category:string;
+
+}
+
+const{
+
+    myth,
+
+    fact,
+
+    category
+
+}=Astro.props;
+---
+
+<div class="homepage-myth-card myth-card">
+
+    <div class="sidebar-widget-header">
+
+        <span class="sidebar-widget-icon">
+            💡
+        </span>
+
+        <span class="sidebar-widget-title">
+            Myth & Fact of the Week
+        </span>
+
+    </div>
+
+    <div class="myth-card-inner">
+
+        <!-- FRONT -->
+
+        <div class="myth-face myth-front">
+
+
+
+            <span class="myth-badge">
+
+                Myth
+
+            </span>
+
+            <span class="previous-card-category">
+
+                {category}
+
+            </span>
+
+            <div class="homepage-myth-content">
+
+                <h3>
+
+                    {myth}
+
+                </h3>
+
+            </div>    
+
+            <div class="card-footer">
+
+                Tap / Click to reveal the fact →
+
+            </div>
+
+        </div>
+
+        <!-- BACK -->
+
+        <div class="myth-face myth-back">
+
+
+            <span class="fact-badge">
+
+                Fact
+
+            </span>
+
+            <div class="homepage-myth-content">
+
+                <p>
+
+                    {fact}
+
+                </p>
+
+            </div>    
+
+            <div class="card-footer">
+
+                Tap / Click to flip back →
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

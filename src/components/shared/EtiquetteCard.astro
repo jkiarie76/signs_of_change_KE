@@ -1,0 +1,68 @@
+---
+interface Props {
+
+    type: "do" | "dont";
+
+    title: string;
+
+    description: string;
+
+    category?: string;
+
+}
+
+const {
+
+    type,
+
+    title,
+
+    description,
+
+    category
+
+} = Astro.props;
+
+const isDo = type === "do";
+---
+
+<article
+    class={`etiquette-card ${isDo ? "do-card" : "dont-card"}`}
+    data-category={category}
+>
+
+    <div class="card-behavior-banner">
+
+        <span
+            class={`behavior-badge ${isDo ? "badge-do" : "badge-dont"}`}
+        >
+
+            {isDo ? "✔ Do" : "✖ Don't"}
+
+        </span>
+
+    </div>
+
+    <div class="etiquette-card-body">
+
+        <h3 class="etiquette-rule-title">
+
+            {title}
+
+        </h3>
+
+        <p class="etiquette-rule-explanation">
+
+            {description}
+
+        </p>
+
+        <div class="etiquette-category">
+
+            {category}
+
+        </div>
+
+    </div>
+
+</article>

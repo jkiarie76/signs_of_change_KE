@@ -1,0 +1,161 @@
+---
+import PreviousFeaturedCard from "./PreviousFeaturedCard.astro";
+import FeaturedSidebar from "./FeaturedSidebar.astro";
+import NewsLetterCard from "./NewsLetterCard.astro";
+---
+<section class="homepage-top">
+
+    <div class="container">
+
+        <div class="homepage-layout">
+
+            <div class="homepage-main">
+
+                <article class="featured-story">
+
+                    <div class="featured-story-image">
+
+                        <img
+                            src="/uploads/home/hero.jpg"
+                            alt="Featured Story"
+                        />
+
+                    </div>
+
+                    <div class="featured-story-content">
+
+                        <div class="featured-story-tags">
+
+                            <span class="hero-category">
+
+                                Deaf Culture 101
+
+                            </span>
+
+                            <span class="hero-featured-badge">
+
+                                ★ Featured
+
+                            </span>
+
+                        </div>
+
+                        <h1>
+
+                            Bridging the Gap Between the Deaf and Hearing Communities Through Stories
+
+                        </h1>
+
+                        <div class="hero-meta">
+
+                            <span>
+
+                                <i class="fa-solid fa-user"></i>
+
+                                By Admin
+
+                            </span>
+
+                            <span>
+
+                                <i class="fa-regular fa-calendar"></i>
+
+                                Aug 3, 2026
+
+                            </span>
+
+                            <span>
+
+                                <i class="fa-regular fa-clock"></i>
+
+                                5 min read
+
+                            </span>
+
+                        </div>
+
+                        <p>
+
+                            Discover inspiring stories, practical sign language lessons,
+                            Deaf culture insights and community initiatives happening
+                            across Kenya.
+
+                        </p>
+
+                        <a href="#" class="btn-primary">
+
+                            Read Featured Story
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+                <section class="previous-featured">
+
+                    <h2 class="previous-featured-title">
+
+                        Previous Featured Stories
+
+                    </h2>
+
+                    <div class="previous-featured-grid">
+
+                        
+
+                        <PreviousFeaturedCard
+                            image="/uploads/home/olderpost_1.jpg"
+                            category="History"
+                            title="The Origins of Kenyan Sign Language"
+                            excerpt="Discover how Kenyan Sign Language is creating more inclusive communities."
+                            author="Admin"
+                            readTime="4 min"
+                        />
+
+                        <PreviousFeaturedCard
+                            image="/uploads/home/deafworld_2.jpg"
+                            category="Etiquette"
+                            title="Respectful Communication with Deaf People"
+                            excerpt="Discover how Kenyan Sign Language is creating more inclusive communities."
+                            author="Admin"
+                            readTime="5 min"
+                        />
+
+                        <PreviousFeaturedCard
+                            image="/uploads/home/learn_1.jpg"
+                            category="Stories"
+                            title="Growing Up Deaf in Kenya"
+                            excerpt="Discover how Kenyan Sign Language is creating more inclusive communities."
+                            author="Admin"
+                            readTime="6 min"
+                        />
+
+                        <PreviousFeaturedCard
+                            image="/uploads/home/culture_1.jpg"
+                            category="Advocacy"
+                            title="Accessibility is a Right"
+                            excerpt="Discover how Kenyan Sign Language is creating more inclusive communities."
+                            author="Admin"
+                            readTime="4 min"
+                        />
+
+                    </div>
+
+                </section>
+                
+            </div>
+
+            <aside class="homepage-sidebar">
+
+                 <FeaturedSidebar />
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>

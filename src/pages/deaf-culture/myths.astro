@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+import PageHero from "../../components/shared/PageHero.astro";
+
+import MythFilters from "../../components/myths/MythFilters.astro";
+
+import MythsGrid from "../../components/myths/MythsGrid.astro";
+---
+
+<BaseLayout
+    title="Debunking Misconceptions | Signs Of Change KE"
+    activePage="culture"
+    >
+
+    <PageHero
+
+        breadcrumbs={[
+            {
+                label: "Home",
+                href: "/"
+            },
+            {
+                label: "Deaf Culture 101",
+                href: "/deaf-culture"
+            },
+            {
+                label: "Myths & Facts"
+            }
+        ]}
+
+        title="Debunking Misconceptions"
+
+        description="Exploring reality vs. fiction in Deaf culture, communication access, and sign language systems."
+
+    />
+
+    <MythFilters />
+
+    <MythsGrid />
+
+</BaseLayout>

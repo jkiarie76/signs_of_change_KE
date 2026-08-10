@@ -1,0 +1,98 @@
+---
+interface Props{
+
+    media:string;
+
+    mediaType:"image" | "gif" | "video";
+
+    sign:string;
+
+    description:string;
+
+    difficulty:string;
+
+}
+
+const{
+
+    media,
+
+    mediaType,
+
+    sign,
+
+    description,
+
+    difficulty
+
+}=Astro.props;
+---
+
+<article class="homepage-sign-card">
+
+    <div class="sidebar-widget-header">
+
+        <span class="sidebar-widget-icon">
+
+            🤟
+
+        </span>
+
+        <span class="sidebar-widget-title">
+
+            Sign of the Week
+
+        </span>
+
+    </div>
+
+    {
+        mediaType === "video" ? (
+
+            <video
+                class="sign-preview"
+                autoplay
+                muted
+                loop
+                playsinline
+            >
+                <source src={media} type="video/mp4" />
+            </video>
+
+        ) : (
+
+            <img
+                src={media}
+                alt={sign}
+                class="sign-preview"
+            />
+
+        )
+    }
+
+    <h3>
+
+        {sign}
+
+    </h3>
+
+    <p>
+
+        {description}
+
+    </p>
+
+    <span class="difficulty">
+
+        {difficulty}
+
+    </span>
+
+    <a href="#"
+       class="sign-link">
+
+        Learn this sign →
+
+    </a>
+
+</article>

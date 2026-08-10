@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+import Breadcrumb from "../../components/shared/Breadcrumb.astro";
+
+import HistoryHero from "../../components/history/HistoryHero.astro";
+
+import HistoryFilters from "../../components/history/HistoryFilters.astro";
+
+import HistoryGrid from "../../components/history/HistoryGrid.astro";
+---
+
+<BaseLayout
+    title="History Milestones | Signs Of Change KE"
+    description="Explore milestones that shaped Deaf history."
+    activePage="culture"
+>
+
+    <main>
+
+
+
+        <HistoryHero />
+
+        <HistoryFilters />
+
+        <HistoryGrid />
+
+    </main>
+
+</BaseLayout>

@@ -1,0 +1,85 @@
+---
+interface Props {
+    image: string;
+    category: string;
+    title: string;
+    excerpt:string;
+    author: string;
+    readTime: string;
+}
+
+const {
+    image,
+    category,
+    title,
+    excerpt,
+    author,
+    readTime
+} = Astro.props;
+---
+
+<article class="previous-card">
+
+    <div class="previous-card-image">
+
+        <img
+            src={image}
+            alt={title}
+        />
+
+    </div>
+
+    <div class="previous-card-content">
+
+        <span class="previous-card-category">
+
+            {category}
+
+        </span>
+
+        <h3>
+
+            {title}
+
+        </h3>
+
+        <p class="previous-card-excerpt">
+
+            {excerpt}
+
+        </p>
+
+        <div class="previous-card-meta">
+
+            <span>
+
+                <i class="fa-solid fa-user"></i>
+
+                {author}
+
+            </span>
+
+            <span>
+
+                <i class="fa-regular fa-clock"></i>
+
+                {readTime}
+
+            </span>
+
+        </div>
+
+        <a
+            href="#"
+            class="previous-card-link"
+        >
+
+            Read Story
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+</article>

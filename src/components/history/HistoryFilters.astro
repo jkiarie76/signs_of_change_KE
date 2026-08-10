@@ -1,0 +1,95 @@
+---
+const filters = [
+
+    {
+        label: "All",
+        value: "all",
+        count: 124,
+        active: true
+    },
+
+    {
+        label: "Education",
+        value: "education",
+        count: 38
+    },
+
+    {
+        label: "Leaders",
+        value: "leaders",
+        count: 21
+    },
+
+    {
+        label: "Civil Rights",
+        value: "civil-rights",
+        count: 16
+    },
+
+    {
+        label: "Kenyan History",
+        value: "kenyan-history",
+        count: 29
+    },
+
+    {
+        label: "Accessibility",
+        value: "accessibility",
+        count: 20
+    }
+
+];
+---
+
+<section class="history-filters">
+
+    <div class="container">
+
+        <div class="filters-heading">
+
+            <h3>Browse by Topic</h3>
+
+            <p>
+                Explore historical milestones by category.
+             </p>
+
+        </div>
+
+        <div
+            class="filters-wrapper"
+            data-filter-group
+            data-target=".history-grid"
+        >
+
+            {
+                filters.map((filter) => (
+
+                   <button
+                        class={`history-filter ${
+                            filter.active ? "active" : ""
+                        }`}
+                        data-filter={filter.value}
+                    >
+
+                        <span>
+
+                            {filter.label}
+
+                        </span>
+
+                        <small>
+
+                            {filter.count}
+
+                        </small>
+
+                    </button>
+
+                ))
+            }
+
+        </div>
+
+    </div>
+
+</section>

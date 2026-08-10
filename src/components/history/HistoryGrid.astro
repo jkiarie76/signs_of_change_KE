@@ -1,0 +1,99 @@
+---
+import ArticleCard from "../shared/ArticleCard.astro";
+
+import EmptyState from "../shared/EmptyState.astro";
+
+const historyArticles = [
+
+    {
+        image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80",
+
+        badge: "Education & Policy",
+
+        category: "education",
+
+        author: "Admin",
+
+        date: "Oct 14, 2025",
+
+        title: "The Milan Conference of 1880 & Its Lasting Impact",
+
+        excerpt: "A deep dive into the 1880 International Congress on Education of the Deaf, the controversial vote to ban sign language in schools, and its century-long aftermath.",
+
+        slug: "/history/milan-conference-1880"
+    },
+
+    {
+        image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80",
+
+        badge: "Foundational Leaders",
+
+        category: "leaders",
+
+        author: "Admin",
+
+        date: "Nov 02, 2025",
+
+        title: "Laurent Clerc & Thomas Gallaudet: Foundations of ASL",
+
+        excerpt: "How Laurent Clerc brought French Sign Language to North America and partnered with Thomas Hopkins Gallaudet to establish the first permanent school for the Deaf.",
+
+        slug: "/history/clerc-and-gallaudet"
+    },
+
+    {
+        image: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?auto=format&fit=crop&w=800&q=80",
+
+        badge: "Civil Rights",
+
+        category: "civil-rights",
+
+        author: "Admin",
+
+        date: "Dec 18, 2025",
+
+        title: "Deaf President Now (DPN): The 1988 Movement",
+
+        excerpt: "The historic student protest at Gallaudet University that reshaped public perception and led to the institution's first Deaf president.",
+
+        slug: "/history/deaf-president-now"
+    }
+
+];
+---
+
+<section class="history-grid">
+
+    <div class="container">
+
+        <div class="history-grid">
+
+            {
+
+                historyArticles.map((article) => (
+
+                <ArticleCard {...article} />
+
+                ))
+
+            }
+
+        </div>
+
+       
+
+        <EmptyState
+
+            title="No history articles found"
+
+            description="We're working on adding more content to this topic. Try another category or view all history articles."
+
+            buttonText="View All Articles"
+
+            buttonAction="reset"
+
+        />
+
+    </div>
+
+</section>

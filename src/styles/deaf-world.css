@@ -1,0 +1,712 @@
+/*==========================================
+DEAF WORLD HERO
+==========================================*/
+
+.deafworld-hero{
+
+    padding:4rem 0 2.5rem 0;
+
+}
+
+.hero-split-layout{
+
+    display:grid;
+
+    grid-template-columns:1.1fr .9fr;
+
+    gap:3rem;
+
+    align-items:center;
+
+}
+
+.hero-text-side{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.hero-text-side h1{
+
+    font-size:clamp(2.2rem,4vw,4rem);
+
+    line-height:1.1;
+
+    color:var(--accent);
+
+    margin:1rem 0 1.5rem;
+
+    max-width:14ch;
+
+}
+
+.hero-text-side p{
+
+    max-width:62ch;
+
+    color:#4d5561;
+
+    line-height:1.8;
+
+    margin-bottom:2rem;
+
+}
+
+.hero-anchors-row{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:.8rem;
+
+}
+
+.chip-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:.75rem 1.2rem;
+
+    border-radius:999px;
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+.chip-btn:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+.hero-image-side img{
+
+    width:100%;
+
+    display:block;
+
+    border-radius:24px;
+
+    aspect-ratio:1/1;
+
+    object-fit:cover;
+
+    object-position: 10% center;
+
+    box-shadow:0 18px 45px rgba(0,0,0,.08);
+
+}
+
+@media(max-width:900px){
+
+    .hero-split-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hero-text-side{
+
+        order:2;
+
+    }
+
+    .hero-image-side{
+
+        order:1;
+
+    }
+
+}
+/*==========================================
+DEAF WORLD STORIES PREVIEW
+==========================================*/
+
+.deafworld-stories-preview{
+
+    padding:5rem 0;
+
+}
+
+.deafworld-stories-preview .featured-story{
+
+    display:grid;
+
+    grid-template-columns:1.1fr 1fr;
+
+    gap:2rem;
+
+    align-items:center;
+
+    background:#fff;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.06);
+
+    margin-top:2.5rem;
+
+}
+
+.deafworld-stories-preview .featured-story-image{
+
+    height:100%;
+
+}
+
+.deafworld-stories-preview .featured-story-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.deafworld-stories-preview .featured-story-content{
+
+    padding:2.5rem;
+
+}
+
+.deafworld-stories-preview .hero-meta{
+
+    display:flex;
+
+    gap:1.5rem;
+
+    flex-wrap:wrap;
+
+    color:#64748B;
+
+    font-size:.9rem;
+
+    margin:1rem 0;
+
+}
+
+.deafworld-stories-preview h2{
+
+    font-size:2rem;
+
+    line-height:1.3;
+
+    color:var(--accent);
+
+    margin-bottom:1rem;
+
+}
+
+.deafworld-stories-preview p{
+
+    color:#5B6472;
+
+    line-height:1.8;
+
+    margin-bottom:2rem;
+
+}
+
+.deafworld-stories-preview .history-actions-wrapper{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:2.5rem;
+
+}
+
+.deafworld-stories-preview .hero-meta{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:1.5rem;
+
+    margin:1rem 0;
+
+    color:#64748B;
+
+    font-size:.9rem;
+
+}
+
+.deafworld-stories-preview .hero-meta span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.45rem;
+
+}
+.hero-category{
+    background-color: turquoise;
+    color: black;
+    padding: 10px;
+    border-radius:99px
+}
+
+@media(max-width:900px){
+
+    .deafworld-stories-preview .featured-story{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+/*==========================================
+DEAF WORLD EVENTS PREVIEW
+==========================================*/
+
+.deafworld-events-preview{
+
+    padding:4rem 0;
+
+}
+
+.featured-event-card{
+
+    display:grid;
+
+    grid-template-columns:45% 55%;
+
+    background:#fff;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+
+    margin-top:2.5rem;
+
+}
+
+.event-image{
+
+    position:relative;
+
+}
+
+.event-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.event-date{
+
+    position:absolute;
+
+    left:1.5rem;
+
+    bottom:1.5rem;
+
+    background:#fff;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+    min-width:75px;
+
+    text-align:center;
+
+}
+
+.event-date .month{
+
+    display:block;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    font-size:.8rem;
+
+    font-weight:700;
+
+    padding:.45rem 0;
+
+    letter-spacing:1px;
+
+}
+
+.event-date .day{
+
+    display:block;
+
+    padding:.8rem 0;
+
+    font-size:1.8rem;
+
+    font-weight:800;
+
+    color:var(--accent);
+
+}
+
+.event-content{
+
+    padding:2rem;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.event-meta{
+
+    display:flex;
+
+    gap:1.5rem;
+
+    flex-wrap:wrap;
+
+    font-size:.9rem;
+
+    color:#6B7280;
+
+    margin-bottom:1rem;
+
+}
+
+.event-meta span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.45rem;
+
+}
+.event-meta span i{
+    color:rgb(26, 175, 235);
+}
+.event-meta .location i{
+    color:red;
+}
+.event-content h3{
+
+    font-size:1.8rem;
+
+    color:var(--accent);
+
+    line-height:1.3;
+
+    margin-bottom:1rem;
+
+}
+
+.event-content p{
+
+    color:#5B6472;
+
+    line-height:1.8;
+
+    margin-bottom:2rem;
+
+}
+.event-content .btn-primary{
+    padding: 10px;
+    width: 50%;
+    text-align: center;
+    border-radius: 24px;
+}
+.events-footer{
+
+    margin-top:2rem;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:2rem;
+
+    padding:2rem;
+
+    background:#F8FAFC;
+
+    border-radius:20px;
+
+    border:1px solid var(--border);
+
+}
+
+.events-message strong{
+
+    display:block;
+
+    font-size:1.05rem;
+
+    margin-bottom:.35rem;
+
+    color:var(--accent);
+
+}
+
+.events-message p{
+
+    color:#64748B;
+
+}
+
+.events-actions{
+
+    display:flex;
+
+    gap:1rem;
+
+    flex-wrap:wrap;
+
+}
+.events-footer .events-actions .btn-secondary, .btn-primary{
+
+    padding: 10px;
+    border-radius: 24px;
+    transition:1s;
+}
+.events-footer .events-actions .btn-secondary:hover{
+    border-color:turquoise;
+}
+@media(max-width:900px){
+
+    .featured-event-card{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .event-image{
+
+        height:280px;
+
+    }
+
+    .events-footer{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+}
+/*==========================================
+ADVOCACY PREVIEW
+==========================================*/
+
+.deafworld-advocacy-preview{
+
+    padding:2.5rem 0;
+
+}
+
+.advocacy-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:2rem;
+
+    margin-top:2.5rem;
+
+}
+
+.campaign-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:2rem;
+
+    border:1px solid var(--border);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.campaign-badge{
+
+    align-self:flex-start;
+
+    background:#DDF7F4;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    padding:.45rem .9rem;
+
+    border-radius:999px;
+
+    margin-bottom:1rem;
+
+    font-size:.8rem;
+
+}
+
+.campaign-badge.legal{
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+}
+
+.campaign-card h3{
+
+    font-size:1.45rem;
+
+    color:var(--accent);
+
+    margin-bottom:1rem;
+
+}
+
+.campaign-card p{
+
+    color:#64748B;
+
+    line-height:1.8;
+
+    margin-bottom:2rem;
+
+    flex:1;
+
+}
+.campaign-progress{
+
+    margin:1.5rem 0;
+
+}
+
+.progress-label{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:.75rem;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+}
+
+.progress-value{
+
+    color:var(--primary);
+
+}
+
+.progress-bar{
+
+    width:100%;
+
+    height:10px;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    background:#E5E7EB;
+
+}
+
+.progress-fill{
+
+    width:0%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        #1FB9A5
+    );
+
+    border-radius:999px;
+
+    transition:width 2.2s cubic-bezier(.22,.61,.36,1);
+
+}
+.campaign-card .btn-primary{
+    width:60%;
+    text-align: center;
+}
+.campaign-card .btn-secondary{
+    padding: 10px;
+    border-radius: 24px;
+    width: 60%;
+    text-align: center;
+    transition: 1s ;
+
+}
+.campaign-card .btn-secondary:hover{
+    border-color: turquoise;
+}
+
+.container .history-actions-wrapper{
+    margin-top: 1rem;
+}
+
+@media(max-width:900px){
+
+    .advocacy-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

@@ -1,0 +1,115 @@
+---
+interface Breadcrumb {
+
+    label: string;
+
+    href?: string;
+
+}
+
+interface Props {
+
+    eyebrow?: string;
+
+    breadcrumbs?: Breadcrumb[];
+
+    title: string;
+
+    description: string;
+
+}
+
+const {
+
+    eyebrow,
+
+    breadcrumbs = [],
+
+    title,
+
+    description
+
+} = Astro.props;
+---
+
+<section class="page-hero">
+
+    <div class="container">
+
+        {
+            breadcrumbs.length > 0 ? (
+
+                <nav class="breadcrumb-nav">
+
+                    {
+
+                        breadcrumbs.map((item, index) => (
+
+                            <>
+
+                                {
+
+                                    item.href ? (
+
+                                        <a href={item.href}>
+
+                                            {item.label}
+
+                                        </a>
+
+                                    ) : (
+
+                                        <span class="current">
+
+                                            {item.label}
+
+                                        </span>
+
+                                    )
+
+                                }
+
+                                {
+
+                                    index < breadcrumbs.length - 1 && (
+
+                                        <span class="separator">›</span>
+
+                                    )
+
+                                }
+
+                            </>
+
+                        ))
+
+                    }
+
+                </nav>
+
+            ) : (
+
+                eyebrow && (
+
+                    <nav class="breadcrumb-nav">
+
+                        <span>{eyebrow}</span>
+
+                    </nav>
+
+                )
+
+            )
+        }
+
+        <div class="page-hero-content">
+
+            <h1>{title}</h1>
+
+            <p>{description}</p>
+
+        </div>
+
+    </div>
+
+</section>

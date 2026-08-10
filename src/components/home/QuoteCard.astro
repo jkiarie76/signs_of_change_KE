@@ -1,22 +1,51 @@
-<div class="sidebar-card quote-card">
+---
+interface Props{
 
-    <span class="sidebar-label">
+    quote:string;
 
-        💬 Quote of the Week
+    author:string;
 
-    </span>
+}
 
-    <blockquote class="quote-text">
+const{
 
-        "Sign language is not just a way to communicate.
-        It is a way of belonging."
+    quote,
 
-    </blockquote>
+    author
 
-    <div class="quote-author">
+}=Astro.props;
+---
 
-        — Deaf Community Member
+<article class="homepage-quote-card">
+
+    <div class="quote-header">
+
+        <span class="quote-icon">✨</span>
+
+        <span class="quote-title">
+
+            Quote of the Week
+
+        </span>
 
     </div>
 
-</div>
+    <div class="quote-body">
+
+        <span class="quote-mark">“</span>
+
+        <p>
+
+            {quote}
+
+        </p>
+
+    </div>
+
+    <footer class="quote-author">
+
+        — {author}
+
+    </footer>
+
+</article>

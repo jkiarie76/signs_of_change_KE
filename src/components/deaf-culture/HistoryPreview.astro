@@ -4,33 +4,33 @@ import ArticleCard from "../shared/ArticleCard.astro";
 const historyArticles = [
 
     {
-        image:"/uploads/history/history1.jpg",
+        image:"/uploads/home/culture_1.jpg",
         badge:"Education & Policy",
         author:"Admin",
         date:"Oct 14, 2025",
         title:"The Milan Conference of 1880 & Its Lasting Impact",
         excerpt:"A deep dive into one of the most influential moments in Deaf education.",
-        href:"#"
+        slug: "milan-conference-1880"
     },
 
     {
-        image:"/uploads/history/history2.jpg",
+        image:"/uploads/home/learn_2.jpg",
         badge:"Foundational Leaders",
         author:"Admin",
         date:"Nov 2, 2025",
         title:"Laurent Clerc & Thomas Gallaudet",
         excerpt:"The story behind the pioneers who shaped Deaf education.",
-        href:"#"
+        slug: "clerc & thomas"
     },
 
     {
-        image:"/uploads/history/history3.jpg",
+        image:"/uploads/home/deafworld_2.jpg",
         badge:"Civil Rights",
         author:"Admin",
         date:"Dec 18, 2025",
         title:"Deaf President Now",
         excerpt:"The movement that changed Deaf leadership forever.",
-        href:"#"
+        slug: "deaf president now"
     }
 
 ];
@@ -84,7 +84,7 @@ const historyArticles = [
 
                         excerpt={article.excerpt}
 
-                        href={article.href}
+                        slug={article.slug}
 
                     />
 

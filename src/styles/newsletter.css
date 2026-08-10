@@ -1,0 +1,127 @@
+/*==========================================
+NEWSLETTER CTA
+==========================================*/
+
+.newsletter-section{
+
+    padding:5rem 0;
+
+}
+
+.newsletter-wrapper{
+
+    background:linear-gradient(
+        135deg,
+        #0F172A,
+        #072F2A
+    );
+
+    color:#fff;
+
+    border-radius:30px;
+
+    padding:4rem;
+
+    text-align:center;
+
+}
+
+.newsletter-eyebrow{
+
+    display:inline-block;
+
+    color:#7DD3FC;
+
+    font-size:.85rem;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    margin-bottom:1rem;
+
+}
+
+.newsletter-wrapper h2{
+
+    font-size:2.3rem;
+
+    margin-bottom:1rem;
+
+}
+
+.newsletter-wrapper p{
+
+    max-width:700px;
+
+    margin:0 auto 2rem;
+
+    line-height:1.8;
+
+    color:#CBD5E1;
+
+}
+
+.newsletter-form{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:1rem;
+
+    flex-wrap:wrap;
+
+}
+
+.newsletter-form input{
+
+    width:420px;
+
+    max-width:100%;
+
+    padding:1rem 1.25rem;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-size:1rem;
+
+}
+
+.newsletter-form button{
+
+    white-space:nowrap;
+
+}
+
+@media(max-width:768px){
+
+    .newsletter-wrapper{
+
+        padding:2.5rem;
+
+    }
+
+    .newsletter-wrapper h2{
+
+        font-size:1.8rem;
+
+    }
+
+    .newsletter-form{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .newsletter-form input{
+
+        width:100%;
+
+    }
+
+}

@@ -1173,7 +1173,7 @@ font-weight:500;
 
 .breadcrumb a:hover{
 
-text-decoration:underline;
+
 
 }
 
@@ -1185,7 +1185,7 @@ color:#94a3b8;
 
 .breadcrumb span{
 
-color:var(--text-muted);
+color:rgb(20, 18, 18);
 
 }
 /*==================================

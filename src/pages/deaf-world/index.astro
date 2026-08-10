@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+import DeafWorldHero from "../../components/deaf-world/DeafWorldHero.astro";
+
+import StoriesPreview from "../../components/deaf-world/StoriesPreview.astro";
+
+import "../../styles/deaf-world.css"
+
+import EventsPreview from "../../components/deaf-world/EventsPreview.astro";
+
+import AdvocacyPreview from "../../components/deaf-world/AdvocacyPreview.astro";
+
+import NewsLetterCTA from "../../components/home/NewsLetterCTA.astro"
+---
+
+<BaseLayout
+    title="Deaf World | Signs Of Change KE"
+    description="Stories, events and advocacy from Deaf communities."
+    activePage="world"
+>
+
+<main>
+
+    <DeafWorldHero />
+
+    <StoriesPreview />
+
+    <EventsPreview />
+
+    <AdvocacyPreview />
+
+    <NewsLetterCTA
+
+    eyebrow="STAY IN THE LOOP"
+
+    title="Get the Deaf World brief every Friday."
+
+    description="One email curated by Deaf editors: the story of the week, upcoming events and one advocacy action you can take."
+
+    buttonText="Subscribe"
+
+/>
+
+</main>
+
+</BaseLayout>

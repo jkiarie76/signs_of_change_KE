@@ -366,7 +366,7 @@ Used In:
 - Related Articles
 ==========================================*/
 
-.article-card{
+.shared-article-card{
 
     background:#fff;
 
@@ -686,5 +686,725 @@ FLIP CARD TAGS
     color:var(--primary);
 
     backdrop-filter:blur(4px);
+
+}
+/*==========================================
+BREADCRUMB
+==========================================*/
+
+.breadcrumb{
+
+    display:flex;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:.55rem;
+
+    margin:2rem auto 1rem;
+
+    font-size:.9rem;
+
+}
+.breadcrumb-nav{
+
+    display:flex;
+    align-items:center;
+    gap:.55rem;
+    margin-bottom:1.5rem;
+
+    font-size:.9rem;
+    font-weight:500;
+    color: #6B7280;
+
+    flex-wrap:wrap;
+
+
+}
+
+.breadcrumb-nav a{
+
+    color:turquoise;
+    text-decoration:none;
+    transition:.25s;
+
+}
+
+.breadcrumb-nav a:hover{
+
+    color:var(--primary);
+
+}
+
+.breadcrumb-nav .separator{
+
+    color:black;
+    font-size:1.2rem;
+
+}
+
+.breadcrumb-nav .current{
+
+    color:#111827;
+    font-weight:700;
+
+}
+
+.breadcrumb a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    transition:.25s;
+
+}
+
+.breadcrumb a:hover{
+
+    color:var(--accent);
+
+}
+
+.separator{
+
+    color:#9CA3AF;
+
+}
+
+.current{
+
+    color:#6B7280;
+
+    font-weight:600;
+
+}
+/*==========================================
+HISTORY HERO
+==========================================*/
+
+.history-hero{
+
+    padding:1rem 0 3rem;
+
+}
+
+.history-hero h1{
+
+    font-size:2.5rem;
+
+    margin-bottom:1rem;
+
+}
+
+.history-description{
+
+    max-width:700px;
+
+    line-height:1.8;
+
+    color:black;
+
+    margin-bottom:1rem;
+
+}
+
+.history-stats{
+
+    display:flex;
+
+    gap:1.5rem;
+
+    flex-wrap:wrap;
+
+}
+
+.history-stat{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.history-stat strong{
+
+    font-size:1.6rem;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+}
+
+.history-stat span{
+
+    color:black;
+
+    font-size:.9rem;
+
+}
+@media (max-width:768px){
+
+    .history-hero{
+
+        padding:1rem 0 2rem;
+
+    }
+
+    .history-hero h1{
+
+        font-size:2.2rem;
+
+    }
+
+    .history-stats{
+
+        gap:1.5rem;
+
+    }
+
+}
+/*==========================================
+HISTORY FILTERS
+==========================================*/
+
+.history-filters{
+
+    padding:1rem 0 3rem;
+
+}
+.filters-heading{
+
+    margin-bottom:1.5rem;
+
+}
+
+.filters-heading h3{
+
+    font-size:1.4rem;
+
+    color:black;
+
+    margin-bottom:.4rem;
+
+}
+
+.filters-heading p{
+
+    color:#6B7280;
+
+    max-width:550px;
+
+    line-height:1.6;
+
+}
+
+.filters-wrapper{
+
+    display:flex;
+
+    gap:.8rem;
+
+    flex-wrap:wrap;
+
+}
+
+.history-filter{
+
+    border:none;
+
+    background:#ffffff;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:999px;
+
+    padding:.8rem 1.2rem;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.6rem;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-weight:600;
+
+}
+
+.history-filter small{
+
+    background:#F3F4F6;
+
+    padding:.2rem .55rem;
+
+    border-radius:999px;
+
+    font-size:.75rem;
+
+    color:#6B7280;
+
+}
+
+.history-filter:hover{
+
+    transform:translateY(-2px);
+
+    border-color:var(--primary);
+
+}
+
+.history-filter.active{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+.history-filter.active small{
+
+    background:white;
+
+    color:var(--primary);
+
+}
+@media (max-width:768px){
+
+    .filters-wrapper{
+
+        display:grid;
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:.75rem;
+
+    }
+
+    .history-filter{
+
+        width:100%;
+
+        justify-content:space-between;
+
+        padding:.9rem 1rem;
+
+    }
+
+}
+/* ETIQUETTE GRID */
+.preview-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:1.5rem;
+
+}
+.etiquette-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1.5rem;
+}
+
+@media (max-width:768px){
+
+    .etiquette-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+@media(max-width:768px){
+
+    .preview-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+/* ========= ETIQUETTE FILTERS ========= */
+
+.collection-filters{
+
+    padding:2rem 0;
+
+}
+
+.filters-title{
+
+    font-size:1.4rem;
+
+    margin-bottom:1rem;
+
+    font-weight:700;
+
+}
+
+.filters-grid{
+
+    display:flex;
+
+    gap:.75rem;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    scroll-behavior:smooth;
+
+    padding-bottom:.5rem;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+.filter-chip{
+    flex:0 0 auto;
+
+    border:none;
+
+    background:#f3f4f6;
+
+    padding:.8rem 1.3rem;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.25s ease;
+
+}
+.filters-grid::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.filters-grid{
+
+    scrollbar-width:none;
+
+}
+
+.filter-chip:hover{
+
+    background:#14b8a6;
+
+    color:white;
+
+}
+
+.filter-chip.active{
+
+    background:#14b8a6;
+
+    color:white;
+
+}
+/* Wrapper for fading edges */
+
+.filters-wrapper{
+
+    position:relative;
+
+}
+
+/* Right fade */
+
+.filters-wrapper::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    right:0;
+
+    width:60px;
+
+    height:100%;
+
+    pointer-events:none;
+
+    background:linear-gradient(
+        to right,
+        rgba(246,242,235,0),
+        rgba(246,242,235,1)
+    );
+
+}
+@media (min-width:769px){
+
+    .filters-wrapper::after{
+
+        display:none;
+
+    }
+
+}
+@media (min-width: 769px){
+
+    .filters-grid{
+
+        overflow-x:visible;
+
+        justify-content:flex-start;
+
+        flex-wrap:wrap;
+
+    }
+
+}
+/* ========= ETIQUETTE PAGE GRID ========= */
+
+.etiquette-page-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:2rem;
+
+    margin-top:2rem;
+
+}
+/*==========================================
+EMPTY STATE
+==========================================*/
+
+.empty-state{
+
+    padding:4rem 2rem;
+
+    text-align:center;
+
+    border:2px dashed #E5E7EB;
+
+    border-radius:20px;
+
+    background:#FAFAFA;
+
+    margin-top:2rem;
+
+}
+
+.empty-state.hidden{
+
+    display:none;
+
+}
+
+.empty-state-content{
+
+    max-width:500px;
+
+    margin:auto;
+
+}
+
+.empty-state h3{
+
+    font-size:1.6rem;
+
+    color:#111827;
+
+    margin-bottom:.8rem;
+
+}
+
+.empty-state p{
+
+    color:#6B7280;
+
+    line-height:1.7;
+
+    margin-bottom:2rem;
+
+}
+
+.reset-filters-btn{
+
+    border:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:.9rem 1.8rem;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.25s ease;
+
+}
+
+.reset-filters-btn:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.95;
+
+}
+/*==========================================
+MYTH CARD
+==========================================*/
+
+.myth-card{
+
+    perspective:1000px;
+
+    cursor:pointer;
+
+    min-height:320px;
+
+}
+
+.myth-card-inner{
+
+    position:relative;
+
+    width:100%;
+
+    height:100%;
+
+    min-height:320px;
+
+    transition:transform .6s ease;
+
+    transform-style:preserve-3d;
+
+}
+
+.myth-card.flipped .myth-card-inner{
+
+    transform:rotateY(180deg);
+
+}
+
+.myth-face{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:1.6rem;
+
+    border:1px solid #E5E7EB;
+
+    box-shadow:0 10px 24px rgba(0,0,0,.08);
+
+    backface-visibility:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.myth-front{
+
+    border-left:5px solid #EF4444;
+
+}
+
+.myth-back{
+
+    border-left:5px solid #10B981;
+
+    transform:rotateY(180deg);
+
+}
+
+.myth-badge{
+
+    display:inline-block;
+
+    align-self:flex-start;
+
+    background:#FEE2E2;
+
+    color:#B91C1C;
+
+    padding:.35rem .7rem;
+
+    border-radius:999px;
+
+    font-size:.75rem;
+
+    font-weight:700;
+
+    margin-bottom:1rem;
+
+}
+
+.fact-badge{
+
+    display:inline-block;
+
+    align-self:flex-start;
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+    padding:.35rem .7rem;
+
+    border-radius:999px;
+
+    font-size:.75rem;
+
+    font-weight:700;
+
+    margin-bottom:1rem;
+
+}
+
+.myth-front h3{
+
+    line-height:1.5;
+
+    font-size:1.15rem;
+
+    flex:1;
+
+}
+
+.myth-back p{
+
+    color:#4B5563;
+
+    line-height:1.8;
+
+    flex:1;
+
+}
+
+.card-footer{
+
+    margin-top:auto;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    color:var(--primary);
 
 }

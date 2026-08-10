@@ -376,15 +376,23 @@ ETIQUETTE PREVIEW
 
     overflow:hidden;
 
+    display:flex;
+
+    flex-direction:column;
+
+    height:100%;
+
     box-shadow:0 10px 30px rgba(0,0,0,.08);
 
-    transition:.3s ease;
+    transition:all .35s ease;
 
 }
 
 .etiquette-card:hover{
 
-    transform:translateY(-6px);
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 45px rgba(0,0,0,.12);
 
 }
 .card-behavior-banner{
@@ -433,6 +441,12 @@ ETIQUETTE PREVIEW
 
     padding:1.5rem;
 
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
+
 }
 
 .etiquette-rule-title{
@@ -441,15 +455,44 @@ ETIQUETTE PREVIEW
 
     line-height:1.3;
 
-}
+    font-size:1.25rem;
 
+    font-weight:700;
+
+    color:#0f172a;
+
+}
 .etiquette-rule-explanation{
 
     color:var(--text-light);
 
     line-height:1.7;
 
+    flex:1;
+
 }
+.etiquette-category{
+
+    margin-top:1.5rem;
+
+    align-self:flex-start;
+
+    background:#eef6f6;
+
+    color:teal;
+
+    padding:.45rem .9rem;
+
+    border-radius:999px;
+
+    font-size:.75rem;
+
+    font-weight:700;
+
+    text-transform:capitalize;
+
+}
+
 .btn-center-bottom{
 
     text-align:center;
@@ -481,6 +524,38 @@ ETIQUETTE PREVIEW
 .btn-etiquette:hover{
 
     transform:translateY(-2px);
+
+}
+/* ==========================
+   Collection Filter Animation
+========================== */
+
+.etiquette-card{
+
+    opacity:1;
+
+    transform:scale(1);
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+
+}
+
+.etiquette-card.hidden{
+
+    opacity:0;
+
+    transform:scale(.92);
+
+    pointer-events:none;
+
+}
+.hidden{
+
+    position:absolute;
+
+    visibility:hidden;
 
 }
 @media(max-width:768px){
@@ -604,11 +679,13 @@ MYTHS & FACTS PREVIEW
 
     display:grid;
 
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 
     gap:2rem;
 
     margin:2.5rem 0;
+
+    align-items:stretch;
 
 }
 .myth-fact-card{
@@ -700,6 +777,7 @@ MYTHS & FACTS PREVIEW
 
         grid-template-columns:1fr;
 
+        gap:1.5rem;
     }
 
 }
@@ -783,6 +861,226 @@ MYTHS & FACTS PREVIEW
         width:100%;
 
         justify-content:center;
+
+    }
+
+}
+/*==========================================
+PAGE HERO
+==========================================*/
+
+.page-hero{
+
+    padding:3rem 0 2rem;
+
+}
+
+.page-hero-content{
+
+    max-width:760px;
+
+        background:linear-gradient(
+        135deg,
+        #b3eee0,
+        #97e8ec
+    );
+
+    padding: 1rem;
+
+    border-radius: 18px;
+
+}
+.page-hero-stats{
+    
+    display:flex;
+
+    gap:1rem;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    margin: 10px ;
+
+
+}
+.stat-card{
+    background-color: rgb(159, 235, 227);
+    padding: .8rem;
+    border-radius: 20px;
+}
+
+.page-hero h1{
+
+    font-size:clamp(2.5rem,4vw,3rem);
+
+    line-height:1.15;
+
+    margin-bottom:1rem;
+
+    color:#111827;
+
+}
+
+.page-hero p{
+
+    color:black;
+
+    font-size:1.05rem;
+
+    line-height:1.8;
+
+    max-width:650px;
+
+}
+
+.breadcrumb-nav{
+
+    margin-bottom:1rem;
+
+    font-size:.9rem;
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+/*==========================================
+RESPONSIVE PAGE HERO
+==========================================*/
+
+@media (max-width: 992px){
+
+    .page-hero{
+
+        padding:2.5rem 0 2rem;
+
+    }
+
+    .page-hero-content{
+
+        max-width:100%;
+        padding:1.25rem;
+
+    }
+
+    .page-hero h1{
+
+        font-size:2.2rem;
+
+    }
+
+    .page-hero p{
+
+        font-size:1rem;
+        line-height:1.7;
+
+    }
+
+    .page-hero-stats{
+
+        gap:.75rem;
+
+    }
+
+}
+
+@media (max-width: 768px){
+
+    .page-hero{
+
+        padding:2rem 0 1.5rem;
+
+    }
+
+    .page-hero-content{
+
+        padding:1.25rem;
+
+    }
+
+    .page-hero h1{
+
+        font-size:2rem;
+        line-height:1.2;
+
+    }
+
+    .page-hero p{
+
+        font-size:.95rem;
+        line-height:1.6;
+
+    }
+
+    .breadcrumb-nav{
+
+        font-size:.8rem;
+        flex-wrap:wrap;
+        gap:.35rem;
+
+    }
+
+    .page-hero-stats{
+
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:.8rem;
+        margin-top:1.25rem;
+
+    }
+
+    .stat-card{
+
+        text-align:center;
+
+    }
+
+}
+
+@media (max-width: 480px){
+
+    .page-hero{
+
+        padding:1.5rem 0;
+
+    }
+
+    .page-hero-content{
+
+        padding:1rem;
+        border-radius:14px;
+
+    }
+
+    .page-hero h1{
+
+        font-size:1.7rem;
+
+    }
+
+    .page-hero p{
+
+        font-size:.9rem;
+
+    }
+
+    .page-hero-stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .stat-card{
+
+        width:100%;
+        padding:1rem;
+
+    }
+
+    .breadcrumb-nav{
+
+        font-size:.75rem;
 
     }
 

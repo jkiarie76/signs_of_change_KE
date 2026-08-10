@@ -1,0 +1,92 @@
+---
+import MythCard from "../shared/MythCard.astro";
+import EmptyState from "../shared/EmptyState.astro";
+const myths = [
+
+    {
+        badge: "MYTH",
+        myth: "Sign language is universal.",
+        fact: "There are more than 300 different sign languages worldwide. Kenyan Sign Language (KSL), American Sign Language (ASL), and British Sign Language (BSL) are all distinct languages.",
+
+        category: "language"
+    },
+
+    {
+        badge: "MYTH",
+        myth: "All Deaf people can read lips.",
+        fact: "Lip-reading is a skill that varies from person to person. Even skilled lip readers only catch part of a conversation because many sounds look identical on the lips.",
+
+        category: "communication"
+    },
+
+    {
+        badge: "MYTH",
+        myth: "Deaf people cannot drive safely.",
+        fact: "Research consistently shows Deaf drivers are as safe as hearing drivers. They often rely more on visual awareness and observation.",
+
+        category: "accessibility"
+    },
+
+    {
+        badge: "MYTH",
+        myth: "Using sign language prevents children from learning to speak.",
+        fact: "Learning sign language supports language development. It does not prevent speech and often improves communication and learning outcomes.",
+
+        category: "education"
+    },
+
+    {
+        badge: "MYTH",
+        myth: "Interpreters speak for Deaf people.",
+        fact: "Interpreters facilitate communication. The conversation is always between you and the Deaf person.",
+
+        category: "interpreters"
+    },
+
+    {
+        badge: "MYTH",
+        myth: "All Deaf people have the same culture.",
+        fact: "Deaf culture is diverse. Experiences differ across countries, languages, education systems, and communities.",
+
+        category: "culture"
+    }
+
+];
+---
+
+<section class="myths-grid">
+
+    <div class="container">
+
+        <div class="myths-grid">
+
+            {
+
+                myths.map((item) => (
+
+                    <MythCard {...item} />
+
+                ))
+
+            }
+
+        </div>
+
+        <EmptyState
+
+            title="No myths found"
+
+            description="We're still researching and adding myths for this topic."
+
+            buttonText="View All Myths"
+
+            buttonAction="reset"
+
+            class="hidden"
+
+        />
+
+    </div>
+
+</section>
+

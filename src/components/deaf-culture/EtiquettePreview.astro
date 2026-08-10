@@ -1,3 +1,32 @@
+---
+import EtiquetteCard from "../shared/EtiquetteCard.astro";
+
+const previewGuidelines: {
+    type: "do" | "dont";
+    title: string;
+    description: string;
+}[]  = [
+
+    {
+        type: "do",
+
+        title: "Tap the Shoulder Softly",
+
+        description:
+            "Gently tap the person once or twice on the shoulder or upper arm. Alternatively, if you are at a distance, emit a small, polite wave within their direct line of sight to signal your presence naturally."
+    },
+
+    {
+        type: "dont",
+
+        title: "Avoid Aggressive Gestures",
+
+        description:
+            "Never poke, touch the face or head, or grab someone's hands to stop them from signing. Avoid throwing objects or waving your hands frantically inches away from their face, as this is highly disruptive."
+    }
+
+];
+---
 <section id="etiquette" class="section-etiquette">
         <div class="container">
             <div class="section-header">
@@ -8,35 +37,20 @@
             
             <div class="etiquette-grid">
                 <!-- Rule 1: Gaining Attention (DO) -->
-                <article class="etiquette-card do-card" data-context="attention">
-                    <div class="card-behavior-banner">
-                        <span class="behavior-badge badge-do">
-                            <i class="fa-solid fa-circle-check"></i>  Do
-                        </span>
-                    </div>
-                    <div class="etiquette-card-body">
-                        <h3 class="etiquette-rule-title">Tap the Shoulder Softly</h3>
-                        <p class="etiquette-rule-explanation">Gently tap the person once or twice on the shoulder or upper arm. Alternatively, if you are at a distance, emit a small, polite wave within their direct line of sight to signal your presence naturally.</p>
-                    </div>
-                </article>
+                   {
 
-                <!-- Rule 2: Gaining Attention (DON'T) -->
-                <article class="etiquette-card dont-card" data-context="attention">
-                    <div class="card-behavior-banner">
-                        <span class="behavior-badge badge-dont">
-                            <i class="fa-solid fa-circle-xmark"></i>  Don't
-                        </span>
-                    </div>
-                    <div class="etiquette-card-body">
-                        <h3 class="etiquette-rule-title">Avoid Aggressive Gestures</h3>
-                        <p class="etiquette-rule-explanation">Never poke, touch the face or head, or grab someone's hands to stop them from signing. Avoid throwing objects or waving your hands frantically inches away from their face, as this is highly disruptive.</p>
-                    </div>
-                </article>
+                        previewGuidelines.map((item) => (
+
+                            <EtiquetteCard {...item} />
+
+                        ))
+
+                    }
 
             </div>
             
             <div class="btn-center-bottom">
-                <a class="btn-etiquette" href="deaf-etiquette.html">Explore Deaf Etiquette</a>
+                <a class="btn-etiquette" href="/deaf-culture/etiquette">Explore Deaf Etiquette</a>
             </div>
             
         </div>

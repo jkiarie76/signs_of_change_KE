@@ -1,0 +1,106 @@
+---
+const filters = [
+
+    {
+        label: "All",
+        value: "all",
+        active: true
+    },
+
+    {
+        label: "Language",
+        value: "language"
+    },
+
+    {
+        label: "Communication",
+        value: "communication"
+    },
+
+    {
+        label: "Culture",
+        value: "culture"
+    },
+
+    {
+        label: "Education",
+        value: "education"
+    },
+
+    {
+        label: "Accessibility",
+        value: "accessibility"
+    },
+
+    {
+        label: "Interpreters",
+        value: "interpreters"
+    },
+    
+    {
+        label:  "Technology",
+        value:  "Technology"
+    }
+
+];
+---
+
+<section class="myth-filters">
+
+    <div class="container">
+
+        <div class="filters-heading">
+
+            <h3>
+
+                Browse by Topic
+
+            </h3>
+
+            <p>
+
+                Explore common misconceptions by category.
+
+            </p>
+
+        </div>
+
+        <div class="filters-wrapper">
+
+            <div 
+        
+                class="filters-grid"
+
+                data-filter-group
+
+                data-target=".myths-grid"
+
+            >
+
+                {
+
+                    filters.map((filter) => (
+
+                        <button
+
+                            class={`history-filter ${filter.active ? "active" : ""}`}
+
+                            data-filter={filter.value}
+
+                        >
+
+                            {filter.label}
+
+                        </button>
+
+                    ))
+
+                }
+                
+            </div>    
+
+        </div>
+
+    </div>
+
+</section>

@@ -9,6 +9,10 @@ interface Props {
 
     buttonHref?: string;
 
+    buttonAction?: string;
+
+    class?: string;
+
 }
 
 const {
@@ -19,12 +23,22 @@ description="Check back soon for new content.",
 
 buttonText,
 
-buttonHref
+buttonHref,
+
+buttonAction,
+
+class: className = ""
 
 }=Astro.props;
 ---
 
-<section class="empty-state">
+<section 
+
+class={`empty-state ${className}`}
+
+data-empty-state
+
+>
 
     <div class="empty-icon">
 
@@ -59,6 +73,26 @@ buttonHref
                 {buttonText}
 
             </a>
+
+        )
+
+    }
+
+    {
+
+        buttonText && buttonAction && (
+
+            <button
+
+                class="btn btn-primary"
+
+                data-reset-filters={buttonAction}
+
+            >
+
+                {buttonText}
+
+            </button>
 
         )
 

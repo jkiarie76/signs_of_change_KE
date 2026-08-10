@@ -1,0 +1,90 @@
+---
+import EtiquetteCard from "../shared/EtiquetteCard.astro";
+import EmptyState from "../shared/EmptyState.astro";
+
+const etiquetteGuidelines: {
+    type: "do" | "dont";
+    title: string;
+    description: string;
+    category: string;
+}[] = [
+
+    {
+        type: "do",
+        category: "attention",
+        title: "Tap the Shoulder Softly",
+        description:
+            "Gently tap the person once or twice on the shoulder or upper arm. Alternatively, if you are at a distance, use a small wave within their line of sight."
+    },
+
+    {
+        type: "dont",
+        category: "attention",
+        title: "Avoid Aggressive Gestures",
+        description:
+            "Never poke, touch the face or head, grab someone's hands while signing, or wave frantically inches from their face."
+    },
+
+    {
+        type: "do",
+        category: "conversation",
+        title: "Maintain Direct Eye Contact",
+        description:
+            "Look directly at the Deaf person, not the interpreter. Keep your mouth visible and speak naturally."
+    },
+
+    {
+        type: "dont",
+        category: "conversation",
+        title: "Don't Exaggerate Speech",
+        description:
+            "Avoid shouting or over-enunciating. It distorts lip movements and makes communication harder."
+    },
+
+    {
+        type: "do",
+        category: "interpreters",
+        title: "Address the Deaf Person",
+        description:
+            "Speak directly to the Deaf individual. The interpreter is there to facilitate communication—not replace the conversation."
+    },
+
+    {
+        type: "dont",
+        category: "interpreters",
+        title: "Don't Speak to the Interpreter",
+        description:
+            "Avoid saying 'Tell him...' or 'Ask her...'. Always speak naturally to the Deaf person."
+    }
+
+];
+---
+
+<section class="etiquette-grid-section">
+
+    <div class="container">
+
+        <div class="etiquette-page-grid">
+
+            {
+
+                etiquetteGuidelines.map((item) => (
+
+                    <EtiquetteCard {...item} />
+
+                ))
+
+            }
+
+        </div>
+
+        <EmptyState
+            title="No etiquette guidance found"
+            description="We're still adding guidance for this situation. Try another category or view all guidance."
+            buttonText="View All Guidance"
+            buttonAction="reset"
+        />
+
+    </div>
+
+</section>
