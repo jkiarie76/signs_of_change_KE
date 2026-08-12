@@ -1,0 +1,219 @@
+---
+export interface Props {
+    image: string;
+    title: string;
+    description: string;
+
+    displayDate: string;
+    day: string;
+
+    startTime: string;
+    endTime?: string;
+
+    eventType: "physical" | "virtual";
+
+    location: string;
+    organizer: string;
+
+    status: "upcoming" | "past";
+
+    registrationUrl?: string;
+    resourceUrl?: string;
+
+    registrationLabel?: string;
+}
+
+const {
+    image,
+    title,
+    description,
+
+    displayDate,
+    day,
+
+    startTime,
+    endTime,
+
+    eventType,
+
+    location,
+    organizer,
+
+    status,
+
+    registrationUrl,
+    resourceUrl,
+
+    registrationLabel = "Register Now"
+} = Astro.props;
+---
+
+<article
+    class="event-card"
+    data-status={status}
+>
+
+    <!-- EVENT IMAGE -->
+
+    <div class="event-image-wrap">
+
+        <img
+            src={image}
+            alt={title}
+        />
+
+        <div class="calendar-date-badge">
+
+            <span class="badge-month">
+                {displayDate}
+            </span>
+
+            <span class="badge-day">
+                {day}
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- EVENT CONTENT -->
+
+    <div class="event-card-body">
+
+
+        <!-- TIME + LOCATION -->
+
+        <div class="event-meta-row">
+
+            <span class="meta-item">
+
+                <i class="fa-regular fa-clock"></i>
+
+                {startTime}
+
+                {
+                    endTime
+                        ? ` - ${endTime}`
+                        : ""
+                }
+
+            </span>
+
+
+            <span
+                class:list={[
+                    "meta-item",
+                    eventType === "virtual"
+                        ? "virtual-highlight"
+                        : "location-highlight"
+                ]}
+            >
+
+                {
+                    eventType === "virtual"
+                        ? (
+                            <>
+                                <i class="fa-solid fa-video"></i>
+                                Online
+                            </>
+                        )
+                        : (
+                            <>
+                                <i class="fa-solid fa-location-dot"></i>
+                                {location}
+                            </>
+                        )
+                }
+
+            </span>
+
+        </div>
+
+
+        <!-- ORGANIZER -->
+
+        <div class="event-organizer">
+
+            <i class="fa-regular fa-user"></i>
+
+            <span>
+                Hosted by {organizer}
+            </span>
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h3 class="event-card-title">
+
+            {title}
+
+        </h3>
+
+
+        <!-- DESCRIPTION -->
+
+        <p class="event-card-excerpt">
+
+            {description}
+
+        </p>
+
+
+        <!-- ACTIONS -->
+
+        {
+            (registrationUrl || resourceUrl) && (
+
+                <div class="event-card-actions">
+
+
+                    {
+                        registrationUrl && (
+
+                            <a
+                                href={registrationUrl}
+                                class="event-action-btn"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+
+                                {registrationLabel}
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        )
+                    }
+
+
+                    {
+                        resourceUrl && (
+
+                            <a
+                                href={resourceUrl}
+                                class="event-download-btn"
+                                download
+                            >
+
+                                Download Event Guide
+
+                                <i class="fa-solid fa-download"></i>
+
+                            </a>
+
+                        )
+                    }
+
+
+                </div>
+
+            )
+        }
+
+    </div>
+
+</article>

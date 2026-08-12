@@ -978,21 +978,44 @@ HISTORY FILTERS
 
     .filters-wrapper{
 
-        display:grid;
+        display:flex;
 
-        grid-template-columns:repeat(2,1fr);
+        flex-wrap:nowrap;
 
-        gap:.75rem;
+        gap:.8rem;
 
+        overflow-x:auto;
+
+        overflow-y:hidden;
+
+        padding-bottom:.6rem;
+
+        -webkit-overflow-scrolling:touch;
+
+        scrollbar-width:none;
+
+        scroll-behavior:smooth;
+
+        touch-action:pan-x;
+
+        overscroll-behavior-x:contain;
+    }
+
+    .filters-wrapper::-webkit-scrollbar{
+        display:none;
     }
 
     .history-filter{
 
-        width:100%;
+        flex:0 0 auto;
 
-        justify-content:space-between;
+        width:auto;
 
-        padding:.9rem 1rem;
+        white-space:nowrap;
+
+        justify-content:center;
+
+        padding:.8rem 1.2rem;
 
     }
 

@@ -188,6 +188,20 @@
     gap:.7rem;
 
 }
+@media (max-width: 550px) {
+
+    .hero-featured-badge {
+        width: fit-content;
+        min-width: max-content;
+        height: auto;
+        padding: .45rem .85rem;
+        margin-top: 5px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: .75rem;
+    }
+
+}
 
 @media (max-width:991px){
 

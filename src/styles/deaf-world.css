@@ -710,3 +710,1688 @@ ADVOCACY PREVIEW
     }
 
 }
+/* =========================================================
+   DEAF WORLD — STORIES PAGE
+   ========================================================= */
+
+.deaf-world-stories-page{
+
+    background:#fff;
+
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+.deaf-world-stories-page .stories-header{
+
+    padding:1.25rem 0 0;
+
+}
+
+.deaf-world-stories-page .breadcrumb-nav{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.4rem;
+
+    font-size:.75rem;
+
+    color:#6B7280;
+
+}
+
+.deaf-world-stories-page .breadcrumb-nav a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+}
+
+.deaf-world-stories-page .breadcrumb-nav a:hover{
+
+    text-decoration:underline;
+
+}
+
+.deaf-world-stories-page .breadcrumb-nav .current-page{
+
+    color:#6B7280;
+
+}
+
+
+/* =========================================================
+   FEATURED STORY
+   ========================================================= */
+
+.deaf-world-stories-page .stories-featured-section{
+
+    padding:2.5rem 0 1.5rem;
+
+}
+
+.deaf-world-stories-page .featured-story-hero{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    min-height:320px;
+
+    overflow:hidden;
+
+    border:1px solid #D9E0E5;
+
+    border-radius:10px;
+
+    background:#fff;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+
+}
+
+
+/* IMAGE */
+
+.deaf-world-stories-page .hero-image-pane{
+
+    position:relative;
+
+    min-height:320px;
+
+}
+
+.deaf-world-stories-page .hero-image-pane img{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+}
+
+
+/* FEATURED BADGE */
+
+.deaf-world-stories-page .hero-badge{
+
+    position:absolute;
+
+    top:12px;
+
+    left:12px;
+
+    background:#EF4444;
+
+    color:#fff;
+
+    padding:.3rem .55rem;
+
+    border-radius:3px;
+
+    font-size:.55rem;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.03em;
+
+}
+
+
+/* CONTENT */
+
+.deaf-world-stories-page .hero-content-pane{
+
+    padding:2rem;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.deaf-world-stories-page .story-meta-row{
+
+    display:flex;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:.75rem;
+
+    font-size:.7rem;
+
+    color:#6B7280;
+
+    margin-bottom:.7rem;
+
+}
+.deaf-world-stories-page .story-author{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:.35rem;
+
+}
+.deaf-world-stories-page .story-author i{
+
+    color:var(--primary);
+
+}
+
+
+.deaf-world-stories-page .story-read-time{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:.35rem;
+
+}
+
+.deaf-world-stories-page .story-read-time i{
+
+    color:var(--primary);
+
+}
+
+.deaf-world-stories-page .hero-title{
+
+    margin:0 0 .8rem;
+
+    font-size:1.55rem;
+
+    line-height:1.15;
+
+    color:#111827;
+
+}
+
+.deaf-world-stories-page .hero-excerpt{
+
+    margin:0 0 1.2rem;
+
+    color:#6B7280;
+
+    font-size:.8rem;
+
+    line-height:1.7;
+
+}
+
+.deaf-world-stories-page .story-read-link{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:.4rem;
+
+    width:max-content;
+
+    color:#111827;
+
+    font-size:.75rem;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+}
+
+.deaf-world-stories-page .story-read-link:hover{
+
+    color:var(--primary);
+
+}
+
+.deaf-world-stories-page .story-read-link i{
+
+    transition:transform .2s ease;
+
+}
+
+.deaf-world-stories-page .story-read-link:hover i{
+
+    transform:translateX(4px);
+
+}
+
+
+/* =========================================================
+   STORIES FEED
+   ========================================================= */
+
+.deaf-world-stories-page .stories-feed-section{
+
+    padding:0 0 5rem;
+
+}
+
+.deaf-world-stories-page .stories-feed-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:1.5rem;
+
+}
+
+
+/* STORY CARD */
+
+.deaf-world-stories-page .story-editorial-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    border:1px solid #D9E0E5;
+
+    border-radius:8px;
+
+    background:#fff;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.04);
+
+    transition:
+
+        transform .25s ease,
+
+        box-shadow .25s ease;
+
+}
+
+.deaf-world-stories-page .story-editorial-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 24px rgba(0,0,0,.08);
+
+}
+
+
+/* CARD IMAGE */
+
+.deaf-world-stories-page .story-card-image{
+
+    height:210px;
+
+    overflow:hidden;
+
+}
+
+.deaf-world-stories-page .story-card-image img{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:transform .4s ease;
+
+}
+
+.deaf-world-stories-page .story-editorial-card:hover
+.story-card-image img{
+
+    transform:scale(1.03);
+
+}
+
+
+/* CARD BODY */
+
+.deaf-world-stories-page .story-card-body{
+
+    padding:1.25rem;
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
+
+}
+
+.deaf-world-stories-page .story-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    width:max-content;
+
+    padding:.2rem .5rem;
+
+    border-radius:3px;
+
+    background:#E8F7F5;
+
+    color:#087F73;
+
+    font-size:.55rem;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.03em;
+
+}
+
+.deaf-world-stories-page .story-card-title{
+
+    margin:.6rem 0 .5rem;
+
+    font-size:1rem;
+
+    line-height:1.35;
+
+    color:#111827;
+
+}
+
+.deaf-world-stories-page .story-card-excerpt{
+
+    margin:0 0 1rem;
+
+    color:#6B7280;
+
+    font-size:.72rem;
+
+    line-height:1.65;
+
+    flex:1;
+
+}
+
+.deaf-world-stories-page .story-text-link{
+
+    width:max-content;
+
+    color:#111827;
+
+    font-size:.68rem;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+}
+
+.deaf-world-stories-page .story-text-link:hover{
+
+    color:var(--primary);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width:768px){
+
+    .deaf-world-stories-page .featured-story-hero{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .deaf-world-stories-page .hero-image-pane{
+
+        min-height:240px;
+
+    }
+
+    .deaf-world-stories-page .hero-content-pane{
+
+        padding:1.5rem;
+
+    }
+
+    .deaf-world-stories-page .hero-title{
+
+        font-size:1.3rem;
+
+    }
+
+    .deaf-world-stories-page .stories-feed-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .deaf-world-stories-page .stories-header{
+
+        padding-top:1rem;
+
+    }
+
+    .deaf-world-stories-page .stories-featured-section{
+
+        padding-top:1.5rem;
+
+    }
+
+    .deaf-world-stories-page .hero-image-pane{
+
+        min-height:200px;
+
+    }
+
+    .deaf-world-stories-page .hero-content-pane{
+
+        padding:1.2rem;
+
+    }
+
+    .deaf-world-stories-page .hero-title{
+
+        font-size:1.15rem;
+
+    }
+
+    .deaf-world-stories-page .story-card-image{
+
+        height:190px;
+
+    }
+
+}
+/* =========================================================
+   DEAF WORLD EVENTS PAGE
+========================================================= */
+
+.deaf-world-events-page {
+    padding-bottom: 5rem;
+}
+
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+
+.deaf-world-events-page .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.9rem;
+}
+
+.deaf-world-events-page .breadcrumb-nav a {
+    color: turquoise;
+    text-decoration: underline;
+}
+
+.deaf-world-events-page .breadcrumb-nav .current-page {
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.events-page-header {
+    max-width: 760px;
+    margin-bottom: 3rem;
+    background-color: rgb(103, 231, 218);
+    border-radius: 24px;
+    padding: 10px;
+}
+
+.events-page-header .eyebrow {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+}
+
+.events-page-header h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.5rem, 5vw, 4rem);
+    line-height: 1.05;
+}
+
+.events-page-header p {
+    max-width: 680px;
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    opacity: 0.78;
+}
+
+
+/* =========================================================
+   EVENT FILTERS
+========================================================= */
+
+.events-filter-section {
+    margin-bottom: 3rem;
+}
+
+.events-filter-section .filters-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.events-filter-section .filter-chip {
+    border: 1px solid rgba(0, 128, 128, 0.3);
+    background: transparent;
+    color: inherit;
+    padding: 0.7rem 1.25rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.2s ease;
+}
+
+.events-filter-section .filter-chip:hover {
+    transform: translateY(-2px);
+    border-color: turquoise;
+}
+
+.events-filter-section .filter-chip.active {
+    background: turquoise;
+    color: #062a2a;
+    border-color: turquoise;
+}
+@media (max-width:768px){
+
+    .events-filter-section .filters-grid{
+
+        flex-wrap:nowrap;
+
+        overflow-x:auto;
+
+        overflow-y:hidden;
+
+        padding-bottom:.6rem;
+
+        -webkit-overflow-scrolling:touch;
+
+        scrollbar-width:none;
+
+        touch-action:pan-x;
+
+        overscroll-behavior-x:contain;
+    }
+
+    .events-filter-section .filters-grid::-webkit-scrollbar{
+        display:none;
+    }
+
+    .events-filter-section .filter-chip{
+
+        flex:0 0 auto;
+
+        white-space:nowrap;
+    }
+
+}
+
+
+/* =========================================================
+   EVENTS GRID
+========================================================= */
+
+.events-content {
+    padding-bottom: 2rem;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+
+/* =========================================================
+   EVENT CARD
+========================================================= */
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 18px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+
+/* =========================================================
+   EVENT IMAGE
+========================================================= */
+
+.event-image-wrap {
+    position: relative;
+    height: 230px;
+    overflow: hidden;
+}
+
+.event-image-wrap img {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.5s ease;
+}
+
+.event-card:hover .event-image-wrap img {
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   CALENDAR BADGE
+========================================================= */
+
+.event-image-wrap .calendar-date-badge {
+    position: absolute;
+
+    top: 1rem;
+    left: 1rem;
+
+    width: 64px;
+    min-height: 70px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+
+    overflow: hidden;
+}
+
+.event-image-wrap .badge-month {
+    width: 100%;
+
+    padding: 0.3rem 0;
+
+    text-align: center;
+
+    background: turquoise;
+
+    color: #062a2a;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.event-image-wrap .badge-day {
+    padding: 0.35rem 0;
+
+    font-size: 1.45rem;
+    font-weight: 800;
+
+    color: #111;
+}
+
+
+/* =========================================================
+   EVENT CARD BODY
+========================================================= */
+
+.event-card-body {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+
+    padding: 1.5rem;
+}
+
+
+/* =========================================================
+   EVENT META
+========================================================= */
+
+.event-card-body .event-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+
+    margin-bottom: 0.85rem;
+
+    font-size: 0.82rem;
+}
+
+.event-card-body .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+
+    color: #666;
+}
+
+.event-card-body .meta-item i {
+    font-size: 0.85rem;
+}
+
+.event-card-body .location-highlight {
+    color: #008f8f;
+}
+
+.event-card-body .virtual-highlight {
+    color: #008f8f;
+}
+
+
+/* =========================================================
+   ORGANIZER
+========================================================= */
+
+.event-organizer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    margin-bottom: 1rem;
+
+    font-size: 0.82rem;
+    color: #777;
+}
+
+.event-organizer i {
+    color: turquoise;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.event-card-title {
+    margin: 0 0 0.75rem;
+
+    font-size: 1.3rem;
+    line-height: 1.25;
+
+    color: #111;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.event-card-excerpt {
+    margin: 0;
+
+    color: #666;
+
+    font-size: 0.94rem;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   EVENT ACTIONS
+========================================================= */
+
+.event-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+
+    margin-top: auto;
+    padding-top: 1.5rem;
+}
+
+.event-action-btn,
+.event-download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    padding: 0.75rem 1rem;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.event-action-btn {
+    background: turquoise;
+    color: #062a2a;
+}
+
+.event-download-btn {
+    background: transparent;
+    color: #008f8f;
+
+    border: 1px solid rgba(0, 143, 143, 0.35);
+}
+
+.event-action-btn:hover,
+.event-download-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   HIDDEN FILTERED EVENTS
+========================================================= */
+
+.event-card.hidden {
+    display: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .events-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .deaf-world-events-page {
+        padding-bottom: 3rem;
+    }
+
+    .events-page-header {
+        margin-bottom: 2rem;
+    }
+
+    .events-page-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .events-filter-section .filters-grid {
+        gap: 0.5rem;
+    }
+
+    .events-filter-section .filter-chip {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .event-image-wrap {
+        height: 220px;
+    }
+
+    .event-card-body {
+        padding: 1.25rem;
+    }
+
+    .event-card-title {
+        font-size: 1.2rem;
+    }
+
+    .event-card-actions {
+        flex-direction: column;
+    }
+
+    .event-action-btn,
+    .event-download-btn {
+        width: 100%;
+    }
+
+}
+/* =========================================================
+   EVENTS EMPTY STATE
+========================================================= */
+
+.events-empty-state {
+    max-width: 680px;
+    margin: 3rem auto 0;
+
+    padding: 4rem 2rem;
+
+    text-align: center;
+
+    border: 1px solid rgba(0, 128, 128, 0.15);
+    border-radius: 20px;
+
+    background: rgba(0, 128, 128, 0.035);
+}
+
+.events-empty-state.hidden {
+    display: none;
+}
+
+.empty-state-icon {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 1.25rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(64, 224, 208, 0.15);
+
+    color: turquoise;
+
+    font-size: 1.5rem;
+}
+
+.events-empty-state .eyebrow {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+}
+
+.events-empty-state h2 {
+    margin: 0 0 0.75rem;
+
+    font-size: 1.7rem;
+}
+
+.events-empty-state p {
+    max-width: 520px;
+
+    margin: 0 auto 1.75rem;
+
+    line-height: 1.7;
+
+    opacity: 0.7;
+}
+
+/* =========================================================
+   DEAF WORLD — ADVOCACY PAGE
+   ========================================================= */
+
+
+/* =========================================================
+   ADVOCACY PAGE HEADER
+   ========================================================= */
+
+.deaf-world-advocacy-page {
+    padding-bottom: 5rem;
+}
+
+.deaf-world-advocacy-page .breadcrumb-nav {
+    margin-bottom: 1.5rem;
+}
+
+.advocacy-page-header {
+    max-width: 720px;
+    margin-bottom: 2rem;
+}
+
+.advocacy-page-header .eyebrow {
+    display: inline-block;
+    margin-bottom: 0.65rem;
+}
+
+.advocacy-page-header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+}
+
+.advocacy-page-header p {
+    max-width: 680px;
+    margin: 1rem 0 0;
+    color: #667085;
+    font-size: 0.98rem;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   ADVOCACY FILTERS
+   ========================================================= */
+
+.advocacy-filter-section {
+    margin-bottom: 2.5rem;
+}
+
+.advocacy-filter-section .filters-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.advocacy-filter-section .filter-chip {
+    border: 1px solid #d9dee8;
+    background: #ffffff;
+    color: #252a41;
+
+    padding: 0.65rem 1rem;
+
+    border-radius: 999px;
+
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.advocacy-filter-section .filter-chip:hover {
+    border-color: turquoise;
+    color: #0c7775;
+    transform: translateY(-1px);
+}
+
+.advocacy-filter-section .filter-chip.active {
+    background: turquoise;
+    border-color: turquoise;
+    color: #ffffff;
+}
+@media (max-width:768px){
+
+    .advocacy-filter-section .filters-grid{
+
+        flex-wrap:nowrap;
+
+        overflow-x:auto;
+
+        overflow-y:hidden;
+
+        padding-bottom:.6rem;
+
+        -webkit-overflow-scrolling:touch;
+
+        scrollbar-width:none;
+
+        touch-action:pan-x;
+
+        overscroll-behavior-x:contain;
+    }
+
+    .advocacy-filter-section .filters-grid::-webkit-scrollbar{
+        display:none;
+    }
+
+    .advocacy-filter-section .filter-chip{
+
+        flex:0 0 auto;
+
+        white-space:nowrap;
+    }
+
+}
+
+/* =========================================================
+   ADVOCACY GRID
+   ========================================================= */
+
+.advocacy-content {
+    padding-top: 0.5rem;
+}
+
+.advocacy-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 1.25rem;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   ADVOCACY CARD
+   ========================================================= */
+
+.advocacy-card {
+    position: relative;
+
+    display: flex;
+
+    height: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #dce2ec;
+
+    border-radius: 0.75rem;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 8px rgba(20, 30, 60, 0.04);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.advocacy-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #cbd3df;
+
+    box-shadow:
+        0 12px 28px rgba(20, 30, 60, 0.09);
+}
+
+.advocacy-card-interior {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    padding: 1.2rem;
+}
+
+
+/* =========================================================
+   ADVOCACY CARD META
+   ========================================================= */
+
+.advocacy-meta-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 0.75rem;
+
+    margin-bottom: 1rem;
+}
+
+.status-badge {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 0.4rem;
+
+    width: fit-content;
+
+    padding: 0.35rem 0.55rem;
+
+    border-radius: 0.3rem;
+
+    font-size: 0.62rem;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: 0.03em;
+
+    text-transform: uppercase;
+}
+
+.status-badge i {
+    font-size: 0.58rem;
+}
+
+
+/* Policy */
+
+.policy-badge {
+    background: #fff2c9;
+    color: #8a6100;
+}
+
+
+/* Legal */
+
+.legal-badge {
+    background: #dff3ff;
+    color: #17628a;
+}
+
+
+/* Toolkit */
+
+.toolkits-badge {
+    background: #eee1ff;
+    color: #7133c8;
+}
+
+
+/* Status text */
+
+.urgency-timeline {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 0.35rem;
+
+    color: #667085;
+
+    font-size: 0.62rem;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.urgency-timeline i {
+    font-size: 0.62rem;
+}
+
+
+/* =========================================================
+   ADVOCACY CARD CONTENT
+   ========================================================= */
+
+.advocacy-card-title {
+    margin: 0;
+
+    color: #11152d;
+
+    font-size: 1.05rem;
+    line-height: 1.25;
+
+    letter-spacing: -0.015em;
+}
+
+.advocacy-card-excerpt {
+    margin: 0.75rem 0 0;
+
+    color: #667085;
+
+    font-size: 0.8rem;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   ADVOCACY CARD FOOTER
+   ========================================================= */
+
+.advocacy-footer-zone {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: auto;
+    padding-top: 1.35rem;
+}
+
+
+/* =========================================================
+   CAMPAIGN PROGRESS
+   ========================================================= */
+
+.progress-bar-container {
+    margin-bottom: 0.85rem;
+}
+
+.progress-label-row {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    margin-bottom: 0.45rem;
+}
+
+.progress-label {
+    color: #4b5565;
+
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.progress-value {
+    color: #11152d;
+
+    font-size: 0.68rem;
+    font-weight: 800;
+}
+
+.progress-track {
+    width: 100%;
+    height: 0.32rem;
+
+    overflow: hidden;
+
+    background: #e8ebf0;
+
+    border-radius: 999px;
+}
+
+.progress-fill {
+    width: 0;
+
+    height: 100%;
+
+    background: turquoise;
+
+    border-radius: inherit;
+
+    transition: width 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   ADVOCACY ACTION BUTTON
+   ========================================================= */
+
+.advocacy-action-btn {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.55rem;
+
+    width: 100%;
+
+    min-height: 2.65rem;
+
+    padding: 0.65rem 1rem;
+
+    border: 1px solid #1d2038;
+    border-radius: 0.3rem;
+
+    background: #1d2038;
+    color: #ffffff;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    text-align: center;
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.advocacy-action-btn:hover {
+    background: #11142a;
+    border-color: #11142a;
+
+    transform: translateY(-1px);
+}
+
+.advocacy-action-btn i {
+    font-size: 0.7rem;
+}
+
+
+/* Legal button */
+
+.legal-action-btn {
+    background: #ffffff;
+    color: #1d2038;
+}
+
+.legal-action-btn:hover {
+    background: #f5f7fa;
+    color: #11142a;
+}
+
+
+/* Toolkit button */
+
+.toolkits-action-btn {
+    background: #7c3aed;
+    border-color: #7c3aed;
+}
+
+.toolkits-action-btn:hover {
+    background: #6928d9;
+    border-color: #6928d9;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.advocacy-empty-state {
+    max-width: 680px;
+
+    margin: 2rem auto 0;
+
+    padding: 3rem 2rem;
+
+    border: 1px dashed #cfd5df;
+    border-radius: 0.8rem;
+
+    background: #fafbfc;
+
+    text-align: center;
+}
+
+.advocacy-empty-state.hidden {
+    display: none;
+}
+
+.empty-state-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 3.5rem;
+    height: 3.5rem;
+
+    margin: 0 auto 1rem;
+
+    border-radius: 50%;
+
+    background: #e8fbfb;
+
+    color: #0c7775;
+
+    font-size: 1.2rem;
+}
+
+.advocacy-empty-state .eyebrow {
+    display: inline-block;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+}
+
+.advocacy-empty-state h2 {
+    margin: 0;
+
+    color: #11152d;
+
+    font-size: 1.3rem;
+}
+
+.advocacy-empty-state p {
+    max-width: 500px;
+
+    margin: 0.75rem auto 1.5rem;
+
+    color: #667085;
+
+    font-size: 0.85rem;
+    line-height: 1.65;
+}
+
+.advocacy-empty-state .btn-explore-page {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 2.6rem;
+
+    padding: 0.65rem 1rem;
+
+    border-radius: 0.3rem;
+
+    background: turquoise;
+    color: #ffffff;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    text-decoration: none;
+    border: none;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   FILTER / CARD VISIBILITY
+   ========================================================= */
+
+.advocacy-card.hidden {
+    display: none;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .advocacy-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .deaf-world-advocacy-page {
+        padding-bottom: 3.5rem;
+    }
+
+    .advocacy-page-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .advocacy-page-header h1 {
+        font-size: 2rem;
+    }
+
+    .advocacy-page-header p {
+        font-size: 0.88rem;
+    }
+
+    .advocacy-filter-section {
+        margin-bottom: 2rem;
+    }
+
+    .advocacy-filter-section .filters-grid {
+        gap: 0.5rem;
+    }
+
+    .advocacy-filter-section .filter-chip {
+        padding: 0.55rem 0.8rem;
+
+        font-size: 0.72rem;
+    }
+
+    .advocacy-grid {
+        grid-template-columns: 1fr;
+
+        gap: 1rem;
+    }
+
+    .advocacy-card-interior {
+        padding: 1rem;
+    }
+
+    .advocacy-meta-header {
+        align-items: flex-start;
+    }
+
+    .urgency-timeline {
+        text-align: right;
+    }
+
+    .advocacy-empty-state {
+        padding: 2.5rem 1.25rem;
+    }
+
+}

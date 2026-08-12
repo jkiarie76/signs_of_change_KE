@@ -1,0 +1,143 @@
+---
+interface Props {
+    title: string;
+    description: string;
+
+    campaignType: "policy" | "legal" | "toolkits";
+
+    badge: string;
+    statusLabel: string;
+
+    icon: string;
+    statusIcon: string;
+
+    progress: number | null;
+
+    actionLabel: string;
+    actionUrl: string;
+}
+
+const {
+    title,
+    description,
+    campaignType,
+    badge,
+    statusLabel,
+    icon,
+    statusIcon,
+    progress,
+    actionLabel,
+    actionUrl
+} = Astro.props;
+---
+
+<article
+    class={`advocacy-card advocacy-${campaignType}`}
+    data-category={campaignType}
+>
+
+    <div class="advocacy-card-interior">
+
+        <!-- Card Meta -->
+
+        <div class="advocacy-meta-header">
+
+            <span class={`status-badge ${campaignType}-badge`}>
+
+                <i class={icon}></i>
+
+                {badge}
+
+            </span>
+
+            <span class="urgency-timeline">
+
+                <i class={statusIcon}></i>
+
+                {statusLabel}
+
+            </span>
+
+        </div>
+
+
+        <!-- Card Content -->
+
+        <h3 class="advocacy-card-title">
+
+            {title}
+
+        </h3>
+
+
+        <p class="advocacy-card-excerpt">
+
+            {description}
+
+        </p>
+
+
+        <!-- Card Footer -->
+
+        <div class="advocacy-footer-zone">
+
+            {
+                progress !== null && (
+
+                    <div
+                        class="progress-bar-container"
+                        data-progress-container
+                    >
+
+                        <div class="progress-label-row">
+
+                            <span class="progress-label">
+                                Campaign Progress
+                            </span>
+
+                            <span
+                                class="progress-value"
+                                data-progress-value
+                            >
+                                0%
+                            </span>
+
+                        </div>
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-fill"
+                                data-progress={progress}
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                )
+            }
+
+
+            <a
+                href={actionUrl}
+                class={`advocacy-action-btn ${campaignType}-action-btn`}
+            >
+
+                {actionLabel}
+
+                {
+                    campaignType === "toolkits" ? (
+                        <i class="fa-solid fa-download"></i>
+                    ) : (
+                        <i class="fa-solid fa-arrow-right"></i>
+                    )
+                }
+
+            </a>
+
+        </div>
+
+    </div>
+
+</article>

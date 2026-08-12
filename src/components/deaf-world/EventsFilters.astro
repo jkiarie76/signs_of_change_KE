@@ -1,0 +1,52 @@
+---
+const filters = [
+    {
+        label: "All Events",
+        value: "all"
+    },
+    {
+        label: "Upcoming",
+        value: "upcoming"
+    },
+    {
+        label: "Past",
+        value: "past"
+    }
+];
+---
+
+<div class="events-filter-section">
+
+    <div class="container">
+
+        <div
+            class="filters-wrapper"
+            data-filter-group
+            data-target=".events-grid"
+        >
+
+            <div class="filters-grid">
+
+                {
+                    filters.map((filter, index) => (
+
+                        <button
+                            type="button"
+                            class={`filter-chip ${index === 0 ? "active" : ""}`}
+                            data-filter={filter.value}
+                        >
+
+                            {filter.label}
+
+                        </button>
+
+                    ))
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

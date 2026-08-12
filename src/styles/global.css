@@ -240,8 +240,6 @@ button{
 
     align-items:center;
 
-    gap:2.2rem;
-
     gap: 3rem;
 
 }
@@ -1329,5 +1327,143 @@ margin:0 auto 2rem;
 color:var(--text-muted);
 
 line-height:1.8;
+
+}
+
+/* =========================================
+   MOBILE FOUNDATION
+   ========================================= */
+
+@media (max-width: 991px) {
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding-inline: 1rem;
+    }
+
+    .nav-container {
+        min-height: 72px;
+        padding: .75rem 1rem;
+    }
+
+    .mobile-nav {
+        top: 72px;
+    }
+
+    .logo {
+        gap: .7rem;
+        min-width: 0;
+    }
+
+    .logo-initials {
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        font-size: 1rem;
+    }
+
+    .logo-text {
+        min-width: 0;
+    }
+
+    .brand-name {
+        font-size: 1.2rem;
+        white-space: nowrap;
+    }
+
+    .tagline {
+        font-size: .58rem;
+    }
+
+    .mobile-menu-btn {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+        font-size: clamp(1.8rem, 6vw, 2.4rem);
+    }
+
+    .btn {
+        min-height: 44px;
+    }
+
+    .card-content {
+        padding: 1.25rem;
+    }
+
+    .cta {
+        margin: 3rem 0;
+        padding: 2rem 1.25rem;
+        border-radius: 20px;
+    }
+
+    .cta-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cta h2 {
+        font-size: 1.6rem;
+    }
+
+    .pagination {
+        margin-top: 3rem;
+        gap: .5rem;
+    }
+
+}
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding-inline: 1rem;
+    }
+
+    .brand-name {
+        font-size: 1.05rem;
+    }
+
+    .tagline {
+        font-size: .52rem;
+    }
+
+    .logo-initials {
+        width: 40px;
+        height: 40px;
+        font-size: .9rem;
+    }
+
+    .nav-container {
+        padding-inline: .85rem;
+    }
+
+    .mobile-menu-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .mobile-nav a {
+        padding: .95rem 1rem;
+    }
+
+    .breadcrumb {
+        font-size: .82rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .empty-state {
+        padding: 3rem 1.25rem;
+    }
 
 }

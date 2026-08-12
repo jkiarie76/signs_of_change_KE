@@ -6,13 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+
 function initCollectionFilter() {
 
     const filterGroups = document.querySelectorAll("[data-filter-group]");
-    // added this line below
+
     console.log("Filter groups:", filterGroups.length);
 
     if (!filterGroups.length) return;
+
 
     filterGroups.forEach(group => {
 
@@ -22,22 +24,46 @@ function initCollectionFilter() {
 
         if (!targetSelector) return;
 
+
         const target = document.querySelector(targetSelector);
-        // Added this two lines below
+
         console.log("Target selector:", targetSelector);
         console.log("Target element:", target);
 
         if (!target) return;
 
-        const cards = target.querySelectorAll("[data-category]");
-        // Added this line below
+
+        /*
+        -----------------------------------------
+        FIND FILTERABLE CARDS
+        -----------------------------------------
+        Supports:
+
+        data-category
+        data-status
+
+        This means the same filter system can
+        power myths, etiquette, events, etc.
+        -----------------------------------------
+        */
+
+        const cards = target.querySelectorAll(
+            "[data-category], [data-status]"
+        );
+
         console.log("Cards found:", cards.length);
 
-        const emptyState = document.querySelector("[data-empty-state]");
-                  
-        // -------------------------
-        // FILTER BUTTONS
-        // -------------------------
+
+        const emptyState = document.querySelector(
+            "[data-empty-state]"
+        );
+
+
+        /*
+        -----------------------------------------
+        FILTER BUTTONS
+        -----------------------------------------
+        */
 
         buttons.forEach(button => {
 
@@ -45,19 +71,44 @@ function initCollectionFilter() {
 
                 const filter = button.dataset.filter;
 
+
                 // Update active state
-                buttons.forEach(btn => btn.classList.remove("active"));
+
+                buttons.forEach(btn =>
+                    btn.classList.remove("active")
+                );
+
                 button.classList.add("active");
+
 
                 let visibleCards = 0;
 
+
                 cards.forEach(card => {
 
-                    const category = card.dataset.category;
+                    /*
+                    Check whether this card uses
+                    category or status.
+                    */
 
-                    if (filter === "all" || category === filter) {
+                    const category = card.dataset.category;
+                    const status = card.dataset.status;
+
+
+                    /*
+                    Use whichever attribute exists.
+                    */
+
+                    const cardValue = category ?? status;
+
+
+                    if (
+                        filter === "all" ||
+                        cardValue === filter
+                    ) {
 
                         card.classList.remove("hidden");
+
                         visibleCards++;
 
                     } else {
@@ -67,6 +118,13 @@ function initCollectionFilter() {
                     }
 
                 });
+
+
+                /*
+                -----------------------------------------
+                EMPTY STATE
+                -----------------------------------------
+                */
 
                 if (emptyState) {
 
@@ -86,21 +144,35 @@ function initCollectionFilter() {
 
         });
 
-        // -------------------------
-        // RESET BUTTON
-        // -------------------------
 
-        const resetButtons = target.querySelectorAll("[data-reset-filters]");
+        /*
+        -----------------------------------------
+        RESET BUTTON
+        -----------------------------------------
+        */
+
+        const resetButtons = document.querySelectorAll(
+            "[data-reset-filters]"
+        );
+
 
         resetButtons.forEach(resetButton => {
 
             resetButton.addEventListener("click", () => {
 
-                const firstButton = group.querySelector("[data-filter='all']");
+                const resetFilter =
+                    group.querySelector(
+                        "[data-filter='upcoming']"
+                    ) ||
+                    group.querySelector(
+                        "[data-filter='all']"
+                    
+                    );
 
-                if (firstButton) {
 
-                    firstButton.click();
+                if (resetFilter) {
+
+                    resetFilter.click();
 
                 }
 
@@ -112,11 +184,19 @@ function initCollectionFilter() {
 
 }
 
+
+/*
+=================================================
+MYTH CARDS
+=================================================
+*/
+
 function initMythCards() {
 
     const cards = document.querySelectorAll(".myth-card");
 
     if (!cards.length) return;
+
 
     cards.forEach(card => {
 

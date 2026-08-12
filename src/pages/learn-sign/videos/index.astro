@@ -1,0 +1,227 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import VideoCard from "../../../components/learn-sign/VideoCard.astro";
+
+import "../../../styles/learn-sign-videos.css";
+
+const videos = [
+    {
+        image: "/uploads/home/learn_2.jpg",
+        title: 'How to Sign the Letter "A"',
+        description:
+            "A breakdown of the closed fist handshape, thumb positioning, and common orientation errors.",
+        topic: "alphabet",
+        date: "2026-07-10",
+        duration: "1:24",
+        youtubeUrl: "https://youtube.com/watch?v=sample1"
+    },
+
+    {
+        image: "/uploads/home/learn_1.jpg",
+        title: "Counting 0 to 10 Fluently",
+        description:
+            "Mastering single-handed number execution with correct structural orientation shifts.",
+        topic: "numbers",
+        date: "2026-05-14",
+        duration: "4:50",
+        youtubeUrl: "https://youtube.com/watch?v=sample2"
+    },
+
+    {
+        image: "/uploads/home/culture_1.jpg",
+        title: 'Essential Pleasantries: "Thank You"',
+        description:
+            "Learn how facial expressions and palm movement trajectories adjust standard social signals.",
+        topic: "phrases",
+        date: "2025-11-22",
+        duration: "2:15",
+        youtubeUrl: "https://youtube.com/watch?v=sample3"
+    }
+];
+---
+
+<BaseLayout
+    title="Visual Sign Tutorials | Learn Sign | Signs Of Change KE"
+    description="Browse visual sign language tutorials covering alphabets, numbers, phrases and more."
+    activePage="learn"
+>
+
+    <main class="learn-sign-videos-page">
+
+        <div class="container">
+
+            <!-- ==============================
+                 BREADCRUMB
+                 ============================== -->
+
+            <nav class="breadcrumb-nav">
+
+                <a href="/learn-sign/">
+                    Learn Sign
+                </a>
+
+                <span aria-hidden="true">
+                    &gt;
+                </span>
+
+                <span class="current-page">
+                    Videos
+                </span>
+
+            </nav>
+
+
+            <!-- ==============================
+                 PAGE HEADER
+                 ============================== -->
+
+            <header class="video-page-header">
+
+                <span class="eyebrow">
+                    VIDEO LIBRARY
+                </span>
+
+                <h1>
+                    Visual Sign Tutorials
+                </h1>
+
+                <p>
+                    Browse our growing library of high-quality video
+                    demonstrations to master sign language visually.
+                </p>
+
+            </header>
+
+
+            <!-- ==============================
+                 SEARCH + FILTER DOCK
+                 ============================== -->
+
+            <section
+                class="control-dock"
+                aria-label="Video library controls"
+            >
+
+                <div class="search-box-wrapper">
+
+                    <i
+                        class="fa-solid fa-magnifying-glass search-icon"
+                        aria-hidden="true"
+                    ></i>
+
+                    <input
+                        type="search"
+                        id="video-search-input"
+                        placeholder="Search by topic, keyword, or sign name..."
+                        aria-label="Search video tutorials"
+                    />
+
+                </div>
+
+
+                <div class="filters-wrapper">
+
+                    <div class="select-custom">
+
+                        <select id="filter-topic">
+
+                            <option value="all">
+                                All Topics
+                            </option>
+
+                            <option value="alphabet">
+                                Alphabet & Letters
+                            </option>
+
+                            <option value="numbers">
+                                Numbers & Counting
+                            </option>
+
+                            <option value="phrases">
+                                Common Phrases
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="select-custom">
+
+                        <select id="sort-order">
+
+                            <option value="latest">
+                                Sort: Latest Additions
+                            </option>
+
+                            <option value="oldest">
+                                Sort: Oldest First
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==============================
+                 VIDEO GRID
+                 ============================== -->
+
+            <section
+                class="video-grid-matrix"
+                id="video-grid-matrix"
+                aria-live="polite"
+            >
+
+                {
+                    videos.map((video) => (
+                        <VideoCard {...video} />
+                    ))
+                }
+
+            </section>
+
+
+            <!-- ==============================
+                 EMPTY STATE
+                 ============================== -->
+
+            <div
+                class="empty-state-notice"
+                id="empty-state-notice"
+                hidden
+            >
+
+                <i
+                    class="fa-regular fa-folder-open empty-icon"
+                    aria-hidden="true"
+                ></i>
+
+                <h3>
+                    No tutorial videos found
+                </h3>
+
+                <p>
+                    Try another keyword or choose a different topic.
+                </p>
+
+                <button
+                    type="button"
+                    id="reset-video-filters"
+                >
+                    Reset Filters
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</BaseLayout>
+
+<script src="/assets/js/learn-sign-videos.js" is:inline></script>

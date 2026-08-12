@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LearnSignHero from "../../components/learn-sign/LearnSignHero.astro";
+import SignAlphabet from "../../components/learn-sign/SignAlphabet.astro";
+import "../../styles/learn-sign.css";
+import SignVideoLessons from "../../components/learn-sign/SignVideoLessons.astro";
+---
+
+<BaseLayout
+    title="Learn Sign | Signs Of Change KE"
+    description="Learn Kenyan Sign Language through interactive alphabet, numbers and video lessons."
+    activePage="learn"
+>
+
+    <main class="learn-sign-page">
+
+        <LearnSignHero />
+
+        <SignAlphabet />
+
+        <SignVideoLessons />
+
+    </main>
+
+</BaseLayout>
+
+<script src="/assets/js/learn-sign.js" is:inline></script>

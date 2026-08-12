@@ -1,0 +1,79 @@
+---
+interface Props {
+    image: string;
+    title: string;
+    description: string;
+    topic: string;
+    date: string;
+    duration: string;
+    youtubeUrl: string;
+}
+
+const {
+    image,
+    title,
+    description,
+    topic,
+    date,
+    duration,
+    youtubeUrl
+} = Astro.props;
+---
+
+<a
+    href={youtubeUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="video-dir-card"
+    data-title={title.toLowerCase()}
+    data-topic={topic}
+    data-date={date}
+>
+
+    <div class="card-thumbnail-zone">
+
+        <img
+            src={image}
+            alt={title}
+        />
+
+        <span class="duration-badge">
+            {duration}
+        </span>
+
+    </div>
+
+
+    <div class="card-body-zone">
+
+        <span class="card-topic-tag">
+            {topic}
+        </span>
+
+        <h3 class="card-title">
+            {title}
+        </h3>
+
+        <p class="card-excerpt">
+            {description}
+        </p>
+
+        <div class="card-meta">
+
+            <span class="meta-date">
+
+                <i class="fa-regular fa-calendar"></i>
+
+                {date}
+
+            </span>
+
+        </div>
+
+        <div class="video-card-action">
+            Watch Video
+        </div>
+
+    </div>
+
+</a>

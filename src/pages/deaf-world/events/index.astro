@@ -1,0 +1,227 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import EventsFilters from "../../../components/deaf-world/EventsFilters.astro";
+import EventCard from "../../../components/shared/EventCard.astro";
+
+import "../../../styles/deaf-world.css";
+
+const events: {
+    image: string;
+    title: string;
+    description: string;
+
+    displayDate: string;
+    day: string;
+
+    startTime: string;
+    endTime?: string;
+
+    eventType: "physical" | "virtual";
+
+    location: string;
+    organizer: string;
+
+    status: "upcoming" | "past";
+
+    registrationUrl?: string;
+    resourceUrl?: string;
+
+    registrationLabel?: string;
+}[] = [
+
+    {
+        image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&auto=format&fit=crop&q=70",
+
+        title: "Interpreting Syntax: Weekend Intensive Workshop",
+
+        description:
+            "A physical deep-dive practicing spatial grammar, body shifts, and fast-paced sentence translation structures.",
+
+        displayDate: "AUG",
+        day: "12",
+
+        startTime: "2:00 PM",
+        endTime: "5:00 PM",
+
+        eventType: "physical",
+
+        location: "Nairobi Hub",
+
+        organizer: "Signs of Change KE",
+
+        status: "upcoming",
+
+        registrationUrl: "#",
+
+        registrationLabel: "Register Now"
+    },
+
+    {
+        image: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=600&auto=format&fit=crop&q=70",
+
+        title: "Deaf Culture & Tech Accessibility Matrix",
+
+        description:
+            "Exploring how modern web developers build automated compliance systems for visual layouts.",
+
+        displayDate: "SEP",
+        day: "05",
+
+        startTime: "7:00 PM",
+
+        eventType: "virtual",
+
+        location: "Zoom",
+
+        organizer: "Signs of Change KE",
+
+        status: "upcoming",
+
+        registrationUrl: "#",
+
+        registrationLabel: "Secure Zoom Link"
+    },
+
+    {
+        image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&auto=format&fit=crop&q=70",
+
+        title: "Community Sign Language Meetup",
+
+        description:
+            "An informal community gathering for Deaf and hearing participants to connect, practice and share experiences.",
+
+        displayDate: "NOV",
+        day: "27",
+
+        startTime: "9:00 AM",
+        endTime: "11:00 AM",
+
+        eventType: "physical",
+
+        location: "Nairobi Hub",
+
+        organizer: "Signs of Change KE",
+
+        status: "upcoming",
+
+        registrationUrl: "#",
+
+        registrationLabel: "Register Now"
+    }
+
+];
+---
+
+<BaseLayout
+    title="Events | Deaf World | Signs Of Change KE"
+    description="Discover workshops, meetups, webinars and community events across the Deaf world."
+    activePage="world"
+>
+
+    <main class="deaf-world-events-page">
+
+        <div class="container">
+
+            <!-- Breadcrumb -->
+
+            <nav class="breadcrumb-nav">
+
+                <a href="/deaf-world/">
+                    Deaf World
+                </a>
+
+                <span> &gt; </span>
+
+                <span class="current-page">
+                    Events
+                </span>
+
+            </nav>
+
+
+            <!-- Page Header -->
+
+            <header class="events-page-header">
+
+                <span class="eyebrow">
+                    EVENTS
+                </span>
+
+                <h1>
+                    Community Events & Workshops
+                </h1>
+
+                <p>
+                    Join interactive workshops, cultural sign language
+                    meetups, conferences and inclusive community webinars.
+                </p>
+
+            </header>
+
+        </div>
+
+
+        <!-- Filters -->
+
+        <EventsFilters />
+
+
+        <!-- Events will go here -->
+
+        <section class="events-content">
+
+            <div class="container">
+
+                <div
+                class="events-grid"
+                data-events-grid
+                >
+
+                    {
+                        events.map((event) => (
+
+                            <EventCard {...event} />
+
+                        ))
+                    }
+
+                </div>
+
+                <div
+                    class="events-empty-state hidden"
+                    data-empty-state
+                >
+                    <div class="empty-state-icon">
+                        <i class="fa-regular fa-calendar"></i>
+                    </div>
+
+                    <span class="eyebrow">
+                        NO EVENTS YET
+                    </span>
+
+                    <h2>
+                        Nothing to show here yet.
+                    </h2>
+
+                    <p>
+                        There are currently no events in this category.
+                        Check back soon for new workshops, meetups,
+                        conferences and community gatherings.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="btn-explore-page"
+                        data-reset-filters
+                    >
+                        View Upcoming Events →
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</BaseLayout>

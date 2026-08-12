@@ -1,0 +1,54 @@
+---
+const filters = [
+    {
+        label: "All Initiatives",
+        value: "all"
+    },
+    {
+        label: "Policy Reform",
+        value: "policy"
+    },
+    {
+        label: "Legal Rights",
+        value: "legal"
+    },
+    {
+        label: "Resource Hub",
+        value: "toolkits"
+    },
+    {
+    label: "Education",
+    value: "education"
+    }
+];
+---
+
+<div class="container">
+
+    <div
+        class="advocacy-filter-section"
+        data-filter-group
+        data-target=".advocacy-grid"
+    >
+
+        <div class="filters-grid">
+
+            {
+                filters.map((filter, index) => (
+
+                    <button
+                        type="button"
+                        class={`filter-chip ${index === 0 ? "active" : ""}`}
+                        data-filter={filter.value}
+                    >
+                        {filter.label}
+                    </button>
+
+                ))
+            }
+
+        </div>
+
+    </div>
+
+</div>
