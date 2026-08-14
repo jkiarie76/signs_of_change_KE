@@ -2,6 +2,7 @@
 interface Props {
     image: string;
     title: string;
+    sign: string;
     description: string;
     topic: string;
     date: string;
@@ -12,6 +13,7 @@ interface Props {
 const {
     image,
     title,
+    sign,
     description,
     topic,
     date,
@@ -48,6 +50,10 @@ const {
 
         <span class="card-topic-tag">
             {topic}
+        </span>
+
+        <span class="card-sign">
+            {sign}
         </span>
 
         <h3 class="card-title">

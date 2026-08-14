@@ -1,9 +1,20 @@
 ---
+import { getEntry } from "astro:content";
+
 interface Props {
     activePage?: string;
 }
 
 const { activePage = "home" } = Astro.props;
+
+const globalSettings = await getEntry(
+    "settings",
+    "global-settings"
+);
+
+if (!globalSettings) {
+    throw new Error("global-settings.md was not found.");
+}
 ---
 
 <header class="header">
@@ -12,18 +23,20 @@ const { activePage = "home" } = Astro.props;
 
         <a href="/" class="logo">
 
-            <span class="logo-initials">
-                S&gt;C
-            </span>
+            <img
+                src={globalSettings.data.header.logo.src}
+                alt={globalSettings.data.header.logo.alt}
+                class="logo-image"
+            />
 
             <div class="logo-text">
 
                 <span class="brand-name">
-                    Signs Of Change KE
+                    {globalSettings.data.header.siteName}
                 </span>
 
                 <span class="tagline">
-                    Deaf culture, told well
+                    {globalSettings.data.header.tagline}
                 </span>
 
             </div>

@@ -1,9 +1,16 @@
 ---
-import "../../styles/deaf-culture.css";
+import { getEntry } from "astro:content";
 
-import BaseLayout from "../../layouts/BaseLayout.astro";
+const globalSettings = await getEntry(
+    "settings",
+    "global-settings"
+);
 
-import Hero from "../../components/deaf-culture/Hero.astro";
+if (!globalSettings) {
+    throw new Error("global-settings.md was not found.");
+}
+
+const hero = globalSettings.data.heroes.deafCulture;
 ---
 
 <section class="culture-hero">
@@ -16,22 +23,19 @@ import Hero from "../../components/deaf-culture/Hero.astro";
 
                 <span class="hero-label">
 
-                    START HERE
+                    {hero.label}
 
                 </span>
 
                 <h1>
 
-                    Learn to see the world through Deaf culture.
+                   {hero.title} 
 
                 </h1>
 
                 <p>
 
-                    Discover the traditions, history, etiquette and everyday
-                    experiences that shape the Deaf community. Whether you're
-                    meeting a Deaf person for the first time or simply curious,
-                    this is the best place to begin.
+                    {hero.description}
 
                 </p>
 
@@ -62,8 +66,8 @@ import Hero from "../../components/deaf-culture/Hero.astro";
             <div class="hero-image">
 
                 <img
-                    src="/public/uploads/home/culture_1.jpg"
-                    alt="People communicating using Kenyan Sign Language"
+                    src={hero.image.src}
+                    alt={hero.image.alt}
                 >
 
             </div>

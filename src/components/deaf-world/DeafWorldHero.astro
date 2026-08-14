@@ -1,4 +1,16 @@
 ---
+import { getEntry } from "astro:content";
+
+const globalSettings = await getEntry(
+    "settings",
+    "global-settings"
+);
+
+if (!globalSettings) {
+    throw new Error("global-settings.md was not found.");
+}
+
+const hero = globalSettings.data.heroes.deafWorld;
 ---
 
 <section class="deafworld-hero">
@@ -10,18 +22,20 @@
             <div class="hero-text-side">
 
                 <span class="eyebrow">
-                    DEAF WORLD
+
+                    {hero.label}
+
                 </span>
 
                 <h1>
 
-                    Voices, stories, and movements — from Deaf communities across the map.
+                    {hero.title}
 
                 </h1>
 
                 <p>
 
-                    Reported stories, first-person columns, a running events board and the organizations doing the advocacy work. If it's happening in the Deaf world, you'll find it here.
+                   {hero.description}
 
                 </p>
 
@@ -46,8 +60,8 @@
             <div class="hero-image-side">
 
                 <img
-                    src="/uploads/home/deafworld_2.jpg"
-                    alt="Deaf World"
+                    src={hero.image.src}
+                    alt={hero.image.alt}
                 />
 
             </div>

@@ -1,31 +1,16 @@
 ---
+import { getCollection } from "astro:content";
 import FlipCard from "../shared/FlipCard.astro";
 
-const myths = [
-
-    {
-        id: 1,
-
-        myth: "Sign language is universal.",
-
-        fact: "There are over 300 different sign languages used around the world. Kenyan Sign Language is one of them.",
-
-        category: "Language"
-
-    },
-
-    {   
-        id: 2,
-
-        myth: "All Deaf people can read lips.",
-
-        fact: "Lip reading only provides part of spoken language. Most Deaf people rely on sign language for full communication.",
-
-        category: "Communication"
-
-    }
-
-];
+const myths = (
+    await getCollection("myths")
+)
+    .sort(
+        (a, b) =>
+            b.data.publishedDate.valueOf() -
+            a.data.publishedDate.valueOf()
+    )
+    .slice(0, 2);
 ---
 
 <section id="myths" class="section-myths">
@@ -53,17 +38,11 @@ const myths = [
 
             {
                 myths.map((item) => (
-
                     <FlipCard
-
-                        myth={item.myth}
-
-                        fact={item.fact}
-
-                        category={item.category}
-
+                        myth={item.data.myth}
+                        fact={item.data.fact}
+                        category={item.data.category}
                     />
-
                 ))
             }
 
@@ -72,7 +51,7 @@ const myths = [
         <div class="btn-bottom">
 
             <a
-                href="/deaf-culture/myths-facts"
+                href="/deaf-culture/myths"
                 class="btn-myths-facts"
             >
                 Explore Myths & Facts →

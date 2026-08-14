@@ -94,17 +94,14 @@ function initCollectionFilter() {
                     const category = card.dataset.category;
                     const status = card.dataset.status;
 
-
-                    /*
-                    Use whichever attribute exists.
-                    */
-
                     const cardValue = category ?? status;
 
+                    const normalizedFilter = filter.trim().toLowerCase();
+                    const normalizedCardValue = cardValue?.trim().toLowerCase();
 
                     if (
-                        filter === "all" ||
-                        cardValue === filter
+                        normalizedFilter === "all" ||
+                        normalizedCardValue === normalizedFilter
                     ) {
 
                         card.classList.remove("hidden");

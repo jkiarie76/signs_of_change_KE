@@ -1,41 +1,35 @@
 ---
+import { getCollection } from "astro:content";
+
+const etiquetteGuidelines = await getCollection("etiquette");
+
+const categories = [
+    ...new Set(
+        etiquetteGuidelines.map(
+            (item) => item.data.category
+        )
+    ),
+];
+
+const formatCategoryLabel = (category: string) =>
+    category
+        .split("-")
+        .map(
+            (word) =>
+                word.charAt(0).toUpperCase() +
+                word.slice(1)
+        )
+        .join(" ");
+
 const filters = [
-
     {
-        label:"All Guidance",
-        value:"all"
+        label: "All Guidance",
+        value: "all",
     },
-
-    {
-        label:"Attention",
-        value:"attention"
-    },
-
-    {
-        label:"Conversation",
-        value:"conversation"
-    },
-
-    {
-        label:"Interpreters",
-        value:"interpreters"
-    },
-
-    {
-        label:"Public Spaces",
-        value:"public"
-    },
-
-    {
-        label:"Workplace",
-        value:"workplace"
-    },
-
-    {
-        label:"Schools",
-        value:"schools"
-    }
-
+    ...categories.map((category) => ({
+        label: formatCategoryLabel(category),
+        value: category,
+    })),
 ];
 ---
 

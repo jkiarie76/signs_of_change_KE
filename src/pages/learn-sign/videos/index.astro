@@ -1,43 +1,19 @@
 ---
+import { getCollection } from "astro:content";
+
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import VideoCard from "../../../components/learn-sign/VideoCard.astro";
 
 import "../../../styles/learn-sign-videos.css";
 
-const videos = [
-    {
-        image: "/uploads/home/learn_2.jpg",
-        title: 'How to Sign the Letter "A"',
-        description:
-            "A breakdown of the closed fist handshape, thumb positioning, and common orientation errors.",
-        topic: "alphabet",
-        date: "2026-07-10",
-        duration: "1:24",
-        youtubeUrl: "https://youtube.com/watch?v=sample1"
-    },
-
-    {
-        image: "/uploads/home/learn_1.jpg",
-        title: "Counting 0 to 10 Fluently",
-        description:
-            "Mastering single-handed number execution with correct structural orientation shifts.",
-        topic: "numbers",
-        date: "2026-05-14",
-        duration: "4:50",
-        youtubeUrl: "https://youtube.com/watch?v=sample2"
-    },
-
-    {
-        image: "/uploads/home/culture_1.jpg",
-        title: 'Essential Pleasantries: "Thank You"',
-        description:
-            "Learn how facial expressions and palm movement trajectories adjust standard social signals.",
-        topic: "phrases",
-        date: "2025-11-22",
-        duration: "2:15",
-        youtubeUrl: "https://youtube.com/watch?v=sample3"
-    }
-];
+const videos = (
+    await getCollection("videos")
+)
+    .sort(
+        (a, b) =>
+            b.data.publishedDate.valueOf() -
+            a.data.publishedDate.valueOf()
+    );
 ---
 
 <BaseLayout
@@ -179,7 +155,20 @@ const videos = [
 
                 {
                     videos.map((video) => (
-                        <VideoCard {...video} />
+                        <VideoCard
+                            image={video.data.thumbnail}
+                            title={video.data.title}
+                            sign={video.data.sign}
+                            description={video.data.description}
+                            topic={video.data.topic}
+                            date={video.data.publishedDate.toLocaleDateString("en-GB", {
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric"
+                            })}
+                            duration={video.data.duration}
+                            youtubeUrl={video.data.youtubeUrl}
+                        />
                     ))
                 }
 

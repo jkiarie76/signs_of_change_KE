@@ -7,8 +7,6 @@ interface Props {
 
     category: string;
 
-    badge: string;
-
 }
 
 const {
@@ -17,9 +15,7 @@ const {
 
     fact,
 
-    category,
-
-    badge
+    category
 
 } = Astro.props;
 ---
@@ -37,7 +33,7 @@ const {
 
             <span class="myth-badge">
 
-                {badge}
+                MYTH
 
             </span>
 

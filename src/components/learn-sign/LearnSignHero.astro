@@ -1,3 +1,18 @@
+---
+import { getEntry } from "astro:content";
+
+const globalSettings = await getEntry(
+    "settings",
+    "global-settings"
+);
+
+if (!globalSettings) {
+    throw new Error("global-settings.md was not found.");
+}
+
+const hero = globalSettings.data.heroes.learnSign;
+---
+
 <section class="learn-sign-hero">
 
     <div class="container learn-sign-hero-grid">
@@ -5,18 +20,21 @@
         <div class="learn-sign-hero-content">
 
             <span class="eyebrow">
-                LEARN SIGN
+
+                {hero.label}
+
             </span>
 
             <h1>
-                Your hands can talk.<br>
-                Let's teach them how.
+                
+                {hero.title}
+
             </h1>
 
             <p>
-                Start with the alphabet and numbers, then move into the
-                grammar that makes signing feel natural — including the
-                face and body cues that carry half the meaning.
+                
+                {hero.description}
+
             </p>
 
             <div class="learn-sign-hero-actions">
@@ -43,8 +61,9 @@
         <div class="learn-sign-hero-image">
 
             <img
-                src="/public/uploads/home/learn_2.jpg"
-                alt="Person demonstrating Kenyan Sign Language"
+                src={hero.image.src}
+                alt={hero.image.alt}
+
             >
 
         </div>

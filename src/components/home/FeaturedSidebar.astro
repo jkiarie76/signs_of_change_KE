@@ -1,40 +1,73 @@
 ---
+import { getCollection } from "astro:content";
 
 import QuoteCard from "./QuoteCard.astro";
 import SignOfTheWeekCard from "./SignOfTheWeekCard.astro";
 import NewsLetterCard from "./NewsLetterCard.astro";
-
 import HomepageMythCard from "./HomepageMythCard.astro";
 
+const myths = await getCollection("myths");
+
+const featuredMyth = myths
+    .filter((myth) => myth.data.featured)
+    .sort(
+        (a, b) =>
+            b.data.publishedDate.valueOf() -
+            a.data.publishedDate.valueOf()
+    )[0];
+
+const quotes = await getCollection("quotes");
+
+const featuredQuote = quotes
+    .filter((quote) => quote.data.featured)
+    .sort(
+        (a, b) =>
+            b.data.publishedDate.valueOf() -
+            a.data.publishedDate.valueOf()
+    )[0];
+
+const videos = await getCollection("videos");
+
+const featuredVideo = videos
+    .filter((video) => video.data.featured)
+    .sort(
+        (a, b) =>
+            b.data.publishedDate.valueOf() -
+            a.data.publishedDate.valueOf()
+    )[0];
 ---
 
 <div class="featured-sidebar">
 
-    <HomepageMythCard
+    {featuredMyth && (
+        <HomepageMythCard
+            category={featuredMyth.data.category}
+            myth={featuredMyth.data.myth}
+            fact={featuredMyth.data.fact}
+        />
+    )}
 
-        category="Communication"
+    {featuredQuote && (
+        <QuoteCard
+            quote={featuredQuote.data.quote}
+            author={featuredQuote.data.author}
+        />
+    )}
 
-        myth="All Deaf people can read lips."
-
-        fact="Only some Deaf people use lip-reading. Even skilled lip-readers usually understand only part of spoken conversation."
-
-    />
-
-    <QuoteCard
-
-    quote="Sign language is not just a way to communicate. It is a way of belonging."
-
-    author="Kenyan Deaf Community"
-
-    />
-
-    <SignOfTheWeekCard
-    media="/uploads/home/olderpost_1.jpg"
-    mediaType="image"
-    sign="THANK YOU"
-    description="One of the first signs every beginner should learn."
-    difficulty="★ Easy"
-    />
+    {featuredVideo && (
+        <SignOfTheWeekCard
+            media={
+                featuredVideo.data.featuredMedia ||
+                featuredVideo.data.thumbnail
+            }
+            mediaType={
+                featuredVideo.data.featuredMediaType || "image"
+            }
+            sign={featuredVideo.data.sign}
+            description={featuredVideo.data.description}
+            difficulty={featuredVideo.data.difficulty}
+        />
+    )}
 
     <NewsLetterCard />
 

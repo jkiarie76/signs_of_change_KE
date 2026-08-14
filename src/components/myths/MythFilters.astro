@@ -1,48 +1,15 @@
 ---
-const filters = [
+import { getCollection } from "astro:content";
 
-    {
-        label: "All",
-        value: "all",
-        active: true
-    },
+const myths = await getCollection("myths");
 
-    {
-        label: "Language",
-        value: "language"
-    },
-
-    {
-        label: "Communication",
-        value: "communication"
-    },
-
-    {
-        label: "Culture",
-        value: "culture"
-    },
-
-    {
-        label: "Education",
-        value: "education"
-    },
-
-    {
-        label: "Accessibility",
-        value: "accessibility"
-    },
-
-    {
-        label: "Interpreters",
-        value: "interpreters"
-    },
-    
-    {
-        label:  "Technology",
-        value:  "Technology"
-    }
-
-];
+const categories = [
+    ...new Set(
+        myths
+            .map((myth) => myth.data.category)
+            .filter(Boolean)
+    )
+].sort();
 ---
 
 <section class="myth-filters">
@@ -77,24 +44,22 @@ const filters = [
 
             >
 
+                <button
+                    class="history-filter active"
+                    data-filter="all"
+                >
+                    All
+                </button>
+
                 {
-
-                    filters.map((filter) => (
-
+                    categories.map((category) => (
                         <button
-
-                            class={`history-filter ${filter.active ? "active" : ""}`}
-
-                            data-filter={filter.value}
-
+                            class="history-filter"
+                            data-filter={category}
                         >
-
-                            {filter.label}
-
+                            {category}
                         </button>
-
                     ))
-
                 }
                 
             </div>    

@@ -1,4 +1,6 @@
 ---
+import { getCollection } from "astro:content";
+
 import {
     Facebook,
     Instagram,
@@ -7,6 +9,9 @@ import {
     Phone,
     MapPin
 } from "lucide-astro";
+
+const settings = await getCollection("settings");
+const globalSettings = settings[0];
 ---
 
 <footer class="site-footer">
@@ -23,23 +28,44 @@ import {
 
                 <p>
 
-                    Bridging the communication gap between Deaf and hearing communities through education, storytelling and advocacy.
+                   {globalSettings.data.footer.description} 
 
                 </p>
 
                 <div class="footer-socials">
 
-                    <a href="#" aria-label="Facebook">
-                        <Facebook size={20}/>
-                    </a>
+                    {globalSettings.data.social.facebook && (
+                        <a
+                            href={globalSettings.data.social.facebook}
+                            aria-label="Facebook"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Facebook size={20}/>
+                        </a>
+                    )}
 
-                    <a href="#" aria-label="Instagram">
-                        <Instagram size={20}/>
-                    </a>
+                    {globalSettings.data.social.instagram && (
+                        <a
+                            href={globalSettings.data.social.instagram}
+                            aria-label="Instagram"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Instagram size={20}/>
+                        </a>
+                    )}
 
-                    <a href="#" aria-label="YouTube">
-                        <Youtube size={20}/>
-                    </a>
+                    {globalSettings.data.social.youtube && (
+                        <a
+                            href={globalSettings.data.social.youtube}
+                            aria-label="YouTube"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Youtube size={20}/>
+                        </a>
+                    )}
 
                 </div>
 
@@ -61,6 +87,8 @@ import {
 
                     <li><a href="/deaf-world">Deaf World</a></li>
 
+                    <li><a href="/connect">Connect</a></li>
+
                 </ul>
 
             </div>
@@ -73,13 +101,13 @@ import {
 
                 <ul>
 
-                    <li><a href="/about">About</a></li>
+                    <li><a href="/connect">About</a></li>
 
                     <li><a href="/privacy">Privacy Policy</a></li>
 
                     <li><a href="/terms">Terms & Conditions</a></li>
 
-                    <li><a href="/faq">FAQs</a></li>
+                    <li><a href="/connect">FAQs</a></li>
 
                 </ul>
 
@@ -94,27 +122,18 @@ import {
                 <ul class="footer-contact">
 
                     <li>
-
                         <Mail size={16}/>
-
-                        hello@signsofchangeke.org
-
+                        {globalSettings.data.contact.email}
                     </li>
 
                     <li>
-
                         <Phone size={16}/>
-
-                        +254 XXX XXX XXX
-
+                        {globalSettings.data.contact.phone}
                     </li>
 
                     <li>
-
                         <MapPin size={16}/>
-
-                        Nairobi, Kenya
-
+                        {globalSettings.data.contact.location}
                     </li>
 
                 </ul>
@@ -127,7 +146,10 @@ import {
 
             <p>
 
-                © 2026 Signs Of Change KE.   "Every sign shared is a bridge built."
+                {globalSettings.data.footer.copyright}
+                <span class="footer-tagline">
+                    "{globalSettings.data.footer.tagline}"
+                </span>
 
             </p>
 

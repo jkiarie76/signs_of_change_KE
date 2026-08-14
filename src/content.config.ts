@@ -1,0 +1,312 @@
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
+
+const articles = defineCollection({
+  loader: glob({
+    pattern: "**/*.md",
+    base: "./src/data/articles",
+  }),
+
+  schema: z.object({
+    title: z.string(),
+
+    category: z.enum([
+      "History",
+      "Stories",
+      "Events",
+      "Etiquette",
+      "Deaf Culture",
+      "Deaf World",
+      "Learn Sign",
+      "Advocacy",
+    ]),
+
+    topic: z.string(),
+
+    excerpt: z.string(),
+
+    author: z.string(),
+
+    publishedDate: z.coerce.date(),
+
+    updatedDate: z.coerce.date().optional(),
+
+    readTime: z.number().int().positive(),
+
+    featured: z.boolean().default(false),
+
+    featuredImage: z.object({
+      src: z.string(),
+      alt: z.string(),
+    }),
+
+    seo: z
+      .object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+        image: z.string().optional(),
+      })
+      .optional(),
+  }),
+});
+
+const myths = defineCollection({
+    loader: glob({
+        pattern: "**/*.md",
+        base: "./src/data/myths",
+    }),
+
+    schema: z.object({
+        title: z.string(),
+
+        myth: z.string(),
+
+        fact: z.string(),
+
+        category: z.enum([
+            "Language",
+            "Communication",
+            "Culture",
+            "Education",
+            "Accessibility",
+            "Interpreters",
+            "Technology",
+        ]),
+
+        publishedDate: z.coerce.date(),
+
+        featured: z.boolean().default(false),
+    }),
+});
+
+const etiquette = defineCollection({
+    loader: glob({
+        pattern: "**/*.md",
+        base: "./src/data/etiquette",
+    }),
+
+    schema: z.object({
+        title: z.string(),
+
+        description: z.string(),
+
+        type: z.enum(["do", "dont"]),
+
+        category: z.string(),
+
+        publishedDate: z.coerce.date(),
+
+        featured: z.boolean().default(false),
+    }),
+});
+
+const quotes = defineCollection({
+    loader: glob({
+        pattern: "**/*.md",
+        base: "./src/data/quotes",
+    }),
+
+    schema: z.object({
+        quote: z.string(),
+
+        author: z.string(),
+
+        publishedDate: z.coerce.date(),
+
+        featured: z.boolean().default(false),
+    }),
+});
+
+const videos = defineCollection({
+    loader: glob({
+        pattern: "**/*.md",
+        base: "./src/data/videos",
+    }),
+
+    schema: z.object({
+        title: z.string(),
+
+        description: z.string(),
+
+        topic: z.string(),
+
+        publishedDate: z.coerce.date(),
+
+        duration: z.string(),
+
+        // Image displayed as the thumbnail on Learn Sign pages
+        thumbnail: z.string(),
+
+        sign: z.string(),
+
+        youtubeUrl: z.string().url(),
+
+        difficulty: z.string(),
+
+        // Controls whether this tutorial can become
+        // the homepage "Sign of the Week"
+        featured: z.boolean().default(false),
+
+        // Optional promotional media used ONLY
+        // by the homepage Sign of the Week
+        featuredMedia: z.string().optional(),
+
+        featuredMediaType: z
+            .enum(["image", "gif", "video"])
+            .optional(),
+    }),
+});
+
+const settings = defineCollection({
+    loader: glob({
+        pattern: "**/*.md",
+        base: "./src/data/settings",
+    }),
+
+    schema: z.object({
+
+        // =========================================
+        // HERO SETTINGS
+        // =========================================
+
+        heroes: z.object({
+
+            // Deaf Culture 101
+            deafCulture: z.object({
+                label: z.string(),
+                title: z.string(),
+                description: z.string(),
+
+                image: z.object({
+                    src: z.string(),
+                    alt: z.string(),
+                }),
+            }),
+
+            // Deaf World
+            deafWorld: z.object({
+                label: z.string(),
+                title: z.string(),
+                description: z.string(),
+
+                image: z.object({
+                    src: z.string(),
+                    alt: z.string(),
+                }),
+            }),
+
+            // Learn Sign
+            learnSign: z.object({
+                label: z.string(),
+                title: z.string(),
+                description: z.string(),
+
+                image: z.object({
+                    src: z.string(),
+                    alt: z.string(),
+                }),
+            }),
+
+            // Connect
+            connect: z.object({
+                label: z.string(),
+                title: z.string(),
+                description: z.string(),
+
+                backgroundImage: z.object({
+                    src: z.string(),
+                    alt: z.string(),
+                }),
+
+                welcomeVideo: z.object({
+                    video: z.string(),
+                    poster: z.string(),
+                    captions: z.string(),
+                }),
+            }),
+
+        }),
+
+
+        // =========================================
+        // NEWSLETTER
+        // =========================================
+
+        newsletter: z.object({
+            title: z.string(),
+            description: z.string(),
+            buttonText: z.string(),
+            privacyText: z.string(),
+        }),
+
+
+        // =========================================
+        // FOOTER
+        // =========================================
+
+        footer: z.object({
+            description: z.string(),
+            tagline: z.string(),
+            copyright: z.string(),
+        }),
+
+
+        // =========================================
+        // SOCIAL LINKS
+        // =========================================
+
+        social: z.object({
+            facebook: z.string(),
+            instagram: z.string(),
+            youtube: z.string(),
+            tiktok: z.string(),
+        }),
+
+
+        // =========================================
+        // CONTACT
+        // =========================================
+
+        contact: z.object({
+            email: z.string(),
+            phone: z.string(),
+            location: z.string(),
+        }),
+
+
+        // =========================================
+        // HEADER
+        // =========================================
+
+        header: z.object({
+            logo: z.object({
+                src: z.string(),
+                alt: z.string(),
+            }),
+            siteName: z.string(),
+            tagline: z.string(),
+        }),
+        //===========================================
+        //DEAF CULTURE ETIQUETTE SECTION
+        //===========================================
+        deafCultureSections: z.object({
+            etiquette: z.object({
+                eyebrow: z.string(),
+                title: z.string(),
+                intro: z.string(),
+            }),
+        }),
+
+    }),
+});
+
+
+export const collections = {
+  articles,
+  myths,
+  etiquette,
+  quotes,
+  videos,
+  settings,
+};

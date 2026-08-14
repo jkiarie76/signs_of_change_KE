@@ -1,39 +1,19 @@
 ---
+import { getCollection } from "astro:content";
 import ArticleCard from "../shared/ArticleCard.astro";
 
-const historyArticles = [
+const historyArticles = await getCollection(
+    "articles",
+    ({ data }) => data.category === "History"
+);
 
-    {
-        image:"/uploads/home/culture_1.jpg",
-        badge:"Education & Policy",
-        author:"Admin",
-        date:"Oct 14, 2025",
-        title:"The Milan Conference of 1880 & Its Lasting Impact",
-        excerpt:"A deep dive into one of the most influential moments in Deaf education.",
-        slug: "milan-conference-1880"
-    },
-
-    {
-        image:"/uploads/home/learn_2.jpg",
-        badge:"Foundational Leaders",
-        author:"Admin",
-        date:"Nov 2, 2025",
-        title:"Laurent Clerc & Thomas Gallaudet",
-        excerpt:"The story behind the pioneers who shaped Deaf education.",
-        slug: "clerc & thomas"
-    },
-
-    {
-        image:"/uploads/home/deafworld_2.jpg",
-        badge:"Civil Rights",
-        author:"Admin",
-        date:"Dec 18, 2025",
-        title:"Deaf President Now",
-        excerpt:"The movement that changed Deaf leadership forever.",
-        slug: "deaf president now"
-    }
-
-];
+const latestHistoryArticles = historyArticles
+    .sort(
+        (a, b) =>
+            b.data.publishedDate.getTime() -
+            a.data.publishedDate.getTime()
+    )
+    .slice(0, 3);
 ---
 
 <section
@@ -68,25 +48,22 @@ const historyArticles = [
         <div class="preview-grid">
 
             {
-                historyArticles.map(article => (
+                latestHistoryArticles.map(article => (
 
-                    <ArticleCard
-
-                        image={article.image}
-
-                        badge={article.badge}
-
-                        author={article.author}
-
-                        date={article.date}
-
-                        title={article.title}
-
-                        excerpt={article.excerpt}
-
-                        slug={article.slug}
-
-                    />
+                  <ArticleCard
+                        image={article.data.featuredImage.src}
+                        badge={article.data.category}
+                        category={article.data.category}
+                        author={article.data.author}
+                        date={article.data.publishedDate.toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric"
+                        })}
+                        title={article.data.title}
+                        excerpt={article.data.excerpt}
+                        slug={article.id}
+                    />  
 
                 ))
             }

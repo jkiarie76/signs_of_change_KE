@@ -1,0 +1,177 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../components/shared/Breadcrumb.astro";
+import "../../styles/history-article.css";
+
+export async function getStaticPaths() {
+    const articles = await getCollection("articles");
+
+    return articles.map((article) => {
+        const categoryArticles = articles
+            .filter(
+                (item) =>
+                    item.data.category === article.data.category
+            )
+            .sort(
+                (a, b) =>
+                    b.data.publishedDate.getTime() -
+                    a.data.publishedDate.getTime()
+            );
+
+        const currentIndex = categoryArticles.findIndex(
+            (item) => item.id === article.id
+        );
+
+        return {
+            params: {
+                slug: article.id,
+            },
+
+            props: {
+                article,
+
+                previousArticle:
+                    currentIndex > 0
+                        ? categoryArticles[currentIndex - 1]
+                        : null,
+
+                nextArticle:
+                    currentIndex < categoryArticles.length - 1
+                        ? categoryArticles[currentIndex + 1]
+                        : null,
+            },
+        };
+    });
+}
+
+const {
+    article,
+    previousArticle,
+    nextArticle
+} = Astro.props;
+
+const activePageMap: Record<string, string> = {
+    History: "culture",
+    Etiquette: "culture",
+    "Deaf Culture": "culture",
+
+    Stories: "world",
+    Events: "world",
+    Advocacy: "world",
+    "Deaf World": "world",
+
+    "Learn Sign": "learn"
+};
+
+const activePage =
+    activePageMap[article.data.category] ?? "home";
+const { Content } = await render(article);
+---
+
+<BaseLayout
+    title={article.data.title}
+    description={article.data.excerpt}
+    activePage={activePage}
+>
+    <main class="history-article-page">
+
+        <article class="history-article-container">
+
+            <Breadcrumb
+                items={[
+                    {
+                        label: "Home",
+                        href: "/"
+                    },
+                    {
+                        label: article.data.category
+                    },
+                    {
+                        label: article.data.title
+                    }
+                ]}
+            />
+
+            <header class="history-article-header">
+
+                <span class="article-category">
+                    {article.data.category}
+                </span>
+
+                <h1>
+                    {article.data.title}
+                </h1>
+
+                <p class="article-excerpt">
+                    {article.data.excerpt}
+                </p>
+
+                <div class="article-meta">
+                    <span>By {article.data.author}</span>
+
+                    <span>
+                        {article.data.publishedDate.toLocaleDateString()}
+                    </span>
+
+                    <span>
+                        {article.data.readTime} min read
+                    </span>
+                </div>
+
+            </header>
+
+            <div class="history-article-image">
+                <img
+                    src={article.data.featuredImage.src}
+                    alt={article.data.featuredImage.alt}
+                />
+            </div>
+
+            <div class="history-article-body">
+                <Content />
+            </div>
+
+            {(previousArticle || nextArticle) && (
+                <nav
+                    class="history-article-navigation"
+                    aria-label="Article navigation"
+                >
+
+                    {previousArticle && (
+                        <a
+                            href={`/articles/${previousArticle.id}`}
+                            class="history-nav-link history-nav-previous"
+                        >
+                            <span class="history-nav-label">
+                                ← Newer Article
+                            </span>
+
+                            <strong>
+                                {previousArticle.data.title}
+                            </strong>
+                        </a>
+                    )}
+
+                    {nextArticle && (
+                        <a
+                            href={`/articles/${nextArticle.id}`}
+                            class="history-nav-link history-nav-next"
+                        >
+                            <span class="history-nav-label">
+                                Older Article →
+                            </span>
+
+                            <strong>
+                                {nextArticle.data.title}
+                            </strong>
+                        </a>
+                    )}
+
+                </nav>
+            )}
+
+        </article>
+
+    </main>
+</BaseLayout>

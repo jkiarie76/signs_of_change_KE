@@ -1,50 +1,107 @@
 ---
+import { getEntry, getCollection } from "astro:content";
 import EtiquetteCard from "../shared/EtiquetteCard.astro";
 
-const previewGuidelines: {
-    type: "do" | "dont";
-    title: string;
-    description: string;
-}[]  = [
+const globalSettings = await getEntry(
+    "settings",
+    "global-settings"
+);
 
-    {
-        type: "do",
+if (!globalSettings) {
+    throw new Error("global-settings.md was not found.");
+}
 
-        title: "Tap the Shoulder Softly",
+const etiquetteSettings =
+    globalSettings.data.deafCultureSections.etiquette;
 
-        description:
-            "Gently tap the person once or twice on the shoulder or upper arm. Alternatively, if you are at a distance, emit a small, polite wave within their direct line of sight to signal your presence naturally."
-    },
+const etiquette = await getCollection("etiquette");
 
-    {
-        type: "dont",
+const sortedEtiquette = etiquette.sort(
+    (a, b) =>
+        b.data.publishedDate.getTime() -
+        a.data.publishedDate.getTime()
+);
 
-        title: "Avoid Aggressive Gestures",
-
-        description:
-            "Never poke, touch the face or head, or grab someone's hands to stop them from signing. Avoid throwing objects or waving your hands frantically inches away from their face, as this is highly disruptive."
-    }
-
+const categories = [
+    ...new Set(
+        sortedEtiquette.map(
+            (item) => item.data.category
+        )
+    ),
 ];
+
+const latestCompleteCategory = categories.find(
+    (category) => {
+        const items = sortedEtiquette.filter(
+            (item) =>
+                item.data.category === category
+        );
+
+        return (
+            items.some(
+                (item) => item.data.type === "do"
+            ) &&
+            items.some(
+                (item) => item.data.type === "dont"
+            )
+        );
+    }
+);
+
+const latestCategoryItems = latestCompleteCategory
+    ? sortedEtiquette.filter(
+          (item) =>
+              item.data.category ===
+              latestCompleteCategory
+      )
+    : [];
+
+const doItem = latestCategoryItems.find(
+    (item) => item.data.type === "do"
+);
+
+const dontItem = latestCategoryItems.find(
+    (item) => item.data.type === "dont"
+);
+
+const previewGuidelines =
+    doItem && dontItem
+        ? [doItem, dontItem]
+        : [];
+
 ---
+
 <section id="etiquette" class="section-etiquette">
         <div class="container">
             <div class="section-header">
-                <span class="eyebrow">01 · ETIQUETTE & SOCIAL NORMS</span>
-                <h3>How to interact with respect</h3>
+                <span class="eyebrow">
+                    
+                    {etiquetteSettings.eyebrow}
+                    
+                </span>
+                <h3>
+                    
+                    {etiquetteSettings.title}
+                    
+                </h3>
             </div>
-            <p class="section-intro-text">Most awkward moments come from good intentions and missing context. These are the norms Deaf readers tell us they wish more hearing people knew — save them, share them.</p>
+            <p class="section-intro-text">
+                
+                {etiquetteSettings.intro}
+            
+            </p>
             
             <div class="etiquette-grid">
                 <!-- Rule 1: Gaining Attention (DO) -->
                    {
-
                         previewGuidelines.map((item) => (
-
-                            <EtiquetteCard {...item} />
-
+                            <EtiquetteCard
+                                type={item.data.type}
+                                title={item.data.title}
+                                description={item.data.description}
+                                category={item.data.category}
+                            />
                         ))
-
                     }
 
             </div>

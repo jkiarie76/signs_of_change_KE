@@ -1,7 +1,31 @@
 ---
+import { getCollection } from "astro:content";
+
 import PreviousFeaturedCard from "./PreviousFeaturedCard.astro";
 import FeaturedSidebar from "./FeaturedSidebar.astro";
 import NewsLetterCard from "./NewsLetterCard.astro";
+
+const articles = await getCollection("articles");
+
+const featuredArticles = articles
+    .filter((article) => article.data.featured)
+    .sort(
+        (a, b) =>
+            b.data.publishedDate.getTime() -
+            a.data.publishedDate.getTime()
+    );
+
+const featuredArticle =
+    featuredArticles[0] ??
+    [...articles].sort(
+        (a, b) =>
+            b.data.publishedDate.getTime() -
+            a.data.publishedDate.getTime()
+    )[0];
+
+const previousFeaturedArticles = featuredArticles
+    .filter((article) => article.id !== featuredArticle?.id)
+    .slice(0, 4);
 ---
 <section class="homepage-top">
 
@@ -16,8 +40,8 @@ import NewsLetterCard from "./NewsLetterCard.astro";
                     <div class="featured-story-image">
 
                         <img
-                            src="/uploads/home/hero.jpg"
-                            alt="Featured Story"
+                            src={featuredArticle.data.featuredImage.src}
+                            alt={featuredArticle.data.featuredImage.alt}  
                         />
 
                     </div>
@@ -27,9 +51,7 @@ import NewsLetterCard from "./NewsLetterCard.astro";
                         <div class="featured-story-tags">
 
                             <span class="hero-category">
-
-                                Deaf Culture 101
-
+                                {featuredArticle.data.category}
                             </span>
 
                             <span class="hero-featured-badge">
@@ -41,9 +63,7 @@ import NewsLetterCard from "./NewsLetterCard.astro";
                         </div>
 
                         <h1>
-
-                            Bridging the Gap Between the Deaf and Hearing Communities Through Stories
-
+                            {featuredArticle.data.title}
                         </h1>
 
                         <div class="hero-meta">
@@ -52,7 +72,7 @@ import NewsLetterCard from "./NewsLetterCard.astro";
 
                                 <i class="fa-solid fa-user"></i>
 
-                                By Admin
+                                By {featuredArticle.data.author}
 
                             </span>
 
@@ -60,7 +80,11 @@ import NewsLetterCard from "./NewsLetterCard.astro";
 
                                 <i class="fa-regular fa-calendar"></i>
 
-                                Aug 3, 2026
+                                {featuredArticle.data.publishedDate.toLocaleDateString("en-KE", {
+                                    month: "short",
+                                    day: "numeric",
+                                    year: "numeric"
+                                })}
 
                             </span>
 
@@ -68,7 +92,7 @@ import NewsLetterCard from "./NewsLetterCard.astro";
 
                                 <i class="fa-regular fa-clock"></i>
 
-                                5 min read
+                                {featuredArticle.data.readTime} min read
 
                             </span>
 
@@ -76,16 +100,15 @@ import NewsLetterCard from "./NewsLetterCard.astro";
 
                         <p>
 
-                            Discover inspiring stories, practical sign language lessons,
-                            Deaf culture insights and community initiatives happening
-                            across Kenya.
+                            {featuredArticle.data.excerpt}
 
                         </p>
 
-                        <a href="#" class="btn-primary">
-
+                        <a 
+                            href={`/articles/${featuredArticle.id}`}
+                            class="btn-primary"
+                        >
                             Read Featured Story
-
                             <i class="fa-solid fa-arrow-right"></i>
 
                         </a>
@@ -104,43 +127,19 @@ import NewsLetterCard from "./NewsLetterCard.astro";
 
                     <div class="previous-featured-grid">
 
-                        
-
-                        <PreviousFeaturedCard
-                            image="/uploads/home/olderpost_1.jpg"
-                            category="History"
-                            title="The Origins of Kenyan Sign Language"
-                            excerpt="Discover how Kenyan Sign Language is creating more inclusive communities."
-                            author="Admin"
-                            readTime="4 min"
-                        />
-
-                        <PreviousFeaturedCard
-                            image="/uploads/home/deafworld_2.jpg"
-                            category="Etiquette"
-                            title="Respectful Communication with Deaf People"
-                            excerpt="Discover how Kenyan Sign Language is creating more inclusive communities."
-                            author="Admin"
-                            readTime="5 min"
-                        />
-
-                        <PreviousFeaturedCard
-                            image="/uploads/home/learn_1.jpg"
-                            category="Stories"
-                            title="Growing Up Deaf in Kenya"
-                            excerpt="Discover how Kenyan Sign Language is creating more inclusive communities."
-                            author="Admin"
-                            readTime="6 min"
-                        />
-
-                        <PreviousFeaturedCard
-                            image="/uploads/home/culture_1.jpg"
-                            category="Advocacy"
-                            title="Accessibility is a Right"
-                            excerpt="Discover how Kenyan Sign Language is creating more inclusive communities."
-                            author="Admin"
-                            readTime="4 min"
-                        />
+                        {
+                            previousFeaturedArticles.map((article) => (
+                                <PreviousFeaturedCard
+                                    image={article.data.featuredImage.src}
+                                    category={article.data.category}
+                                    title={article.data.title}
+                                    excerpt={article.data.excerpt}
+                                    author={article.data.author}
+                                    readTime={`${article.data.readTime} min`}
+                                    slug={article.id}
+                                />
+                            ))
+                        }  
 
                     </div>
 

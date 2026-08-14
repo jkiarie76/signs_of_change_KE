@@ -1,0 +1,172 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../../components/shared/Breadcrumb.astro";
+import "../../../styles/history-article.css";
+
+export async function getStaticPaths() {
+    const articles = await getCollection("articles");
+
+    const historyArticles = articles
+        .filter((article) => article.data.category === "History")
+        .sort(
+            (a, b) =>
+                b.data.publishedDate.getTime() -
+                a.data.publishedDate.getTime()
+        );
+
+    return historyArticles.map((article, index) => ({
+        params: {
+            slug: article.id,
+        },
+
+        props: {
+            article,
+
+            previousArticle:
+                index > 0
+                    ? historyArticles[index - 1]
+                    : null,
+
+            nextArticle:
+                index < historyArticles.length - 1
+                    ? historyArticles[index + 1]
+                    : null,
+        },
+    }));
+}
+
+const {
+    article,
+    previousArticle,
+    nextArticle
+} = Astro.props;
+
+const { Content } = await render(article);
+---
+
+<BaseLayout
+    title={article.data.title}
+    description={article.data.excerpt}
+    activePage="culture"
+>
+    <main class="history-article-page">
+
+        <article class="history-article-container">
+
+            <Breadcrumb
+                items={[
+                    {
+                        label: "Home",
+                        href: "/"
+                    },
+                    {
+                        label: "Deaf Culture 101",
+                        href: "/deaf-culture"
+                    },
+                    {
+                        label: "History",
+                        href: "/deaf-culture/history"
+                    },
+                    {
+                        label: article.data.title
+                    }
+                ]}
+            />
+
+            <header class="history-article-header">
+
+                <span class="article-category">
+                    {article.data.category}
+                </span>
+
+                <h1>
+                    {article.data.title}
+                </h1>
+
+                <p class="article-excerpt">
+                    {article.data.excerpt}
+                </p>
+
+                <div class="article-meta">
+
+                    <span>
+                        By {article.data.author}
+                    </span>
+
+                    <span>
+                        {article.data.publishedDate.toLocaleDateString("en-KE", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric"
+                        })}
+                    </span>
+
+                    <span>
+                        {article.data.readTime} min read
+                    </span>
+
+                </div>
+
+            </header>
+
+
+            <div class="history-article-image">
+
+                <img
+                    src={article.data.featuredImage.src}
+                    alt={article.data.featuredImage.alt}
+                />
+
+            </div>
+
+
+            <div class="history-article-body">
+
+                <Content />
+
+            </div>
+
+            {(previousArticle || nextArticle) && (
+                <nav
+                    class="history-article-navigation"
+                    aria-label="Article navigation"
+                >
+
+                    {previousArticle && (
+                        <a
+                            href={`/deaf-culture/history/${previousArticle.id}`}
+                            class="history-nav-link history-nav-previous"
+                        >
+                            <span class="history-nav-label">
+                                ← Newer Article
+                            </span>
+
+                            <strong>
+                                {previousArticle.data.title}
+                            </strong>
+                        </a>
+                    )}
+
+                    {nextArticle && (
+                        <a
+                            href={`/deaf-culture/history/${nextArticle.id}`}
+                            class="history-nav-link history-nav-next"
+                        >
+                            <span class="history-nav-label">
+                                Older Article →
+                            </span>
+
+                            <strong>
+                                {nextArticle.data.title}
+                            </strong>
+                        </a>
+                    )}
+
+                </nav>
+            )}
+
+        </article>
+
+    </main>
+</BaseLayout>

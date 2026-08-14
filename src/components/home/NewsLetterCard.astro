@@ -1,5 +1,9 @@
 ---
+import { getCollection } from "astro:content";
 
+const settings = await getCollection("settings");
+
+const globalSettings = settings[0];
 ---
 
 <div class="homepage-newsletter-card">
@@ -12,14 +16,13 @@
 
     <h3>
 
-        Stay Connected
+        {globalSettings.data.newsletter.title}
 
     </h3>
 
     <p>
 
-        Receive the newest stories, sign language lessons,
-        community events and advocacy updates directly in your inbox.
+        {globalSettings.data.newsletter.description}
 
     </p>
 
@@ -32,8 +35,7 @@
 
         <button type="submit">
 
-            Join Community
-
+            {globalSettings.data.newsletter.buttonText}
             <i class="fa-solid fa-arrow-right"></i>
 
         </button>
@@ -42,7 +44,7 @@
 
     <small>
 
-        🔒 No spam • Unsubscribe anytime.
+        {globalSettings.data.newsletter.privacyText}
 
     </small>
 

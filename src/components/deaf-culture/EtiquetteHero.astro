@@ -1,3 +1,26 @@
+---
+import { getCollection } from "astro:content";
+
+const etiquetteGuidelines = await getCollection("etiquette");
+
+const guidelineCount = etiquetteGuidelines.length;
+
+const categories = new Set(
+    etiquetteGuidelines.map(
+        (item) => item.data.category
+    )
+);
+
+const categoryCount = categories.size;
+
+const latestDate = etiquetteGuidelines
+    .map((item) => item.data.publishedDate)
+    .filter(Boolean)
+    .sort()
+    .reverse()[0];
+---
+
+
 <section class="collection-hero">
 
     <div class="container">
@@ -50,7 +73,7 @@
 
                 <h3>
 
-                    18+
+                    {guidelineCount}
 
                 </h3>
 
@@ -66,7 +89,7 @@
 
                 <h3>
 
-                    6
+                    {categoryCount}
 
                 </h3>
 
@@ -82,13 +105,13 @@
 
                 <h3>
 
-                    Updated
+                    {latestDate ?? "—"}
 
                 </h3>
 
                 <p>
 
-                    Regularly
+                    Updated
 
                 </p>
 

@@ -1,3 +1,44 @@
+---
+import { getCollection } from "astro:content";
+
+const historyArticles = await getCollection(
+    "articles",
+    ({ data }) => data.category === "History"
+);
+
+const articleCount = historyArticles.length;
+
+const topics = new Set(
+    historyArticles.map((article) => article.data.topic)
+);
+
+const topicCount = topics.size;
+
+const latestHistoryArticle = [...historyArticles].sort((a, b) => {
+    const dateA =
+        a.data.updatedDate ??
+        a.data.publishedDate;
+
+    const dateB =
+        b.data.updatedDate ??
+        b.data.publishedDate;
+
+    return dateB.getTime() - dateA.getTime();
+})[0];
+
+const latestUpdateDate = latestHistoryArticle
+    ? (
+        latestHistoryArticle.data.updatedDate ??
+        latestHistoryArticle.data.publishedDate
+      ).toLocaleDateString("en-KE", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })
+    : "No updates yet";
+---
+
+
 <section class="collection-hero">
 
     <div class="container">
@@ -51,7 +92,7 @@
 
                 <h3>
 
-                    124
+                    {articleCount}
 
                 </h3>
 
@@ -67,13 +108,13 @@
 
                 <h3>
 
-                    6
+                  {topicCount}  
 
                 </h3>
 
                 <p>
 
-                    Categories
+                    Topics
 
                 </p>
 
@@ -83,13 +124,13 @@
 
                 <h3>
 
-                    Weekly
+                    {latestUpdateDate}
 
                 </h3>
 
                 <p>
 
-                    Updates
+                    Updated
 
                 </p>
 

@@ -1,3 +1,16 @@
+---
+import { getCollection } from "astro:content";
+
+const videos = (await getCollection("videos"))
+    .sort(
+        (a, b) =>
+            b.data.publishedDate.valueOf() -
+            a.data.publishedDate.valueOf()
+    )
+    .slice(0, 3);
+---
+
+
 <section id="videos" class="learn-sign-videos">
 
     <div class="container">
@@ -27,168 +40,60 @@
 
         <div class="archive-grid">
 
-
-            <!-- VIDEO 1 -->
-
-            <a
-                href="https://youtube.com/YOUR_VIDEO_LINK"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="video-teaser-card"
-            >
-
-                <div class="video-frame-wrapper">
-
-                    <img
-                        src="/public/uploads/home/hero.jpg"
-                        alt="Basic greetings and phrases sign language lesson"
+            {
+                videos.map((video) => (
+                    <a
+                        href={video.data.youtubeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="video-teaser-card"
                     >
 
-                    <div class="video-frame-overlay">
+                        <div class="video-frame-wrapper">
 
-                        <div class="fake-play-btn">
+                            <img
+                                src={video.data.thumbnail}
+                                alt={video.data.title}
+                            />
 
-                            <i class="fa-solid fa-play"></i>
+                            <div class="video-frame-overlay">
+
+                                <div class="fake-play-btn">
+
+                                    <i class="fa-solid fa-play"></i>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
-                    </div>
 
-                </div>
+                        <div class="card-text">
 
+                            <span class="card-meta">
 
-                <div class="card-text">
+                                {video.data.topic}
+                                · Watch on YouTube
 
-                    <span class="card-meta">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
 
-                        Level 1 · Watch on YouTube
+                            </span>
 
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            <h3>
+                                {video.data.title}
+                            </h3>
 
-                    </span>
-
-                    <h3>
-                        Basic Greetings & Phrases
-                    </h3>
-
-                    <p>
-                        Practice essential conversational signs
-                        and build your confidence with everyday
-                        greetings and expressions.
-                    </p>
-
-                </div>
-
-            </a>
-
-
-            <!-- VIDEO 2 -->
-
-            <a
-                href="https://youtube.com/YOUR_VIDEO_LINK"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="video-teaser-card"
-            >
-
-                <div class="video-frame-wrapper">
-
-                    <img
-                        src="/public/uploads/home/learn_1.jpg"
-                        alt="Alphabet and numbers sign language lesson"
-                    >
-
-                    <div class="video-frame-overlay">
-
-                        <div class="fake-play-btn">
-
-                            <i class="fa-solid fa-play"></i>
+                            <p>
+                                {video.data.description}
+                            </p>
 
                         </div>
 
-                    </div>
-
-                </div>
-
-
-                <div class="card-text">
-
-                    <span class="card-meta">
-
-                        Level 1 · Watch on YouTube
-
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                    </span>
-
-                    <h3>
-                        Alphabets & Numbers
-                    </h3>
-
-                    <p>
-                        Strengthen your fingerspelling skills by
-                        practising letters and numbers through
-                        guided visual demonstrations.
-                    </p>
-
-                </div>
-
-            </a>
-
-
-            <!-- VIDEO 3 -->
-
-            <a
-                href="https://youtube.com/YOUR_VIDEO_LINK"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="video-teaser-card"
-            >
-
-                <div class="video-frame-wrapper">
-
-                    <img
-                        src="/public/uploads/home/culture_1.jpg"
-                        alt="Sign language grammar lesson"
-                    >
-
-                    <div class="video-frame-overlay">
-
-                        <div class="fake-play-btn">
-
-                            <i class="fa-solid fa-play"></i>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="card-text">
-
-                    <span class="card-meta">
-
-                        Level 2 · Watch on YouTube
-
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                    </span>
-
-                    <h3>
-                        Sign Language Grammar
-                    </h3>
-
-                    <p>
-                        Explore the role of movement, facial
-                        expression and body positioning in
-                        meaningful signed communication.
-                    </p>
-
-                </div>
-
-            </a>
-
+                    </a>
+                ))
+            }
+        
         </div>
 
 

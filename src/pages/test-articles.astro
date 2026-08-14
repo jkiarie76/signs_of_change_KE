@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from "astro:content";
+
+const articles = await getCollection("articles");
+
+const article = articles[0];
+
+const { Content } = await render(article);
+---
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{article.data.title}</title>
+    </head>
+
+    <body>
+        <main>
+            <h1>{article.data.title}</h1>
+
+            <p>{article.data.excerpt}</p>
+
+            <p>
+                Category: {article.data.category}
+            </p>
+
+            <p>
+                Author: {article.data.author}
+            </p>
+
+            <p>
+                Read time: {article.data.readTime} minutes
+            </p>
+
+            <p>
+                Featured:
+                {article.data.featured ? "Yes" : "No"}
+            </p>
+
+            <img
+                src={article.data.featuredImage.src}
+                alt={article.data.featuredImage.alt}
+                width="500"
+            />
+
+            <hr />
+
+            <article>
+                <Content />
+            </article>
+        </main>
+    </body>
+</html>

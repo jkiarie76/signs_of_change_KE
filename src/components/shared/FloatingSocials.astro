@@ -1,34 +1,49 @@
 ---
+import { getCollection } from "astro:content";
+
 import {
     Facebook,
     Instagram,
     Youtube
 } from "lucide-astro";
+
+const settings = await getCollection("settings");
+const globalSettings = settings[0];
 ---
 
 <div class="floating-socials">
 
-    <a
-        href="#"
-        aria-label="Facebook"
-    >
-        <Facebook size={20}/>
-    </a>
+    {globalSettings.data.social.facebook && (
+        <a
+            href={globalSettings.data.social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+        >
+            <Facebook size={20}/>
+        </a>
+    )}
 
-    <a
-        href="#"
-        aria-label="Instagram"
-    >
-        <Instagram size={20}/>
-    </a>
+    {globalSettings.data.social.instagram && (
+        <a
+            href={globalSettings.data.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+        >
+            <Instagram size={20}/>
+        </a>
+    )}
 
-    <a
-        href="#"
-        aria-label="YouTube"
-    >
-        <Youtube size={20}/>
-    </a>
-
-   
+    {globalSettings.data.social.youtube && (
+        <a
+            href={globalSettings.data.social.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+        >
+            <Youtube size={20}/>
+        </a>
+    )}
 
 </div>
