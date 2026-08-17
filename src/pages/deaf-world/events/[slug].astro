@@ -1,0 +1,666 @@
+---
+import { getCollection, render } from "astro:content";
+
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+import "../../../styles/deaf-world.css";
+
+export async function getStaticPaths() {
+
+    const events = await getCollection("events");
+
+    const publishedEvents = events.filter(
+        (event) => event.data.published
+    );
+
+    return publishedEvents.map((event) => ({
+        params: {
+            slug: event.id,
+        },
+        props: {
+            event,
+        },
+    }));
+}
+
+
+const { event } = Astro.props;
+
+const { Content } = await render(event);
+
+const eventDate = event.data.eventDate;
+
+const isPast =
+    event.data.status === "completed";
+
+const formattedDate =
+    eventDate.toLocaleDateString("en-KE", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    });
+
+const formattedTime =
+    `${event.data.startTime} - ${event.data.endTime}`;
+---
+
+<BaseLayout
+    title={`${event.data.title} | Events | Deaf World | Signs Of Change KE`}
+    description={event.data.excerpt}
+    activePage="world"
+>
+
+    <main class="event-detail-page">
+
+        <div class="container">
+
+            <!-- BREADCRUMB -->
+
+            <nav
+                class="breadcrumb-nav"
+                aria-label="Breadcrumb"
+            >
+
+                <a href="/">
+                    Home
+                </a>
+
+                <span>›</span>
+
+                <a href="/deaf-world">
+                    Deaf World
+                </a>
+
+                <span>›</span>
+
+                <a href="/deaf-world/events">
+                    Events
+                </a>
+
+                <span>›</span>
+
+                <span class="current-page">
+                    {event.data.title}
+                </span>
+
+            </nav>
+
+
+            <!-- EVENT HEADER -->
+
+            <header class="event-detail-header">
+
+                <div class="event-detail-category">
+
+                    <span class="eyebrow">
+                        {event.data.category}
+                    </span>
+
+                    {
+                        isPast && (
+                            <span class="event-status-badge past">
+                                Past Event
+                            </span>
+                        )
+                    }
+
+                    {
+                        !isPast && (
+                            <span class="event-status-badge upcoming">
+                                Upcoming Event
+                            </span>
+                        )
+                    }
+
+                </div>
+
+
+                <h1>
+                    {event.data.title}
+                </h1>
+
+
+                <p class="event-detail-excerpt">
+                    {event.data.excerpt}
+                </p>
+
+            </header>
+
+
+            <!-- EVENT IMAGE -->
+
+            <div class="event-detail-image">
+
+                <img
+                    src={event.data.featuredImage.src}
+                    alt={event.data.featuredImage.alt}
+                />
+
+            </div>
+
+
+            <!-- EVENT INFORMATION -->
+
+            <section class="event-detail-information">
+
+                <div class="event-info-item">
+
+                    <i class="fa-regular fa-calendar"></i>
+
+                    <div>
+
+                        <span>
+                            Date
+                        </span>
+
+                        <strong>
+                            {formattedDate}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="event-info-item">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    <div>
+
+                        <span>
+                            Time
+                        </span>
+
+                        <strong>
+                            {formattedTime}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="event-info-item">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <div>
+
+                        <span>
+                            Location
+                        </span>
+
+                        <strong>
+                            {event.data.location}
+                        </strong>
+
+                        {
+                            event.data.venue && (
+                                <small>
+                                    {event.data.venue}
+                                </small>
+                            )
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <div class="event-info-item">
+
+                    <i class="fa-regular fa-user"></i>
+
+                    <div>
+
+                        <span>
+                            Organizer
+                        </span>
+
+                        <strong>
+                            {event.data.organizer}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+                        <!-- EVENT SUMMARY -->
+
+            {
+                event.data.summary && (
+
+                    <section class="event-summary">
+
+                        <div class="section-header">
+
+                            <span class="eyebrow">
+                                ABOUT THE EVENT
+                            </span>
+
+                            <h2>
+                                About the Event
+                            </h2>
+
+                        </div>
+
+                        <p>
+                            {event.data.summary}
+                        </p>
+
+                    </section>
+
+                )
+            }
+
+                        <!-- ATTENDANCE -->
+
+            {
+                event.data.attendance && (
+
+                    <section class="event-attendance">
+
+                        <span class="eyebrow">
+                            ATTENDANCE
+                        </span>
+
+                        <strong>
+                            {event.data.attendance}
+                        </strong>
+
+                    </section>
+
+                )
+            }
+
+                        <!-- EVENT HIGHLIGHTS -->
+
+            {
+                event.data.highlights.length > 0 && (
+
+                    <section class="event-highlights">
+
+                        <div class="section-header">
+
+                            <span class="eyebrow">
+                                HIGHLIGHTS
+                            </span>
+
+                            <h2>
+                                What We Discussed
+                            </h2>
+
+                        </div>
+
+                        <ul class="event-highlights-list">
+
+                            {
+                                event.data.highlights.map(
+                                    (highlight) => (
+
+                                        <li>
+
+                                            <i class="fa-solid fa-check"></i>
+
+                                            <span>
+                                                {highlight}
+                                            </span>
+
+                                        </li>
+
+                                    )
+                                )
+                            }
+
+                        </ul>
+
+                    </section>
+
+                )
+            }
+
+                        <!-- EVENT OUTCOMES -->
+
+            {
+                event.data.outcomes.length > 0 && (
+
+                    <section class="event-outcomes">
+
+                        <div class="section-header">
+
+                            <span class="eyebrow">
+                                IMPACT
+                            </span>
+
+                            <h2>
+                                Key Outcomes
+                            </h2>
+
+                        </div>
+
+                        <ul class="event-outcomes-list">
+
+                            {
+                                event.data.outcomes.map(
+                                    (outcome) => (
+
+                                        <li>
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                            <span>
+                                                {outcome}
+                                            </span>
+
+                                        </li>
+
+                                    )
+                                )
+                            }
+
+                        </ul>
+
+                    </section>
+
+                )
+            }
+
+                        <!-- EVENT REPORT -->
+
+            {
+                event.data.eventReport && (
+
+                    <section class="event-report">
+
+                        <div class="section-header">
+
+                            <span class="eyebrow">
+                                EVENT RECAP
+                            </span>
+
+                            <h2>
+                                Event Report
+                            </h2>
+
+                        </div>
+
+                        <div class="event-report-content">
+
+                            {
+                                event.data.eventReport
+                                    .split("\n\n")
+                                    .map(
+                                        (paragraph) => (
+                                            <p>
+                                                {paragraph}
+                                            </p>
+                                        )
+                                    )
+                            }
+
+                        </div>
+
+                    </section>
+
+                )
+            }
+
+
+                        <!-- EVENT GALLERY -->
+
+            {
+                event.data.gallery.length > 0 && (
+
+                    <section class="event-gallery">
+
+                        <div class="section-header">
+
+                            <span class="eyebrow">
+                                GALLERY
+                            </span>
+
+                            <h2>
+                                Moments From The Event
+                            </h2>
+
+                        </div>
+
+                        <div class="event-gallery-grid">
+
+                            {
+                                event.data.gallery.map(
+                                    (image) => (
+
+                                        <figure>
+
+                                            <img
+                                                src={image.src}
+                                                alt={image.alt}
+                                                loading="lazy"
+                                            />
+
+                                        </figure>
+
+                                    )
+                                )
+                            }
+
+                        </div>
+
+                    </section>
+
+                )
+            }
+
+            
+
+            <!-- REGISTRATION -->
+
+            {
+                !isPast &&
+                event.data.registrationUrl && (
+
+                    <div class="event-registration">
+
+                        <a
+                            href={event.data.registrationUrl}
+                            class="btn-primary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            {event.data.registrationLabel}
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                )
+            }
+
+
+            <!-- MAIN CONTENT -->
+
+            <article class="event-detail-content">
+
+                <Content />
+
+            </article>
+
+
+            <!-- ACCESSIBILITY -->
+
+            {
+                event.data.accessibility && (
+
+                    <section class="event-accessibility">
+
+                        <div class="section-header">
+
+                            <span class="eyebrow">
+                                ACCESSIBILITY
+                            </span>
+
+                            <h2>
+                                Accessibility Information
+                            </h2>
+
+                        </div>
+
+
+                        <div class="accessibility-list">
+
+                            {
+                                event.data.accessibility
+                                    .signLanguageInterpretation && (
+
+                                    <div class="accessibility-item">
+
+                                        <strong>
+                                            Sign Language Interpretation
+                                        </strong>
+
+                                    </div>
+                                )
+                            }
+
+
+                            {
+                                event.data.accessibility
+                                    .captions && (
+
+                                    <div class="accessibility-item">
+
+                                        <strong>
+                                            Captions Available
+                                        </strong>
+
+                                    </div>
+                                )
+                            }
+
+
+                            {
+                                event.data.accessibility
+                                    .wheelchairAccessible && (
+
+                                    <div class="accessibility-item">
+
+                                        <strong>
+                                            Wheelchair Accessible
+                                        </strong>
+
+                                    </div>
+                                )
+                            }
+
+
+                            {
+                                event.data.accessibility
+                                    .hearingLoop && (
+
+                                    <div class="accessibility-item">
+
+                                        <strong>
+                                            Hearing Loop Available
+                                        </strong>
+
+                                    </div>
+                                )
+                            }
+
+
+                            {
+                                event.data.accessibility
+                                    .accessibleMaterials && (
+
+                                    <div class="accessibility-item">
+
+                                        <strong>
+                                            Accessible Materials
+                                        </strong>
+
+                                    </div>
+                                )
+                            }
+
+                        </div>
+
+
+                        {
+                            event.data.accessibility.notes && (
+
+                                <p class="accessibility-notes">
+                                    {event.data.accessibility.notes}
+                                </p>
+
+                            )
+                        }
+
+                    </section>
+
+                )
+            }
+
+
+            <!-- RESOURCES -->
+
+            {
+                event.data.resources.length > 0 && (
+
+                    <section class="event-resources">
+
+                        <div class="section-header">
+
+                            <span class="eyebrow">
+                                RESOURCES
+                            </span>
+
+                            <h2>
+                                Event Resources
+                            </h2>
+
+                        </div>
+
+
+                        <div class="event-resources-list">
+
+                            {
+                                event.data.resources.map(
+                                    (resource) => (
+
+                                        <a
+                                            href={resource.url}
+                                            class="event-resource-link"
+                                        >
+
+                                            <span>
+                                                {resource.title}
+                                            </span>
+
+                                            <i class="fa-solid fa-download"></i>
+
+                                        </a>
+
+                                    )
+                                )
+                            }
+
+                        </div>
+
+                    </section>
+
+                )
+            }
+
+        </div>
+
+    </main>
+
+</BaseLayout>

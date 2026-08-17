@@ -36,6 +36,8 @@ const articles = defineCollection({
 
     featured: z.boolean().default(false),
 
+    homepageFeatured: z.boolean().default(false),
+
     featuredImage: z.object({
       src: z.string(),
       alt: z.string(),
@@ -301,6 +303,206 @@ const settings = defineCollection({
     }),
 });
 
+const events = defineCollection({
+    loader: glob({
+        pattern: "**/*.md",
+        base: "./src/data/events",
+    }),
+
+    schema: z.object({
+
+        // =========================================
+        // BASIC EVENT INFORMATION
+        // =========================================
+
+        title: z.string(),
+
+        excerpt: z.string(),
+
+        // =========================================
+        // DATE & TIME
+        // =========================================
+
+        eventDate: z.coerce.date(),
+
+        startTime: z.string(),
+
+        endTime: z.string(),
+
+        // =========================================
+        // LOCATION
+        // =========================================
+
+        location: z.string(),
+
+        venue: z.string().optional(),
+
+        // =========================================
+        // ORGANIZER
+        // =========================================
+
+        organizer: z.string(),
+
+        // =========================================
+        // EVENT CLASSIFICATION
+        // =========================================
+
+        category: z.enum([
+            "Workshop",
+            "Conference",
+            "Festival",
+            "Community",
+            "Training",
+            "Advocacy",
+            "Other",
+        ]),
+
+        eventType: z.enum([
+            "physical",
+            "virtual",
+        ]),
+
+        // =========================================
+        // FEATURED IMAGE
+        // =========================================
+
+        featuredImage: z.object({
+            src: z.string(),
+            alt: z.string(),
+        }),
+
+        // =========================================
+        // EVENT STATUS
+        // =========================================
+
+        status: z.enum([
+            "upcoming",
+            "completed",
+        ]).default("upcoming"),
+
+        // =========================================
+        // EVENT SUMMARY
+        // =========================================
+
+        attendance: z.string().optional(),
+
+        summary: z.string().optional(),
+
+        // =========================================
+        // EVENT HIGHLIGHTS
+        // =========================================
+
+        highlights: z.array(
+            z.string()
+        ).default([]),
+
+        // =========================================
+        // EVENT OUTCOMES
+        // =========================================
+
+        outcomes: z.array(
+            z.string()
+        ).default([]),
+
+        // =========================================
+        // EVENT REPORT
+        // =========================================
+
+        eventReport: z.string().optional(),
+
+        // =========================================
+        // EVENT GALLERY
+        // =========================================
+
+        gallery: z.array(
+            z.object({
+
+                src: z.string(),
+
+                alt: z.string(),
+
+            })
+        ).default([]),
+
+        // =========================================
+        // TAGS
+        // =========================================
+
+        tags: z.array(
+            z.string()
+        ).default([]),
+
+        // =========================================
+        // REGISTRATION
+        // =========================================
+
+        registrationUrl: z.string().url().optional(),
+
+        registrationLabel: z.string()
+            .default("Register Now"),
+
+        // =========================================
+        // ACCESSIBILITY
+        // =========================================
+
+        accessibility: z.object({
+
+            signLanguageInterpretation:
+                z.boolean().default(false),
+
+            captions:
+                z.boolean().default(false),
+
+            wheelchairAccessible:
+                z.boolean().default(false),
+
+            hearingLoop:
+                z.boolean().default(false),
+
+            accessibleMaterials:
+                z.boolean().default(false),
+
+            notes:
+                z.string().optional(),
+
+        }).optional(),
+
+        // =========================================
+        // DOWNLOADABLE RESOURCES
+        // =========================================
+
+        resources: z.array(
+            z.object({
+
+                title: z.string(),
+
+                url: z.string(),
+
+                type: z.enum([
+                    "pdf",
+                    "document",
+                    "link",
+                ]),
+
+            })
+        ).default([]),
+
+        // =========================================
+        // HOMEPAGE FEATURE
+        // =========================================
+
+        featured:
+            z.boolean().default(false),
+
+        // =========================================
+        // PUBLISHING
+        // =========================================
+
+        published:
+            z.boolean().default(true),
+
+    }),
+});
 
 export const collections = {
   articles,
@@ -308,5 +510,6 @@ export const collections = {
   etiquette,
   quotes,
   videos,
+  events,
   settings,
 };

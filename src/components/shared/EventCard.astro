@@ -1,6 +1,8 @@
 ---
 export interface Props {
     image: string;
+    imageAlt: string;
+
     title: string;
     description: string;
 
@@ -17,14 +19,17 @@ export interface Props {
 
     status: "upcoming" | "past";
 
+    slug: string;
+
     registrationUrl?: string;
-    resourceUrl?: string;
 
     registrationLabel?: string;
 }
 
 const {
     image,
+    imageAlt,
+
     title,
     description,
 
@@ -41,8 +46,9 @@ const {
 
     status,
 
+    slug,
+
     registrationUrl,
-    resourceUrl,
 
     registrationLabel = "Register Now"
 } = Astro.props;
@@ -59,7 +65,7 @@ const {
 
         <img
             src={image}
-            alt={title}
+            alt={imageAlt}
         />
 
         <div class="calendar-date-badge">
@@ -80,7 +86,6 @@ const {
     <!-- EVENT CONTENT -->
 
     <div class="event-card-body">
-
 
         <!-- TIME + LOCATION -->
 
@@ -162,57 +167,46 @@ const {
         </p>
 
 
-        <!-- ACTIONS -->
+        <!-- ACTION -->
 
-        {
-            (registrationUrl || resourceUrl) && (
+        <div class="event-card-actions">
 
-                <div class="event-card-actions">
+            <!-- VIEW FULL EVENT -->
 
+            <a
+                href={`/deaf-world/events/${slug}`}
+                class="event-view-btn"
+            >
 
-                    {
-                        registrationUrl && (
+                View Event
 
-                            <a
-                                href={registrationUrl}
-                                class="event-action-btn"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
+                <i class="fa-solid fa-arrow-right"></i>
 
-                                {registrationLabel}
-
-                                <i class="fa-solid fa-arrow-right"></i>
-
-                            </a>
-
-                        )
-                    }
+            </a>
 
 
-                    {
-                        resourceUrl && (
+            <!-- REGISTRATION -->
 
-                            <a
-                                href={resourceUrl}
-                                class="event-download-btn"
-                                download
-                            >
+            {
+                status === "upcoming" &&
+                registrationUrl && (
 
-                                Download Event Guide
+                    <a
+                        href={registrationUrl}
+                        class="event-register-btn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
 
-                                <i class="fa-solid fa-download"></i>
+                        {registrationLabel}
 
-                            </a>
+                    </a>
 
-                        )
-                    }
+                )
+            }
 
+        </div>
 
-                </div>
-
-            )
-        }
 
     </div>
 

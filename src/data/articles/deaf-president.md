@@ -9,6 +9,7 @@ publishedDate: "2026-08-10"
 updatedDate: "2026-08-10"
 readTime: 6
 featured: true
+homepageFeatured: true 
 featuredImage:
     src: "/uploads/home/deafworld_2.jpg"
     alt: "Community members gathered during a Deaf rights movement"

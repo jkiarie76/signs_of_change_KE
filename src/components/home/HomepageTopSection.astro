@@ -8,20 +8,17 @@ import NewsLetterCard from "./NewsLetterCard.astro";
 const articles = await getCollection("articles");
 
 const featuredArticles = articles
-    .filter((article) => article.data.featured)
+    .filter(
+        (article) =>
+            article.data.homepageFeatured
+    )
     .sort(
         (a, b) =>
             b.data.publishedDate.getTime() -
             a.data.publishedDate.getTime()
     );
 
-const featuredArticle =
-    featuredArticles[0] ??
-    [...articles].sort(
-        (a, b) =>
-            b.data.publishedDate.getTime() -
-            a.data.publishedDate.getTime()
-    )[0];
+const featuredArticle = featuredArticles[0];
 
 const previousFeaturedArticles = featuredArticles
     .filter((article) => article.id !== featuredArticle?.id)
@@ -33,119 +30,141 @@ const previousFeaturedArticles = featuredArticles
 
         <div class="homepage-layout">
 
-            <div class="homepage-main">
+           <div class="homepage-main">
 
-                <article class="featured-story">
+                {featuredArticle ? (
 
-                    <div class="featured-story-image">
+                    <>
 
-                        <img
-                            src={featuredArticle.data.featuredImage.src}
-                            alt={featuredArticle.data.featuredImage.alt}  
-                        />
+                        <article class="featured-story">
 
-                    </div>
+                            <div class="featured-story-image">
 
-                    <div class="featured-story-content">
+                                <img
+                                    src={featuredArticle.data.featuredImage.src}
+                                    alt={featuredArticle.data.featuredImage.alt}
+                                />
 
-                        <div class="featured-story-tags">
+                            </div>
+
+                            <div class="featured-story-content">
+
+                                <div class="featured-story-tags">
+
+                                    <span class="hero-category">
+                                        {featuredArticle.data.category}
+                                    </span>
+
+                                    <span class="hero-featured-badge">
+                                        ★ Featured
+                                    </span>
+
+                                </div>
+
+                                <h1>
+                                    {featuredArticle.data.title}
+                                </h1>
+
+                                <div class="hero-meta">
+
+                                    <span>
+                                        <i class="fa-solid fa-user"></i>
+                                        By {featuredArticle.data.author}
+                                    </span>
+
+                                    <span>
+                                        <i class="fa-regular fa-calendar"></i>
+
+                                        {featuredArticle.data.publishedDate.toLocaleDateString("en-KE", {
+                                            month: "short",
+                                            day: "numeric",
+                                            year: "numeric"
+                                        })}
+
+                                    </span>
+
+                                    <span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        {featuredArticle.data.readTime} min read
+                                    </span>
+
+                                </div>
+
+                                <p>
+                                    {featuredArticle.data.excerpt}
+                                </p>
+
+                                <a
+                                    href={`/articles/${featuredArticle.id}`}
+                                    class="btn-primary"
+                                >
+                                    Read Featured Story
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+                        </article>
+
+
+                        {previousFeaturedArticles.length > 0 && (
+
+                            <section class="previous-featured">
+
+                                <h2 class="previous-featured-title">
+                                    Previous Featured Stories
+                                </h2>
+
+                                <div class="previous-featured-grid">
+
+                                    {previousFeaturedArticles.map((article) => (
+
+                                        <PreviousFeaturedCard
+                                            image={article.data.featuredImage.src}
+                                            category={article.data.category}
+                                            title={article.data.title}
+                                            excerpt={article.data.excerpt}
+                                            author={article.data.author}
+                                            readTime={`${article.data.readTime} min`}
+                                            slug={article.id}
+                                        />
+
+                                    ))}
+
+                                </div>
+
+                            </section>
+
+                        )}
+
+                    </>
+
+                ) : (
+
+                    <section class="homepage-featured-empty">
+
+                        <div class="homepage-featured-empty-content">
 
                             <span class="hero-category">
-                                {featuredArticle.data.category}
+                                Featured Story
                             </span>
 
-                            <span class="hero-featured-badge">
+                            <h1>
+                                Something new is coming soon.
+                            </h1>
 
-                                ★ Featured
-
-                            </span>
+                            <p>
+                                Our editorial team is preparing the next featured story
+                                from the Deaf community.
+                            </p>
 
                         </div>
 
-                        <h1>
-                            {featuredArticle.data.title}
-                        </h1>
+                    </section>
 
-                        <div class="hero-meta">
+                )}
 
-                            <span>
-
-                                <i class="fa-solid fa-user"></i>
-
-                                By {featuredArticle.data.author}
-
-                            </span>
-
-                            <span>
-
-                                <i class="fa-regular fa-calendar"></i>
-
-                                {featuredArticle.data.publishedDate.toLocaleDateString("en-KE", {
-                                    month: "short",
-                                    day: "numeric",
-                                    year: "numeric"
-                                })}
-
-                            </span>
-
-                            <span>
-
-                                <i class="fa-regular fa-clock"></i>
-
-                                {featuredArticle.data.readTime} min read
-
-                            </span>
-
-                        </div>
-
-                        <p>
-
-                            {featuredArticle.data.excerpt}
-
-                        </p>
-
-                        <a 
-                            href={`/articles/${featuredArticle.id}`}
-                            class="btn-primary"
-                        >
-                            Read Featured Story
-                            <i class="fa-solid fa-arrow-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </article>
-
-                <section class="previous-featured">
-
-                    <h2 class="previous-featured-title">
-
-                        Previous Featured Stories
-
-                    </h2>
-
-                    <div class="previous-featured-grid">
-
-                        {
-                            previousFeaturedArticles.map((article) => (
-                                <PreviousFeaturedCard
-                                    image={article.data.featuredImage.src}
-                                    category={article.data.category}
-                                    title={article.data.title}
-                                    excerpt={article.data.excerpt}
-                                    author={article.data.author}
-                                    readTime={`${article.data.readTime} min`}
-                                    slug={article.id}
-                                />
-                            ))
-                        }  
-
-                    </div>
-
-                </section>
-                
-            </div>
+            </div> 
 
             <aside class="homepage-sidebar">
 

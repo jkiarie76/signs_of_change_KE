@@ -481,7 +481,7 @@
    ARTICLE NAVIGATION
 ========================================= */
 
-.history-article-navigation {
+.article-navigation {
     max-width: 900px;
 
     margin: 70px auto 0;
@@ -498,7 +498,7 @@
 }
 
 
-.history-nav-link {
+.article-nav-link {
     display: flex;
 
     flex-direction: column;
@@ -524,16 +524,18 @@
 }
 
 
-.history-nav-link:hover {
+.article-nav-link:hover {
     transform: translateY(-3px);
 
     border-color: #087f79;
 
-    box-shadow: 0 10px 25px rgba(17, 21, 45, 0.08);
+    box-shadow:
+        0 10px 25px
+        rgba(17, 21, 45, 0.08);
 }
 
 
-.history-nav-label {
+.article-nav-label {
     color: #087f79;
 
     font-size: 0.78rem;
@@ -546,7 +548,7 @@
 }
 
 
-.history-nav-link strong {
+.article-nav-link strong {
     color: #11152d;
 
     font-size: 1rem;
@@ -555,16 +557,16 @@
 }
 
 
-/* Newest article has no previous link */
+/* =========================================
+   SINGLE-SIDED NAVIGATION
+========================================= */
 
-.history-nav-next {
+.article-nav-next {
     grid-column: 2;
 }
 
 
-/* Oldest article has no next link */
-
-.history-nav-previous {
+.article-nav-previous {
     grid-column: 1;
 }
 
@@ -575,7 +577,7 @@
 
 @media (max-width: 768px) {
 
-    .history-article-navigation {
+    .article-navigation {
         grid-template-columns: 1fr;
 
         margin-top: 50px;
@@ -584,8 +586,8 @@
     }
 
 
-    .history-nav-previous,
-    .history-nav-next {
+    .article-nav-previous,
+    .article-nav-next {
         grid-column: auto;
     }
 

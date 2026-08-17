@@ -1,0 +1,236 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import "../../../styles/deaf-world.css";
+import "../../../styles/article.css";
+
+export async function getStaticPaths() {
+
+    const articles = await getCollection("articles");
+
+    const stories = articles
+        .filter(
+            (article) =>
+                article.data.category === "Stories"
+        )
+        .sort(
+            (a, b) =>
+                a.data.publishedDate.valueOf() -
+                b.data.publishedDate.valueOf()
+        );
+
+    return stories.map((story, index) => ({
+
+        params: {
+            slug: story.id,
+        },
+
+        props: {
+            story,
+            previousStory: stories[index - 1] ?? null,
+            nextStory: stories[index + 1] ?? null,
+        },
+
+    }));
+
+}
+
+const {
+    story,
+    previousStory,
+    nextStory
+} = Astro.props;
+
+const { Content } = await render(story);
+---
+
+<BaseLayout
+    title={`${story.data.title} | Deaf World | Signs Of Change KE`}
+    description={story.data.excerpt}
+    activePage="world"
+>
+
+    <main class="deaf-world-story-page">
+
+        <article class="history-article-container">
+
+            <!-- BREADCRUMB -->
+
+            <nav
+                class="breadcrumb"
+                aria-label="Breadcrumb"
+            >
+
+                <a href="/">
+                    Home
+                </a>
+
+                <span class="separator">
+                    &gt;
+                </span>
+
+                <a href="/deaf-world">
+                    Deaf World
+                </a>
+
+                <span class="separator">
+                    &gt;
+                </span>
+
+                <a href="/deaf-world/stories">
+                    Stories
+                </a>
+
+                <span class="separator">
+                    &gt;
+                </span>
+
+                <span class="current">
+                    {story.data.title}
+                </span>
+
+            </nav>
+
+
+            <!-- HEADER -->
+
+            <header class="history-article-header">
+
+                <span class="article-category">
+
+                    {story.data.topic}
+
+                </span>
+
+
+                <h1>
+
+                    {story.data.title}
+
+                </h1>
+
+
+                <p class="article-excerpt">
+
+                    {story.data.excerpt}
+
+                </p>
+
+
+                <div class="article-meta">
+
+                    <span>
+
+                        By {story.data.author}
+
+                    </span>
+
+
+                    <span>
+
+                        {
+                            story.data.publishedDate.toLocaleDateString(
+                                "en-KE",
+                                {
+                                    month: "short",
+                                    day: "numeric",
+                                    year: "numeric"
+                                }
+                            )
+                        }
+
+                    </span>
+
+
+                    <span>
+
+                        {story.data.readTime} min read
+
+                    </span>
+
+                </div>
+
+            </header>
+
+
+            <!-- FEATURED IMAGE -->
+
+            <div class="history-article-image">
+
+                <img
+                    src={story.data.featuredImage.src}
+                    alt={story.data.featuredImage.alt}
+                />
+
+            </div>
+
+
+            <!-- ARTICLE BODY -->
+
+            <div class="history-article-body">
+
+                <Content />
+
+            </div>
+
+            {
+                (previousStory || nextStory) && (
+
+                    <nav
+                        class="article-navigation"
+                        aria-label="Story navigation"
+                    >
+
+                        {
+                            previousStory && (
+
+                                <a
+                                    href={`/deaf-world/stories/${previousStory.id}`}
+                                    class="article-nav-link article-nav-previous"
+                                >
+
+                                    <span class="article-nav-label">
+                                        ← Previous Story
+                                    </span>
+
+                                    <strong>
+                                        {previousStory.data.title}
+                                    </strong>
+
+                                </a>
+
+                            )
+                        }
+
+
+                        {
+                            nextStory && (
+
+                                <a
+                                    href={`/deaf-world/stories/${nextStory.id}`}
+                                    class="article-nav-link article-nav-next"
+                                >
+
+                                    <span class="article-nav-label">
+                                        Next Story →
+                                    </span>
+
+                                    <strong>
+                                        {nextStory.data.title}
+                                    </strong>
+
+                                </a>
+
+                            )
+                        }
+
+                    </nav>
+
+                )
+            }
+
+        </article>
+
+    </main>
+
+</BaseLayout>

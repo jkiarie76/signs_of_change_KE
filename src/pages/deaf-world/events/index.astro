@@ -5,111 +5,38 @@ import EventCard from "../../../components/shared/EventCard.astro";
 
 import "../../../styles/deaf-world.css";
 
-const events: {
-    image: string;
-    title: string;
-    description: string;
+import { getCollection } from "astro:content";
 
-    displayDate: string;
-    day: string;
+const allEvents = await getCollection("events");
 
-    startTime: string;
-    endTime?: string;
+const publishedEvents = allEvents
+    .filter((event) => event.data.published);
 
-    eventType: "physical" | "virtual";
+const today = new Date();
 
-    location: string;
-    organizer: string;
+today.setHours(0, 0, 0, 0);
 
-    status: "upcoming" | "past";
+const events = publishedEvents
+    .map((event) => {
 
-    registrationUrl?: string;
-    resourceUrl?: string;
+        const eventDate = new Date(event.data.eventDate);
 
-    registrationLabel?: string;
-}[] = [
+        eventDate.setHours(0, 0, 0, 0);
 
-    {
-        image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&auto=format&fit=crop&q=70",
+        return {
+            ...event,
+            status:(
+                eventDate >= today
+                    ? "upcoming"
+                    : "past"
+            ) as "upcoming" | "past"
+        };
 
-        title: "Interpreting Syntax: Weekend Intensive Workshop",
-
-        description:
-            "A physical deep-dive practicing spatial grammar, body shifts, and fast-paced sentence translation structures.",
-
-        displayDate: "AUG",
-        day: "12",
-
-        startTime: "2:00 PM",
-        endTime: "5:00 PM",
-
-        eventType: "physical",
-
-        location: "Nairobi Hub",
-
-        organizer: "Signs of Change KE",
-
-        status: "upcoming",
-
-        registrationUrl: "#",
-
-        registrationLabel: "Register Now"
-    },
-
-    {
-        image: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=600&auto=format&fit=crop&q=70",
-
-        title: "Deaf Culture & Tech Accessibility Matrix",
-
-        description:
-            "Exploring how modern web developers build automated compliance systems for visual layouts.",
-
-        displayDate: "SEP",
-        day: "05",
-
-        startTime: "7:00 PM",
-
-        eventType: "virtual",
-
-        location: "Zoom",
-
-        organizer: "Signs of Change KE",
-
-        status: "upcoming",
-
-        registrationUrl: "#",
-
-        registrationLabel: "Secure Zoom Link"
-    },
-
-    {
-        image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&auto=format&fit=crop&q=70",
-
-        title: "Community Sign Language Meetup",
-
-        description:
-            "An informal community gathering for Deaf and hearing participants to connect, practice and share experiences.",
-
-        displayDate: "NOV",
-        day: "27",
-
-        startTime: "9:00 AM",
-        endTime: "11:00 AM",
-
-        eventType: "physical",
-
-        location: "Nairobi Hub",
-
-        organizer: "Signs of Change KE",
-
-        status: "upcoming",
-
-        registrationUrl: "#",
-
-        registrationLabel: "Register Now"
-    }
-
-];
+    })
+    .sort((a, b) =>
+        a.data.eventDate.getTime() -
+        b.data.eventDate.getTime()
+    );
 ---
 
 <BaseLayout
@@ -177,12 +104,50 @@ const events: {
                 data-events-grid
                 >
 
-                    {
-                        events.map((event) => (
+                   {
+                        events.map((event) => {
 
-                            <EventCard {...event} />
+                            const eventDate = event.data.eventDate;
 
-                        ))
+                            const displayDate = eventDate
+                                .toLocaleDateString("en-KE", {
+                                    month: "short"
+                                })
+                                .toUpperCase();
+
+                            const day = eventDate.toLocaleDateString("en-KE", {
+                                day: "2-digit"
+                            });
+
+                            return (
+                                <EventCard
+                                    image={event.data.featuredImage.src}
+                                    imageAlt={event.data.featuredImage.alt}
+
+                                    title={event.data.title}
+                                    description={event.data.excerpt}
+
+                                    displayDate={displayDate}
+                                    day={day}
+
+                                    startTime={event.data.startTime}
+                                    endTime={event.data.endTime}
+
+                                    eventType={event.data.eventType}
+
+                                    location={event.data.location}
+                                    organizer={event.data.organizer}
+
+                                    status={event.status}
+                                    slug={event.id}
+
+                                    registrationUrl={event.data.registrationUrl}
+
+                                    registrationLabel={event.data.registrationLabel}
+                                />
+                            );
+
+                        })
                     }
 
                 </div>

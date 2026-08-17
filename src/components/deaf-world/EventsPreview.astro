@@ -1,4 +1,23 @@
 ---
+import { getCollection } from "astro:content";
+
+const events = await getCollection("events");
+
+const upcomingEvents = events
+    .filter((event) =>
+        event.data.published &&
+        event.data.eventDate >= new Date()
+    )
+    .sort(
+        (a, b) =>
+            a.data.eventDate.getTime() -
+            b.data.eventDate.getTime()
+    );
+
+const featuredEvent =
+    upcomingEvents.find(
+        (event) => event.data.featured
+    ) ?? upcomingEvents[0];
 ---
 
 <section
@@ -30,87 +49,140 @@
 
         </p>
 
-        <article class="featured-event-card">
+        {featuredEvent && (
+            <article class="featured-event-card">
 
-            <div class="event-image">
+                <div class="event-image">
 
-                <img
-                    src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&auto=format&fit=crop&q=70" alt="Sign Language Meetup"
-                    alt="Featured Event"
-                />
+                    <img
+                        src={featuredEvent.data.featuredImage.src}
+                        alt={featuredEvent.data.featuredImage.alt}
+                    />
 
-                <div class="event-date">
+                    <div class="event-date">
 
-                    <span class="month">
+                        <span class="month">
+                            {featuredEvent.data.eventDate.toLocaleDateString(
+                                "en-KE",
+                                { month: "short" }
+                            ).toUpperCase()}
+                        </span>
 
-                        AUG
+                        <span class="day">
+                            {featuredEvent.data.eventDate.toLocaleDateString(
+                                "en-KE",
+                                { day: "numeric" }
+                            )}
+                        </span>
 
-                    </span>
+                    </div>
 
-                    <span class="day">
+                </div>
 
-                        12
 
-                    </span>
+                <div class="event-content">
+
+                    <div class="event-meta">
+
+                        <span>
+
+                            <i class="fa-solid fa-building"></i>
+
+                            Organized by {featuredEvent.data.organizer}
+
+                        </span>
+
+                        <span>
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            {featuredEvent.data.startTime}
+                            -
+                            {featuredEvent.data.endTime}
+
+                        </span>
+
+                        <span class="location">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            {featuredEvent.data.location}
+
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+
+                        {featuredEvent.data.title}
+
+                    </h3>
+
+
+                    <p>
+
+                        {featuredEvent.data.excerpt}
+
+                    </p>
+
+
+                    <div class="featured-event-actions">
+
+                        <a
+                            href={`/deaf-world/events/${featuredEvent.id}`}
+                            class="event-view-btn"
+                        >
+                            View Event
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                        {
+                            featuredEvent.data.registrationUrl && (
+
+                                <a
+                                    href={featuredEvent.data.registrationUrl}
+                                    class="event-register-btn"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {featuredEvent.data.registrationLabel}
+                                </a>
+
+                            )
+                        }
+
+                    </div>
+                    
+
 
                 </div>
 
-            </div>
+            </article>    
+        )}
 
-            <div class="event-content">
-
-                <div class="event-meta">
-
-                    <span>
-
-                        <i class="fa-solid fa-building"></i>
-
-                         Organized by KNAD
-
-                    </span>
-
-                    <span>
-
-                        <i class="fa-regular fa-clock"></i>
-
-                        2:00 PM - 5:00 PM
-
-                    </span>
-
-                    <span class="location">
-
-                        <i class="fa-solid fa-location-dot"></i>
-
-                        Nairobi
-
-                    </span>
-
-                </div>
+        {!featuredEvent && (
+            <div class="events-empty-state">
 
                 <h3>
-
-                    Kenyan Sign Language Weekend Workshop
-
+                    No upcoming events yet
                 </h3>
 
                 <p>
-
-                    Join interpreters, educators and members of the Deaf community for a practical workshop focused on communication and accessibility.
-
+                    We're keeping an eye out for conferences, workshops,
+                    festivals and community gatherings happening across
+                    the Deaf world.
                 </p>
 
                 <a
-                    href="#"
-                    class="btn-primary"
+                    href="/connect"
+                    class="btn-secondary"
                 >
-
-                    Register →
-
+                    Submit an Event →
                 </a>
 
             </div>
-
-        </article>
+        )}
 
         <div class="events-footer">
 
