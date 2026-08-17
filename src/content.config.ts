@@ -504,6 +504,143 @@ const events = defineCollection({
     }),
 });
 
+const advocacy = defineCollection({
+    loader: glob({
+        pattern: "**/*.md",
+        base: "./src/data/advocacy",
+    }),
+
+    schema: z.object({
+
+        // =========================================
+        // BASIC ADVOCACY INFORMATION
+        // =========================================
+
+        title: z.string(),
+
+        excerpt: z.string(),
+
+        // =========================================
+        // CLASSIFICATION
+        // =========================================
+
+        category: z.string(),
+
+        type: z.enum([
+            "campaign",
+            "resource",
+            "initiative",
+        ]),
+
+        // =========================================
+        // STATUS
+        // =========================================
+
+        status: z.string().optional(),
+
+        // =========================================
+        // FEATURED IMAGE
+        // =========================================
+
+        featuredImage: z.object({
+
+            src: z.string(),
+
+            alt: z.string(),
+
+        }).optional(),
+
+        // =========================================
+        // CAMPAIGN PROGRESS
+        // =========================================
+
+        progress: z.number()
+            .int()
+            .min(0)
+            .max(100)
+            .optional(),
+
+        progressLabel: z.string().optional(),
+
+        // =========================================
+        // ADVOCACY OVERVIEW
+        // =========================================
+
+        summary: z.string().optional(),
+
+        whyItMatters: z.string().optional(),
+
+        currentSituation: z.string().optional(),
+
+        target: z.string().optional(),
+
+        // =========================================
+        // OBJECTIVES
+        // =========================================
+
+        objectives: z.array(
+            z.string()
+        ).default([]),
+
+        // =========================================
+        // ACTIONS
+        // =========================================
+
+        actions: z.array(
+            z.string()
+        ).default([]),
+
+        // =========================================
+        // CALL TO ACTION
+        // =========================================
+
+        ctaLabel: z.string().optional(),
+
+        ctaUrl: z.string().optional(),
+
+        // =========================================
+        // RESOURCES
+        // =========================================
+
+        resources: z.array(
+            z.object({
+
+                title: z.string(),
+
+                url: z.string(),
+
+                type: z.enum([
+                    "pdf",
+                    "document",
+                    "link",
+                ]),
+
+            })
+        ).default([]),
+
+        // =========================================
+        // HOMEPAGE FEATURE
+        // =========================================
+
+        featured:
+            z.boolean().default(false),
+
+        // =========================================
+        // PUBLISHING
+        // =========================================
+
+        published:
+            z.boolean().default(true),
+
+        publishedDate:
+            z.coerce.date(),
+
+        updatedDate:
+            z.coerce.date().optional(),
+
+    }),
+});
+
 export const collections = {
   articles,
   myths,
@@ -511,5 +648,6 @@ export const collections = {
   quotes,
   videos,
   events,
+  advocacy,
   settings,
 };

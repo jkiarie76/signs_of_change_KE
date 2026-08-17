@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const observer = new IntersectionObserver((entries) => {
 
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
 
             if (!entry.isIntersecting) return;
 
@@ -14,29 +14,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const target = Number(bar.dataset.progress);
 
-            const value = bar
-                .closest(".campaign-progress")
-                .querySelector(".progress-value");
+            if (Number.isNaN(target)) return;
 
-            // Animate the bar once
-            bar.style.width = target + "%";
+            /*
+             * Support both:
+             * - Advocacy preview
+             * - Advocacy detail page
+             */
 
-            // Animate the percentage
+            const container =
+                bar.closest(".campaign-progress") ||
+                bar.closest(".advocacy-detail-progress");
+
+            if (!container) return;
+
+            const value =
+                container.querySelector(".progress-value") ||
+                container.querySelector("[data-progress-value]");
+
+            if (!value) return;
+
+            // Start at 0
+            bar.style.width = "0%";
+
             const duration = 2200;
             const startTime = performance.now();
 
             function update(currentTime) {
 
-                const elapsed = currentTime - startTime;
+                const elapsed =
+                    currentTime - startTime;
 
-                const progress = Math.min(elapsed / duration, 1);
+                const progress =
+                    Math.min(elapsed / duration, 1);
 
                 // Ease-out cubic
-                const eased = 1 - Math.pow(1 - progress, 3);
+                const eased =
+                    1 - Math.pow(1 - progress, 3);
 
-                const currentValue = Math.round(eased * target);
+                const currentValue =
+                    Math.round(eased * target);
 
-                value.textContent = currentValue + "%";
+                bar.style.width =
+                    currentValue + "%";
+
+                value.textContent =
+                    currentValue + "%";
 
                 if (progress < 1) {
 
@@ -44,7 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 } else {
 
-                    value.textContent = target + "%";
+                    bar.style.width =
+                        target + "%";
+
+                    value.textContent =
+                        target + "%";
 
                 }
 
@@ -52,17 +79,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             requestAnimationFrame(update);
 
-            // Prevent replay when scrolling back
+            // Prevent replay
             observer.unobserve(bar);
 
         });
 
     }, {
-
-        threshold: 0.5
-
+        threshold: 0.3
     });
 
-    bars.forEach(bar => observer.observe(bar));
+
+    bars.forEach((bar) => {
+
+        observer.observe(bar);
+
+    });
 
 });

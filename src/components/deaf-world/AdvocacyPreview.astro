@@ -1,6 +1,25 @@
 ---
----
+import AdvocacyCard from "../../components/shared/AdvocacyCard.astro";
 
+import { getCollection } from "astro:content";
+
+const advocacyItems = await getCollection("advocacy");
+
+const latestAdvocacy = advocacyItems
+    .filter((item) => item.data.published)
+    .sort((a, b) => {
+        const dateA = new Date(
+            a.data.publishedDate
+        ).getTime();
+
+        const dateB = new Date(
+            b.data.publishedDate
+        ).getTime();
+
+        return dateB - dateA;
+    })
+    .slice(0, 3);
+---
 <section
     id="advocacy"
     class="deafworld-advocacy-preview"
@@ -11,116 +30,41 @@
         <div class="section-header">
 
             <span class="eyebrow">
-
                 ADVOCACY
-
             </span>
 
             <h2>
-
                 The organizations doing the work
-
             </h2>
 
         </div>
 
+
         <p class="section-intro-text">
 
-            Where to volunteer, donate and support organizations creating lasting change.
+            Where to volunteer, donate and support organizations
+            creating lasting change.
 
         </p>
 
+
         <div class="advocacy-grid">
 
-            <article class="campaign-card">
+            {
+                latestAdvocacy.map((item) => (
 
-                <span class="campaign-badge">
+                    <AdvocacyCard
+                        initiative={item}
+                        preview={true}
+                    />
 
-                    Policy Reform
-
-                </span>
-
-                <h3>
-
-                    Kenyan Sign Language in Public Healthcare
-
-                </h3>
-
-                <p>
-
-                    Supporting nationwide access to certified Kenyan Sign Language interpreters in referral hospitals.
-
-                </p>
-
-                <div class="campaign-progress">
-
-                    <span class="progress-label">
-
-                        Campaign Progress
-
-                        <strong
-                            class="progress-value"
-                            data-progress="75"
-                        >
-                            0%
-                        </strong>
-
-                    </span>
-
-                    <div class="progress-bar">
-
-                        <div
-                            class="progress-fill"
-                            data-progress="75"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-                <a
-                    href="#"
-                    class="btn-primary"
-                >
-
-                    Sign Petition →
-
-                </a>
-
-            </article>
-
-            <article class="campaign-card">
-
-                <span class="campaign-badge legal">
-
-                    Legal Rights
-
-                </span>
-
-                <h3>
-
-                    Workplace Accessibility Resources
-
-                </h3>
-
-                <p>
-
-                    Learn about employer responsibilities, workplace accommodation and legal protections for Deaf employees.
-
-                </p>
-
-                <a
-                    href="#"
-                    class="btn-secondary"
-                >
-
-                    Learn More
-
-                </a>
-
-            </article>
+                ))
+            }
 
         </div>
+
+
+        <!-- EXPLORE ADVOCACY -->
 
         <div class="history-actions-wrapper">
 

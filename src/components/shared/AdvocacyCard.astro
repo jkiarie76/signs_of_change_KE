@@ -1,138 +1,198 @@
 ---
 interface Props {
-    title: string;
-    description: string;
-
-    campaignType: "policy" | "legal" | "toolkits";
-
-    badge: string;
-    statusLabel: string;
-
-    icon: string;
-    statusIcon: string;
-
-    progress: number | null;
-
-    actionLabel: string;
-    actionUrl: string;
+    initiative: any;
+    preview?: boolean;
 }
 
 const {
-    title,
-    description,
-    campaignType,
-    badge,
-    statusLabel,
-    icon,
-    statusIcon,
-    progress,
-    actionLabel,
-    actionUrl
+    initiative,
+    preview = false
 } = Astro.props;
+
+const data = initiative.data;
+
+
+/* =========================================
+   CAMPAIGN TYPE
+========================================= */
+
+const campaignType =
+    data.type === "campaign"
+        ? "campaign"
+        : data.type === "initiative"
+            ? "initiative"
+            : "resource";
+
+
+/* =========================================
+   ICON
+========================================= */
+
+const icon =
+    data.type === "campaign"
+        ? "fa-solid fa-gavel"
+        : data.type === "resource"
+            ? "fa-solid fa-scale-balanced"
+            : "fa-solid fa-box-open";
+
+
+/* =========================================
+   STATUS ICON
+========================================= */
+
+const statusIcon =
+    data.type === "campaign"
+        ? "fa-regular fa-calendar"
+        : data.type === "resource"
+            ? "fa-solid fa-circle-check"
+            : "fa-solid fa-circle-info";
+
+
+/* =========================================
+   DETAIL PAGE URL
+========================================= */
+
+const detailUrl =
+    `/deaf-world/advocacy/${initiative.id}`;
 ---
 
 <article
-    class={`advocacy-card advocacy-${campaignType}`}
-    data-category={campaignType}
+    class:list={[
+        "advocacy-card",
+        `advocacy-${campaignType}`,
+        preview && "advocacy-card-preview"
+    ]}
+    data-category={data.category}
 >
 
     <div class="advocacy-card-interior">
 
-        <!-- Card Meta -->
+
+        <!-- =================================
+             CARD META
+        ================================== -->
 
         <div class="advocacy-meta-header">
 
-            <span class={`status-badge ${campaignType}-badge`}>
+            <span
+                class:list={[
+                    "status-badge",
+                    `${campaignType}-badge`
+                ]}
+            >
 
                 <i class={icon}></i>
 
-                {badge}
+                {data.category}
 
             </span>
+
 
             <span class="urgency-timeline">
 
                 <i class={statusIcon}></i>
 
-                {statusLabel}
+                {
+                    data.type === "campaign"
+                        ? "Active Drive"
+                        : data.type === "resource"
+                            ? "Verified Resource"
+                            : "Ongoing Initiative"
+                }
 
             </span>
 
         </div>
 
 
-        <!-- Card Content -->
+        <!-- =================================
+             TITLE
+        ================================== -->
 
         <h3 class="advocacy-card-title">
 
-            {title}
+            {data.title}
 
         </h3>
 
 
+        <!-- =================================
+             DESCRIPTION
+        ================================== -->
+
         <p class="advocacy-card-excerpt">
 
-            {description}
+            {data.excerpt}
 
         </p>
 
 
-        <!-- Card Footer -->
+        <!-- =================================
+             CAMPAIGN PROGRESS
+        ================================== -->
 
-        <div class="advocacy-footer-zone">
+        {
+            data.type === "campaign" &&
+            data.progress !== undefined && (
 
-            {
-                progress !== null && (
+                <div
+                    class="progress-bar-container"
+                    data-progress-container
+                >
 
-                    <div
-                        class="progress-bar-container"
-                        data-progress-container
-                    >
+                    <div class="progress-label-row">
 
-                        <div class="progress-label-row">
+                        <span class="progress-label">
 
-                            <span class="progress-label">
-                                Campaign Progress
-                            </span>
+                            Campaign Progress
 
-                            <span
-                                class="progress-value"
-                                data-progress-value
-                            >
-                                0%
-                            </span>
+                        </span>
 
-                        </div>
 
-                        <div class="progress-track">
+                        <span
+                            class="progress-value"
+                            data-progress-value
+                        >
 
-                            <div
-                                class="progress-fill"
-                                data-progress={progress}
-                            ></div>
+                            0%
 
-                        </div>
+                        </span>
 
                     </div>
 
-                )
-            }
 
+                    <div class="progress-track">
+
+                        <div
+                            class="progress-fill"
+                            data-progress={data.progress}
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            )
+        }
+
+
+        <!-- =================================
+             VIEW INITIATIVE
+        ================================== -->
+
+        <div class="advocacy-footer-zone">
 
             <a
-                href={actionUrl}
-                class={`advocacy-action-btn ${campaignType}-action-btn`}
+                href={detailUrl}
+                class:list={[
+                    "advocacy-action-btn",
+                    `${campaignType}-action-btn`
+                ]}
             >
 
-                {actionLabel}
+                {preview ? "Learn More" : "View Initiative"}
 
-                {
-                    campaignType === "toolkits" ? (
-                        <i class="fa-solid fa-download"></i>
-                    ) : (
-                        <i class="fa-solid fa-arrow-right"></i>
-                    )
-                }
+                <i class="fa-solid fa-arrow-right"></i>
 
             </a>
 

@@ -1,217 +1,205 @@
 ---
+import { getCollection } from "astro:content";
+
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+
 import AdvocacyFilters from "../../../components/deaf-world/AdvocacyFilters.astro";
+
 import AdvocacyCard from "../../../components/shared/AdvocacyCard.astro";
+
 import "../../../styles/deaf-world.css";
 
-type AdvocacyInitiative = {
-    title: string;
-    description: string;
 
-    campaignType: "policy" | "legal" | "toolkits";
+/* =========================================
+   GET ADVOCACY CONTENT
+========================================= */
 
-    badge: string;
-    statusLabel: string;
+const advocacyItems =
+    await getCollection("advocacy");
 
-    icon: string;
-    statusIcon: string;
 
-    progress: number | null;
+/* =========================================
+   ONLY SHOW PUBLISHED INITIATIVES
+========================================= */
 
-    actionLabel: string;
-    actionUrl: string;
-};
+const publishedAdvocacy =
+    advocacyItems
+        .filter(
+            (item) => item.data.published
+        )
+        .sort(
+            (a, b) =>
+                b.data.publishedDate.getTime() -
+                a.data.publishedDate.getTime()
+        );
 
-const initiatives: AdvocacyInitiative[]  = [
-    {
-        title: "KSL Integration in Public Healthcare Systems",
-
-        description:
-            "Lobbying for mandatory, certified Kenyan Sign Language (KSL) interpreters within level 4 and 5 public referral hospitals to guarantee accurate medical diagnosis and patient privacy.",
-
-        campaignType: "policy",
-
-        badge: "Policy Reform",
-
-        statusLabel: "Active Drive",
-
-        icon: "fa-solid fa-gavel",
-
-        statusIcon: "fa-regular fa-calendar",
-
-        progress: 75,
-
-        actionLabel: "Sign the Petition",
-
-        actionUrl: "#"
-    },
-
-    {
-        title: "Workplace Accommodation Compliance Matrix",
-
-        description:
-            "A comprehensive, localized legal breakdown explaining employer responsibilities regarding reasonable accommodation, visual notification setups, and interview accessibility laws.",
-
-        campaignType: "legal",
-
-        badge: "Legal Know-Your-Rights",
-
-        statusLabel: "Verified",
-
-        icon: "fa-solid fa-scale-balanced",
-
-        statusIcon: "fa-solid fa-circle-check",
-
-        progress: null,
-
-        actionLabel: "Read Legal Framework",
-
-        actionUrl: "#"
-    },
-
-    {
-        title: "Digital Broadcasters Captioning Manual",
-
-        description:
-            "A production-ready technical toolkit for media creators detailing font legibility standards, timings, and automated live-captioning configurations for web broadcasts.",
-
-        campaignType: "toolkits",
-
-        badge: "Resource Toolkit",
-
-        statusLabel: "v2.1 Updated",
-
-        icon: "fa-solid fa-box-open",
-
-        statusIcon: "fa-solid fa-download",
-
-        progress: null,
-
-        actionLabel: "Download Toolkit (PDF)",
-
-        actionUrl: "#"
-    }
-];
 ---
 
+
 <BaseLayout
+
     title="Advocacy | Deaf World | Signs Of Change KE"
+
     description="Explore advocacy initiatives, legal resources and accessibility toolkits supporting Deaf communities."
+
     activePage="world"
+
 >
 
-    <main class="deaf-world-advocacy-page">
 
-        <!-- Breadcrumb -->
+<main class="deaf-world-advocacy-page">
+
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <div class="container">
+
+
+        <!-- BREADCRUMB -->
+
+        <nav
+            class="breadcrumb-nav"
+            aria-label="Breadcrumb"
+        >
+
+            <a href="/deaf-world/">
+                Deaf World
+            </a>
+
+            <span>›</span>
+
+            <span class="current-page">
+                Advocacy
+            </span>
+
+        </nav>
+
+
+        <!-- PAGE HEADER -->
+
+        <header class="advocacy-page-header">
+
+
+            <span class="eyebrow">
+                ADVOCACY
+            </span>
+
+
+            <h1>
+                Advocacy & Policy Initiatives
+            </h1>
+
+
+            <p>
+                Driving institutional change, breaking down systemic
+                barriers, and securing baseline accessibility rights
+                across public and digital spaces.
+            </p>
+
+
+        </header>
+
+
+    </div>
+
+
+    <!-- =====================================
+         FILTERS
+    ====================================== -->
+
+    <AdvocacyFilters />
+
+
+    <!-- =====================================
+         ADVOCACY CONTENT
+    ====================================== -->
+
+    <section class="advocacy-content">
+
 
         <div class="container">
 
-            <nav class="breadcrumb-nav">
 
-                <a href="/deaf-world/">
-                    Deaf World
-                </a>
-
-                <span> &gt; </span>
-
-                <span class="current-page">
-                    Advocacy
-                </span>
-
-            </nav>
+            <div
+                class="advocacy-grid"
+                data-advocacy-grid
+            >
 
 
-            <!-- Page Header -->
+               
+                {
+                    publishedAdvocacy.map(
+                        (item) => (
 
-            <header class="advocacy-page-header">
+                            <AdvocacyCard
+                                initiative={item}
+                            />
+
+                        )
+                    )
+                }
+
+
+            </div>
+
+
+            <!-- =================================
+                 EMPTY STATE
+            ================================== -->
+
+            <div
+                class="advocacy-empty-state hidden"
+                data-empty-state
+            >
+
+
+                <div class="empty-state-icon">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                </div>
+
 
                 <span class="eyebrow">
-                    ADVOCACY
+                    NO INITIATIVES YET
                 </span>
 
-                <h1>
-                    Advocacy & Policy Initiatives
-                </h1>
+
+                <h2>
+                    Nothing to show here yet.
+                </h2>
+
 
                 <p>
-                    Driving institutional change, breaking down systemic
-                    barriers, and securing baseline accessibility rights
-                    across public and digital spaces.
+                    There are currently no advocacy initiatives
+                    in this category. Check back soon for new
+                    campaigns, resources and accessibility work.
                 </p>
 
-            </header>
+
+                <button
+                    type="button"
+                    class="btn-explore-page"
+                    data-reset-filters
+                >
+
+                    View All Initiatives →
+
+                </button>
+
+
+            </div>
+
 
         </div>
 
 
-        <!-- Filters -->
-
-        <AdvocacyFilters />
+    </section>
 
 
-        <!-- Advocacy Content -->
+</main>
 
-        <section class="advocacy-content">
-
-            <div class="container">
-
-                <div
-                    class="advocacy-grid"
-                    data-advocacy-grid
-                >
-
-                    {
-                        initiatives.map((initiative) => (
-
-                            <AdvocacyCard {...initiative}/>
-
-                        ))
-                    }
-
-                </div>
-
-
-                <!-- Empty State -->
-
-                <div
-                    class="advocacy-empty-state hidden"
-                    data-empty-state
-                >
-
-                    <div class="empty-state-icon">
-
-                        <i class="fa-solid fa-bullhorn"></i>
-
-                    </div>
-
-                    <span class="eyebrow">
-                        NO INITIATIVES YET
-                    </span>
-
-                    <h2>
-                        Nothing to show here yet.
-                    </h2>
-
-                    <p>
-                        There are currently no advocacy initiatives
-                        in this category. Check back soon for new
-                        campaigns, resources and accessibility work.
-                    </p>
-
-                    <button
-                        type="button"
-                        class="btn-explore-page"
-                        data-reset-filters
-                    >
-                        View All Initiatives →
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
 
 </BaseLayout>

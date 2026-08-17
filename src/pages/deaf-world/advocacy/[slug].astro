@@ -1,0 +1,649 @@
+---
+import { getCollection, render } from "astro:content";
+
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+import "../../../styles/deaf-world.css";
+
+
+/* =========================================
+   GET PUBLISHED ADVOCACY INITIATIVES
+========================================= */
+
+export async function getStaticPaths() {
+
+    const advocacyItems =
+        await getCollection("advocacy");
+
+
+    const publishedAdvocacy =
+        advocacyItems.filter(
+            (item) => item.data.published
+        );
+
+
+    return publishedAdvocacy.map(
+        (item) => ({
+
+            params: {
+                slug: item.id,
+            },
+
+            props: {
+                advocacy: item,
+            },
+
+        })
+    );
+}
+
+
+/* =========================================
+   CURRENT ADVOCACY ITEM
+========================================= */
+
+const { advocacy } = Astro.props;
+
+
+/* =========================================
+   RENDER MARKDOWN CONTENT
+========================================= */
+
+const { Content } =
+    await render(advocacy);
+
+
+/* =========================================
+   DATA
+========================================= */
+
+const data = advocacy.data;
+
+const formattedDate =
+    data.publishedDate.toLocaleDateString(
+        "en-KE",
+        {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+        }
+    );
+
+const isExternalCta =
+    data.ctaUrl?.startsWith("http://") ||
+    data.ctaUrl?.startsWith("https://");
+---
+
+
+<BaseLayout
+
+    title={`${data.title} | Advocacy | Deaf World | Signs Of Change KE`}
+
+    description={data.excerpt}
+
+    activePage="world"
+
+>
+
+
+<main class="advocacy-detail-page">
+
+
+    <div class="container">
+
+
+        <!-- =====================================
+             BREADCRUMB
+        ====================================== -->
+
+        <nav
+            class="breadcrumb-nav"
+            aria-label="Breadcrumb"
+        >
+
+            <a href="/">
+                Home
+            </a>
+
+            <span>›</span>
+
+            <a href="/deaf-world/">
+                Deaf World
+            </a>
+
+            <span>›</span>
+
+            <a href="/deaf-world/advocacy/">
+                Advocacy
+            </a>
+
+            <span>›</span>
+
+            <span class="current-page">
+                {data.title}
+            </span>
+
+        </nav>
+
+
+        <!-- =====================================
+             HEADER
+        ====================================== -->
+
+        <header class="advocacy-detail-header">
+
+
+            <div class="advocacy-detail-meta">
+
+
+                <span class="campaign-badge">
+
+                    {data.category}
+
+                </span>
+
+
+                {
+                    data.status && (
+
+                        <span class="advocacy-detail-status">
+
+                            {data.status}
+
+                        </span>
+
+                    )
+                }
+
+
+            </div>
+
+
+            <h1>
+
+                {data.title}
+
+            </h1>
+
+
+            <p class="advocacy-detail-excerpt">
+
+                {data.excerpt}
+
+            </p>
+
+
+        </header>
+
+
+        <!-- =====================================
+             FEATURED IMAGE
+        ====================================== -->
+
+        {
+            data.featuredImage && (
+
+                <div class="advocacy-detail-image">
+
+                    <img
+                        src={data.featuredImage.src}
+                        alt={data.featuredImage.alt}
+                    />
+
+                </div>
+
+            )
+        }
+
+
+        <!-- =====================================
+             CAMPAIGN INFORMATION
+        ====================================== -->
+
+        <section class="advocacy-detail-information">
+
+
+            <!-- TYPE -->
+
+            <div class="advocacy-info-item">
+
+                <span>
+                    Type
+                </span>
+
+                <strong>
+                    {data.type}
+                </strong>
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="advocacy-info-item">
+
+                <span>
+                    Category
+                </span>
+
+                <strong>
+                    {data.category}
+                </strong>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            {
+                data.status && (
+
+                    <div class="advocacy-info-item">
+
+                        <span>
+                            Status
+                        </span>
+
+                        <strong>
+                            {data.status}
+                        </strong>
+
+                    </div>
+
+                )
+            }
+
+
+            <!-- DATE -->
+
+            <div class="advocacy-info-item">
+
+                <span>
+                    Published
+                </span>
+
+                <strong>
+                    {formattedDate}
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =====================================
+             CAMPAIGN PROGRESS
+        ====================================== -->
+
+        {
+            data.type === "campaign" &&
+            data.progress !== undefined && (
+
+                <section class="advocacy-detail-progress">
+
+
+                    <div class="progress-label-row">
+
+
+                        <span class="progress-label">
+
+                            {data.progressLabel ??
+                                "Campaign Progress"}
+
+                        </span>
+
+
+                        <strong
+                            class="progress-value"
+                            data-progress-value
+                        >
+
+                            0%
+
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="progress-track">
+
+
+                        <div
+                            class="progress-fill"
+                            data-progress={data.progress}
+                        ></div>
+
+
+                    </div>
+
+
+                </section>
+
+            )
+        }
+
+
+        <!-- =====================================
+             SUMMARY
+        ====================================== -->
+
+        {
+            data.summary && (
+
+                <section class="advocacy-summary">
+
+
+                    <span class="eyebrow">
+                        OVERVIEW
+                    </span>
+
+
+                    <h2>
+                        About This Initiative
+                    </h2>
+
+
+                    <p>
+                        {data.summary}
+                    </p>
+
+
+                </section>
+
+            )
+        }
+
+
+        <!-- =====================================
+             WHY IT MATTERS
+        ====================================== -->
+
+        {
+            data.whyItMatters && (
+
+                <section class="advocacy-detail-section">
+
+
+                    <h2>
+                        Why This Matters
+                    </h2>
+
+
+                    <p>
+                        {data.whyItMatters}
+                    </p>
+
+
+                </section>
+
+            )
+        }
+
+
+        <!-- =====================================
+             CURRENT SITUATION
+        ====================================== -->
+
+        {
+            data.currentSituation && (
+
+                <section class="advocacy-detail-section">
+
+
+                    <h2>
+                        The Current Situation
+                    </h2>
+
+
+                    <p>
+                        {data.currentSituation}
+                    </p>
+
+
+                </section>
+
+            )
+        }
+
+
+        <!-- =====================================
+             TARGET
+        ====================================== -->
+
+        {
+            data.target && (
+
+                <section class="advocacy-detail-target">
+
+
+                    <span class="eyebrow">
+                        ADVOCACY TARGET
+                    </span>
+
+
+                    <h2>
+                        What We Are Working Toward
+                    </h2>
+
+
+                    <p>
+                        {data.target}
+                    </p>
+
+
+                </section>
+
+            )
+        }
+
+
+        <!-- =====================================
+             OBJECTIVES
+        ====================================== -->
+
+        {
+            data.objectives.length > 0 && (
+
+                <section class="advocacy-detail-section">
+
+
+                    <h2>
+                        Our Objectives
+                    </h2>
+
+
+                    <ul class="advocacy-detail-list">
+
+                        {
+                            data.objectives.map(
+                                (objective) => (
+
+                                    <li>
+                                        {objective}
+                                    </li>
+
+                                )
+                            )
+                        }
+
+                    </ul>
+
+
+                </section>
+
+            )
+        }
+
+
+        <!-- =====================================
+             MAIN MARKDOWN CONTENT
+        ====================================== -->
+
+        <article class="advocacy-detail-content">
+
+            <Content />
+
+        </article>
+
+
+        <!-- =====================================
+             ACTIONS
+        ====================================== -->
+
+        {
+            data.actions.length > 0 && (
+
+                <section class="advocacy-actions">
+
+
+                    <span class="eyebrow">
+                        TAKE ACTION
+                    </span>
+
+
+                    <h2>
+                        How You Can Support
+                    </h2>
+
+
+                    <ul>
+
+                        {
+                            data.actions.map(
+                                (action) => (
+
+                                    <li>
+                                        {action}
+                                    </li>
+
+                                )
+                            )
+                        }
+
+                    </ul>
+
+
+                </section>
+
+            )
+        }
+
+
+        <!-- =====================================
+             RESOURCES
+        ====================================== -->
+
+        {
+            data.resources.length > 0 && (
+
+                <section class="advocacy-resources">
+
+
+                    <div class="section-header">
+
+                        <span class="eyebrow">
+                            RESOURCES
+                        </span>
+
+
+                        <h2>
+                            Advocacy Resources
+                        </h2>
+
+                    </div>
+
+
+                    <div class="advocacy-resources-list">
+
+                        {
+                            data.resources.map(
+                                (resource) => (
+
+                                    <a
+                                        href={resource.url}
+                                        class="advocacy-resource-link"
+                                    >
+
+                                        <span>
+                                            {resource.title}
+                                        </span>
+
+
+                                        <span>
+
+                                            {
+                                                resource.type
+                                            }
+
+                                            <i class="fa-solid fa-arrow-right"></i>
+
+                                        </span>
+
+                                    </a>
+
+                                )
+                            )
+                        }
+
+                    </div>
+
+
+                </section>
+
+            )
+        }
+
+
+        <!-- =====================================
+             MAIN CTA
+        ====================================== -->
+
+        {
+            data.ctaUrl && (
+
+                <section class="advocacy-detail-cta">
+
+                    <h2>
+                        Support This Initiative
+                    </h2>
+
+                    <p>
+                        Your support can help move this work forward.
+                    </p>
+
+                    <a
+                        href={data.ctaUrl}
+                        class="btn-primary"
+                        target={
+                            isExternalCta
+                                ? "_blank"
+                                : undefined
+                        }
+                        rel={
+                            isExternalCta
+                                ? "noopener noreferrer"
+                                : undefined
+                        }
+                    >
+
+                        {data.ctaLabel ?? "Take Action"}
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </section>
+
+            )
+        }
+
+
+    </div>
+
+
+</main>
+
+
+</BaseLayout>

@@ -1,25 +1,18 @@
 ---
-const filters = [
-    {
-        label: "All Initiatives",
-        value: "all"
-    },
-    {
-        label: "Policy Reform",
-        value: "policy"
-    },
-    {
-        label: "Legal Rights",
-        value: "legal"
-    },
-    {
-        label: "Resource Hub",
-        value: "toolkits"
-    },
-    {
-    label: "Education",
-    value: "education"
-    }
+import { getCollection } from "astro:content";
+
+const advocacyItems = await getCollection("advocacy");
+
+const publishedAdvocacy = advocacyItems.filter(
+    (item) => item.data.published
+);
+
+const categories = [
+    ...new Set(
+        publishedAdvocacy.map(
+            (item) => item.data.category
+        )
+    )
 ];
 ---
 
@@ -33,15 +26,24 @@ const filters = [
 
         <div class="filters-grid">
 
+            <button
+                type="button"
+                class="filter-chip active"
+                data-filter="all"
+            >
+                All Initiatives
+            </button>
+
+
             {
-                filters.map((filter, index) => (
+                categories.map((category) => (
 
                     <button
                         type="button"
-                        class={`filter-chip ${index === 0 ? "active" : ""}`}
-                        data-filter={filter.value}
+                        class="filter-chip"
+                        data-filter={category}
                     >
-                        {filter.label}
+                        {category}
                     </button>
 
                 ))
