@@ -8,7 +8,7 @@ publishedDate: 2026-08-12
 updatedDate: 2026-08-12
 readTime: 6
 featured: true
-homepageFeatured: false
+homepageFeatured: true
 featuredImage:
   src: /uploads/home/culture_1.jpg
   alt: Historical illustration representing Deaf education
