@@ -1,0 +1,1247 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+# =========================================================
+# BACKEND
+# =========================================================
+
+backend:
+  name: github
+  repo: jkiarie76/signs_of_change_KE
+  branch: main
+
+
+# =========================================================
+# MEDIA
+# =========================================================
+
+media_folder: public/uploads
+public_folder: /uploads
+
+
+# =========================================================
+# COLLECTIONS
+# =========================================================
+
+collections:
+
+
+  # =======================================================
+  # ARTICLES
+  # =======================================================
+
+  - name: articles
+    label: Articles
+    label_singular: Article
+    folder: /src/data/articles
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+
+      - name: title
+        label: Title
+        widget: string
+
+      - name: category
+        label: Category
+        widget: select
+        options:
+          - History
+          - Stories
+          - Events
+          - Etiquette
+          - Deaf Culture
+          - Deaf World
+          - Learn Sign
+          - Advocacy
+
+      - name: topic
+        label: Topic
+        widget: string
+
+      - name: excerpt
+        label: Excerpt
+        widget: text
+
+      - name: author
+        label: Author
+        widget: string
+
+      - name: publishedDate
+        label: Published Date
+        widget: datetime
+        type: date
+
+      - name: updatedDate
+        label: Updated Date
+        widget: datetime
+        type: date
+        required: false
+
+      - name: readTime
+        label: Read Time (minutes)
+        widget: number
+        value_type: int
+        min: 1
+
+      - name: featured
+        label: Featured
+        widget: boolean
+        default: false
+
+      - name: homepageFeatured
+        label: Homepage Featured
+        widget: boolean
+        default: false
+
+      - name: featuredImage
+        label: Featured Image
+        widget: object
+        fields:
+
+          - name: src
+            label: Image
+            widget: image
+
+          - name: alt
+            label: Alt Text
+            widget: string
+
+      - name: seo
+        label: SEO
+        widget: object
+        required: false
+        fields:
+
+          - name: title
+            label: SEO Title
+            widget: string
+            required: false
+
+          - name: description
+            label: SEO Description
+            widget: text
+            required: false
+
+          - name: image
+            label: SEO Image
+            widget: image
+            required: false
+
+      - name: body
+        label: Article Content
+        widget: richtext
+
+
+  # =======================================================
+  # MYTHS
+  # =======================================================
+
+  - name: myths
+    label: Myths
+    label_singular: Myth
+    folder: /src/data/myths
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+
+      - name: title
+        label: Title
+        widget: string
+
+      - name: myth
+        label: Myth
+        widget: text
+
+      - name: fact
+        label: Fact
+        widget: text
+
+      - name: category
+        label: Category
+        widget: select
+        options:
+          - Language
+          - Communication
+          - Culture
+          - Education
+          - Accessibility
+          - Interpreters
+          - Technology
+
+      - name: publishedDate
+        label: Published Date
+        widget: datetime
+        type: date
+
+      - name: featured
+        label: Featured
+        widget: boolean
+        default: false
+
+
+  # =======================================================
+  # DEAF ETIQUETTE
+  # =======================================================
+
+  - name: etiquette
+    label: Deaf Etiquette
+    label_singular: Etiquette Item
+    folder: /src/data/etiquette
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+
+      - name: title
+        label: Title
+        widget: string
+
+      - name: description
+        label: Description
+        widget: text
+
+      - name: type
+        label: Type
+        widget: select
+        options:
+          - do
+          - dont
+
+      - name: category
+        label: Category
+        widget: string
+
+      - name: publishedDate
+        label: Published Date
+        widget: datetime
+        type: date
+
+      - name: featured
+        label: Featured
+        widget: boolean
+        default: false
+
+
+  # =======================================================
+  # QUOTES
+  # =======================================================
+
+  - name: quotes
+    label: Quotes
+    label_singular: Quote
+    folder: /src/data/quotes
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+
+      - name: quote
+        label: Quote
+        widget: text
+
+      - name: author
+        label: Author
+        widget: string
+
+      - name: publishedDate
+        label: Published Date
+        widget: datetime
+        type: date
+
+      - name: featured
+        label: Featured
+        widget: boolean
+        default: false
+
+
+  # =======================================================
+  # VIDEOS
+  # =======================================================
+
+  - name: videos
+    label: Sign Language Videos
+    label_singular: Video
+    folder: /src/data/videos
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+
+      - name: title
+        label: Title
+        widget: string
+
+      - name: description
+        label: Description
+        widget: text
+
+      - name: topic
+        label: Topic
+        widget: string
+
+      - name: publishedDate
+        label: Published Date
+        widget: datetime
+        type: date
+
+      - name: duration
+        label: Duration
+        widget: string
+
+      - name: thumbnail
+        label: Thumbnail
+        widget: image
+
+      - name: sign
+        label: Sign
+        widget: string
+
+      - name: youtubeUrl
+        label: YouTube URL
+        widget: string
+
+      - name: difficulty
+        label: Difficulty
+        widget: string
+
+      - name: featured
+        label: Sign of the Week
+        widget: boolean
+        default: false
+
+      - name: featuredMedia
+        label: Featured Media
+        widget: string
+        required: false
+
+      - name: featuredMediaType
+        label: Featured Media Type
+        widget: select
+        required: false
+        options:
+          - image
+          - gif
+          - video
+
+
+  # =======================================================
+  # EVENTS
+  # =======================================================
+
+  - name: events
+    label: Events
+    label_singular: Event
+    folder: /src/data/events
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+
+      - name: title
+        label: Title
+        widget: string
+
+      - name: excerpt
+        label: Excerpt
+        widget: text
+
+      - name: eventDate
+        label: Event Date
+        widget: datetime
+        type: date
+
+      - name: startTime
+        label: Start Time
+        widget: string
+
+      - name: endTime
+        label: End Time
+        widget: string
+
+      - name: location
+        label: Location
+        widget: string
+
+      - name: venue
+        label: Venue
+        widget: string
+        required: false
+
+      - name: organizer
+        label: Organizer
+        widget: string
+
+      - name: category
+        label: Category
+        widget: select
+        options:
+          - Workshop
+          - Conference
+          - Festival
+          - Community
+          - Training
+          - Advocacy
+          - Other
+
+      - name: eventType
+        label: Event Type
+        widget: select
+        options:
+          - physical
+          - virtual
+
+      - name: featuredImage
+        label: Featured Image
+        widget: object
+        fields:
+
+          - name: src
+            label: Image
+            widget: image
+
+          - name: alt
+            label: Alt Text
+            widget: string
+
+      - name: status
+        label: Status
+        widget: select
+        default: upcoming
+        options:
+          - upcoming
+          - completed
+
+      - name: attendance
+        label: Attendance
+        widget: string
+        required: false
+
+      - name: summary
+        label: Summary
+        widget: text
+        required: false
+
+      - name: highlights
+        label: Highlights
+        label_singular: Highlight
+        widget: list
+        field:
+          name: highlight
+          label: Highlight
+          widget: string
+
+      - name: outcomes
+        label: Outcomes
+        label_singular: Outcome
+        widget: list
+        field:
+          name: outcome
+          label: Outcome
+          widget: string
+
+      - name: eventReport
+        label: Event Report
+        widget: richtext
+        required: false
+
+      - name: gallery
+        label: Gallery
+        label_singular: Gallery Image
+        widget: list
+        fields:
+
+          - name: src
+            label: Image
+            widget: image
+
+          - name: alt
+            label: Alt Text
+            widget: string
+
+      - name: tags
+        label: Tags
+        label_singular: Tag
+        widget: list
+
+      - name: registrationUrl
+        label: Registration URL
+        widget: string
+        required: false
+
+      - name: registrationLabel
+        label: Registration Button Text
+        widget: string
+        default: "Register Now"
+
+      - name: accessibility
+        label: Accessibility
+        widget: object
+        required: false
+        fields:
+
+          - name: signLanguageInterpretation
+            label: Sign Language Interpretation
+            widget: boolean
+            default: false
+
+          - name: captions
+            label: Captions
+            widget: boolean
+            default: false
+
+          - name: wheelchairAccessible
+            label: Wheelchair Accessible
+            widget: boolean
+            default: false
+
+          - name: hearingLoop
+            label: Hearing Loop
+            widget: boolean
+            default: false
+
+          - name: accessibleMaterials
+            label: Accessible Materials
+            widget: boolean
+            default: false
+
+          - name: notes
+            label: Accessibility Notes
+            widget: text
+            required: false
+
+      - name: resources
+        label: Resources
+        label_singular: Resource
+        widget: list
+        fields:
+
+          - name: title
+            label: Title
+            widget: string
+
+          - name: url
+            label: URL
+            widget: string
+
+          - name: type
+            label: Type
+            widget: select
+            options:
+              - pdf
+              - document
+              - link
+
+      - name: featured
+        label: Featured
+        widget: boolean
+        default: false
+
+      - name: published
+        label: Published
+        widget: boolean
+        default: true
+
+      - name: body
+        label: Event Content
+        widget: richtext
+
+
+  # =======================================================
+  # ADVOCACY
+  # =======================================================
+
+  - name: advocacy
+    label: Advocacy
+    label_singular: Advocacy Item
+    folder: /src/data/advocacy
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+
+      - name: title
+        label: Title
+        widget: string
+
+      - name: excerpt
+        label: Excerpt
+        widget: text
+
+      - name: category
+        label: Category
+        widget: string
+
+      - name: type
+        label: Type
+        widget: select
+        options:
+          - campaign
+          - resource
+          - initiative
+
+      - name: status
+        label: Status
+        widget: string
+        required: false
+
+      - name: featuredImage
+        label: Featured Image
+        widget: object
+        required: false
+        fields:
+
+          - name: src
+            label: Image
+            widget: image
+
+          - name: alt
+            label: Alt Text
+            widget: string
+
+      - name: progress
+        label: Progress
+        widget: number
+        value_type: int
+        min: 0
+        max: 100
+        required: false
+
+      - name: progressLabel
+        label: Progress Label
+        widget: string
+        required: false
+
+      - name: summary
+        label: Summary
+        widget: text
+        required: false
+
+      - name: whyItMatters
+        label: Why It Matters
+        widget: text
+        required: false
+
+      - name: currentSituation
+        label: Current Situation
+        widget: text
+        required: false
+
+      - name: target
+        label: Target
+        widget: string
+        required: false
+
+      - name: objectives
+        label: Objectives
+        label_singular: Objective
+        widget: list
+
+      - name: actions
+        label: Actions
+        label_singular: Action
+        widget: list
+
+      - name: ctaLabel
+        label: CTA Label
+        widget: string
+        required: false
+
+      - name: ctaUrl
+        label: CTA URL
+        widget: string
+        required: false
+
+      - name: resources
+        label: Resources
+        label_singular: Resource
+        widget: list
+        fields:
+
+          - name: title
+            label: Title
+            widget: string
+
+          - name: url
+            label: URL
+            widget: string
+
+          - name: type
+            label: Type
+            widget: select
+            options:
+              - pdf
+              - document
+              - link
+
+      - name: featured
+        label: Featured
+        widget: boolean
+        default: false
+
+      - name: published
+        label: Published
+        widget: boolean
+        default: true
+
+      - name: publishedDate
+        label: Published Date
+        widget: datetime
+        type: date
+
+      - name: updatedDate
+        label: Updated Date
+        widget: datetime
+        type: date
+        required: false
+
+      - name: body
+        label: Advocacy Content
+        widget: richtext
+
+
+  # =======================================================
+  # KENYAN SIGN LANGUAGE
+  # =======================================================
+
+  - name: signs
+    label: Kenyan Sign Language
+    label_singular: Sign
+    folder: /src/data/signs
+    create: true
+    slug: "{{slug}}"
+
+    fields:
+
+      - name: character
+        label: Character
+        widget: string
+
+      - name: characterType
+        label: Character Type
+        widget: select
+        options:
+          - letter
+          - number
+
+      - name: signLanguage
+        label: Sign Language
+        widget: string
+
+      - name: country
+        label: Country
+        widget: string
+        required: false
+
+      - name: title
+        label: Title
+        widget: string
+
+      - name: description
+        label: Description
+        widget: text
+
+      - name: tips
+        label: Tips
+        label_singular: Tip
+        widget: list
+
+      - name: published
+        label: Published
+        widget: boolean
+        default: true
+
+      - name: featured
+        label: Featured
+        widget: boolean
+        default: false
+
+
+  # =======================================================
+  # SITE SETTINGS
+  # =======================================================
+
+  - name: settings
+    label: Site Settings
+
+    files:
+
+      - name: global
+        label: Global Settings
+        file: /src/data/settings/global-settings.md
+
+        fields:
+
+          # -------------------------------------------------
+          # HEROES
+          # -------------------------------------------------
+
+          - name: heroes
+            label: Page Heroes
+            widget: object
+
+            fields:
+
+              - name: deafCulture
+                label: Deaf Culture
+                widget: object
+                fields:
+
+                  - name: label
+                    label: Label
+                    widget: string
+
+                  - name: title
+                    label: Title
+                    widget: string
+
+                  - name: description
+                    label: Description
+                    widget: text
+
+                  - name: image
+                    label: Image
+                    widget: object
+                    fields:
+
+                      - name: src
+                        label: Image
+                        widget: image
+
+                      - name: alt
+                        label: Alt Text
+                        widget: string
+
+
+              - name: deafWorld
+                label: Deaf World
+                widget: object
+                fields:
+
+                  - name: label
+                    label: Label
+                    widget: string
+
+                  - name: title
+                    label: Title
+                    widget: string
+
+                  - name: description
+                    label: Description
+                    widget: text
+
+                  - name: image
+                    label: Image
+                    widget: object
+                    fields:
+
+                      - name: src
+                        label: Image
+                        widget: image
+
+                      - name: alt
+                        label: Alt Text
+                        widget: string
+
+
+              - name: learnSign
+                label: Learn Sign
+                widget: object
+                fields:
+
+                  - name: label
+                    label: Label
+                    widget: string
+
+                  - name: title
+                    label: Title
+                    widget: string
+
+                  - name: description
+                    label: Description
+                    widget: text
+
+                  - name: image
+                    label: Image
+                    widget: object
+                    fields:
+
+                      - name: src
+                        label: Image
+                        widget: image
+
+                      - name: alt
+                        label: Alt Text
+                        widget: string
+
+
+              - name: connect
+                label: Connect
+                widget: object
+                fields:
+
+                  - name: label
+                    label: Label
+                    widget: string
+
+                  - name: title
+                    label: Title
+                    widget: string
+
+                  - name: description
+                    label: Description
+                    widget: text
+
+                  - name: backgroundImage
+                    label: Background Image
+                    widget: object
+                    fields:
+
+                      - name: src
+                        label: Image
+                        widget: image
+
+                      - name: alt
+                        label: Alt Text
+                        widget: string
+
+                  - name: welcomeVideo
+                    label: Welcome Video
+                    widget: object
+                    fields:
+
+                      - name: video
+                        label: Video
+                        widget: string
+
+                      - name: poster
+                        label: Poster
+                        widget: image
+
+                      - name: captions
+                        label: Captions
+                        widget: string
+
+
+          # -------------------------------------------------
+          # NEWSLETTER
+          # -------------------------------------------------
+
+          - name: newsletter
+            label: Newsletter
+            widget: object
+            fields:
+
+              - name: title
+                label: Title
+                widget: string
+
+              - name: description
+                label: Description
+                widget: text
+
+              - name: buttonText
+                label: Button Text
+                widget: string
+
+              - name: privacyText
+                label: Privacy Text
+                widget: text
+
+
+          # -------------------------------------------------
+          # FOOTER
+          # -------------------------------------------------
+
+          - name: footer
+            label: Footer
+            widget: object
+            fields:
+
+              - name: description
+                label: Description
+                widget: text
+
+              - name: tagline
+                label: Tagline
+                widget: string
+
+              - name: copyright
+                label: Copyright
+                widget: string
+
+
+          # -------------------------------------------------
+          # SOCIAL
+          # -------------------------------------------------
+
+          - name: social
+            label: Social Links
+            widget: object
+            fields:
+
+              - name: facebook
+                label: Facebook
+                widget: string
+
+              - name: instagram
+                label: Instagram
+                widget: string
+
+              - name: youtube
+                label: YouTube
+                widget: string
+
+              - name: tiktok
+                label: TikTok
+                widget: string
+
+
+          # -------------------------------------------------
+          # CONTACT
+          # -------------------------------------------------
+
+          - name: contact
+            label: Contact
+            widget: object
+            fields:
+
+              - name: email
+                label: Email
+                widget: string
+
+              - name: phone
+                label: Phone
+                widget: string
+
+              - name: location
+                label: Location
+                widget: string
+
+
+          # -------------------------------------------------
+          # HEADER
+          # -------------------------------------------------
+
+          - name: header
+            label: Header
+            widget: object
+            fields:
+
+              - name: logo
+                label: Logo
+                widget: object
+                fields:
+
+                  - name: src
+                    label: Logo
+                    widget: image
+
+                  - name: alt
+                    label: Alt Text
+                    widget: string
+
+              - name: siteName
+                label: Site Name
+                widget: string
+
+              - name: tagline
+                label: Tagline
+                widget: string
+
+
+          # -------------------------------------------------
+          # DEAF CULTURE SECTIONS
+          # -------------------------------------------------
+
+          - name: deafCultureSections
+            label: Deaf Culture Sections
+            widget: object
+            fields:
+
+              - name: etiquette
+                label: Etiquette
+                widget: object
+                fields:
+
+                  - name: eyebrow
+                    label: Eyebrow
+                    widget: string
+
+                  - name: title
+                    label: Title
+                    widget: string
+
+                  - name: intro
+                    label: Introduction
+                    widget: text
+
+
+  # =======================================================
+  # CONNECT PAGE
+  # =======================================================
+
+  - name: connect
+    label: Connect Page
+    label_singular: Connect Page
+
+    files:
+
+      - name: connectPage
+        label: Connect
+        file: /src/data/connect/connect-page.md
+
+        fields:
+
+          # -------------------------------------------------
+          # ABOUT
+          # -------------------------------------------------
+
+          - name: about
+            label: About
+            widget: object
+            fields:
+
+              - name: eyebrow
+                label: Eyebrow
+                widget: string
+
+              - name: title
+                label: Title
+                widget: string
+
+              - name: paragraphs
+                label: Paragraphs
+                label_singular: Paragraph
+                widget: list
+
+              - name: image
+                label: Image
+                widget: object
+                fields:
+
+                  - name: src
+                    label: Image
+                    widget: image
+
+                  - name: alt
+                    label: Alt Text
+                    widget: string
+
+
+          # -------------------------------------------------
+          # MISSION
+          # -------------------------------------------------
+
+          - name: mission
+            label: Mission
+            widget: object
+            fields:
+
+              - name: eyebrow
+                label: Eyebrow
+                widget: string
+
+              - name: heading
+                label: Heading
+                widget: text
+
+
+          # -------------------------------------------------
+          # VALUES
+          # -------------------------------------------------
+
+          - name: values
+            label: Values
+            label_singular: Value
+            widget: list
+            fields:
+
+              - name: title
+                label: Title
+                widget: string
+
+              - name: description
+                label: Description
+                widget: text
+
+
+          # -------------------------------------------------
+          # CONTACT
+          # -------------------------------------------------
+
+          - name: contact
+            label: Contact
+            widget: object
+            fields:
+
+              - name: eyebrow
+                label: Eyebrow
+                widget: string
+
+              - name: title
+                label: Title
+                widget: string
+
+              - name: description
+                label: Description
+                widget: text
+
+              - name: phone
+                label: Phone
+                widget: string
+
+              - name: email
+                label: Email
+                widget: string
+
+              - name: socialLinks
+                label: Social Links
+                label_singular: Social Link
+                widget: list
+                fields:
+
+                  - name: platform
+                    label: Platform
+                    widget: string
+
+                  - name: url
+                    label: URL
+                    widget: string
+
+                  - name: label
+                    label: Label
+                    widget: string
+
+
+          # -------------------------------------------------
+          # FAQ
+          # -------------------------------------------------
+
+          - name: faq
+            label: FAQ
+            widget: object
+            fields:
+
+              - name: eyebrow
+                label: Eyebrow
+                widget: string
+
+              - name: title
+                label: Title
+                widget: string
+
+              - name: questions
+                label: Questions
+                label_singular: Question
+                widget: list
+                fields:
+
+                  - name: question
+                    label: Question
+                    widget: string
+
+                  - name: answer
+                    label: Answer
+                    widget: text

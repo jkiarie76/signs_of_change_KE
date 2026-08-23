@@ -49,6 +49,7 @@ const articles = defineCollection({
         description: z.string().optional(),
         image: z.string().optional(),
       })
+      .nullable()
       .optional(),
   }),
 });
