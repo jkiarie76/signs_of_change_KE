@@ -641,6 +641,181 @@ const advocacy = defineCollection({
     }),
 });
 
+const signs = defineCollection({
+    loader: glob({
+        pattern: "**/*.md",
+        base: "./src/data/signs",
+    }),
+
+    schema: z.object({
+
+        // =========================================
+        // CHARACTER
+        // =========================================
+
+        character: z.string(),
+
+        characterType: z.enum([
+            "letter",
+            "number",
+        ]),
+
+        // =========================================
+        // SIGN LANGUAGE
+        // =========================================
+
+        signLanguage: z.string(),
+
+        country: z.string().optional(),
+
+        // =========================================
+        // SIGN INFORMATION
+        // =========================================
+
+        title: z.string(),
+
+        description: z.string(),
+
+        tips: z.array(
+            z.string()
+        ).default([]),
+
+        // =========================================
+        // PUBLISHING
+        // =========================================
+
+        published: z.boolean().default(true),
+
+        featured: z.boolean().default(false),
+
+    }),
+});
+
+const connect = defineCollection({
+
+    loader: glob({
+        pattern: "connect-page.md",
+        base: "./src/data/connect",
+    }),
+
+    schema: z.object({
+
+        // =========================================
+        // ABOUT ME
+        // =========================================
+
+        about: z.object({
+
+            eyebrow: z.string(),
+
+            title: z.string(),
+
+            paragraphs: z.array(
+                z.string()
+            ),
+
+            image: z.object({
+
+                src: z.string(),
+
+                alt: z.string(),
+
+            }),
+
+        }),
+
+
+        // =========================================
+        // MISSION
+        // =========================================
+
+        mission: z.object({
+
+            eyebrow: z.string(),
+
+            heading: z.string(),
+
+        }),
+
+
+        // =========================================
+        // VALUES
+        // =========================================
+
+        values: z.array(
+
+            z.object({
+
+                title: z.string(),
+
+                description: z.string(),
+
+            })
+
+        ),
+
+
+        // =========================================
+        // CONTACT
+        // =========================================
+
+        contact: z.object({
+
+            eyebrow: z.string(),
+
+            title: z.string(),
+
+            description: z.string(),
+
+            phone: z.string(),
+
+            email: z.string(),
+
+            socialLinks: z.array(
+
+                z.object({
+
+                    platform: z.string(),
+
+                    url: z.string(),
+
+                    label: z.string(),
+
+                })
+
+            ),
+
+        }),
+
+
+        // =========================================
+        // FAQ
+        // =========================================
+
+        faq: z.object({
+
+            eyebrow: z.string(),
+
+            title: z.string(),
+
+            questions: z.array(
+
+                z.object({
+
+                    question: z.string(),
+
+                    answer: z.string(),
+
+                })
+
+            ),
+
+        }),
+
+    }),
+
+});
+
 export const collections = {
   articles,
   myths,
@@ -649,5 +824,7 @@ export const collections = {
   videos,
   events,
   advocacy,
+  signs,
   settings,
+  connect,
 };

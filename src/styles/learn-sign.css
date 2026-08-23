@@ -772,3 +772,646 @@
     }
 
 }
+
+/* =========================================================
+   SIGN LANGUAGE SELECTOR
+   ========================================================= */
+
+.language-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.language-selector label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1b1f3b;
+}
+
+.sign-language-select {
+    width: 100%;
+    max-width: 280px;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    padding: 12px 42px 12px 15px;
+
+    border: 1px solid #d7ddea;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+
+    color: #1b1f3b;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, #1b1f3b 50%),
+        linear-gradient(135deg, #1b1f3b 50%, transparent 50%);
+
+    background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 13px) 50%;
+
+    background-size:
+        5px 5px,
+        5px 5px;
+
+    background-repeat: no-repeat;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.sign-language-select:hover {
+    border-color: #9aa5bc;
+}
+
+.sign-language-select:focus {
+    outline: none;
+
+    border-color: #1b1f3b;
+
+    box-shadow:
+        0 0 0 3px rgba(27, 31, 59, 0.08);
+}
+
+
+/* =========================================================
+   UNAVAILABLE CHARACTER
+   ========================================================= */
+
+.char-select-item.character-unavailable {
+    opacity: 0.45;
+
+    background: #f5f6f9;
+
+    border-color: #e1e4eb;
+
+    color: #8b91a1;
+
+    cursor: pointer;
+}
+
+.char-select-item.character-unavailable:hover {
+    opacity: 0.7;
+
+    border-color: #cbd0db;
+}
+
+
+/* =========================================================
+   AVAILABLE CHARACTER
+   ========================================================= */
+
+.char-select-item {
+    transition:
+        transform 0.18s ease,
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        opacity 0.18s ease;
+}
+
+.char-select-item:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   LEARN SIGN — INTERACTIVE ALPHABET POLISH
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   LANGUAGE SELECTOR
+   --------------------------------------------------------- */
+
+.language-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.language-selector label {
+    color: #1b1f3b;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.sign-language-select {
+    width: 100%;
+    max-width: 300px;
+    min-height: 46px;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    padding: 0 44px 0 15px;
+
+    border: 1px solid #d9deea;
+    border-radius: 12px;
+
+    background-color: #ffffff;
+
+    color: #1b1f3b;
+
+    font-family: inherit;
+    font-size: 0.94rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, #1b1f3b 50%),
+        linear-gradient(135deg, #1b1f3b 50%, transparent 50%);
+
+    background-position:
+        calc(100% - 19px) 20px,
+        calc(100% - 14px) 20px;
+
+    background-size:
+        5px 5px,
+        5px 5px;
+
+    background-repeat: no-repeat;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.sign-language-select:hover {
+    border-color: #aeb6c8;
+}
+
+.sign-language-select:focus {
+    outline: none;
+
+    border-color: #1b1f3b;
+
+    box-shadow:
+        0 0 0 4px rgba(27, 31, 59, 0.08);
+}
+
+
+/* ---------------------------------------------------------
+   LETTER / NUMBER TOGGLE
+   --------------------------------------------------------- */
+
+.toggle-container {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 4px;
+
+    margin-bottom: 22px;
+
+    border: 1px solid #dfe3ec;
+    border-radius: 999px;
+
+    background: #f5f6f9;
+}
+
+.toggle-btn {
+    min-width: 78px;
+
+    padding: 9px 17px;
+
+    border: 0;
+    border-radius: 999px;
+
+    background: transparent;
+
+    color: #687086;
+
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.toggle-btn:hover {
+    color: #1b1f3b;
+}
+
+.toggle-btn.active {
+    background: #1b1f3b;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 2px 6px rgba(27, 31, 59, 0.16);
+}
+
+
+/* ---------------------------------------------------------
+   CHARACTER GRID
+   --------------------------------------------------------- */
+
+.buttons-layout-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   CHARACTER BUTTON
+   --------------------------------------------------------- */
+
+.char-select-item {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    aspect-ratio: 1 / 1;
+
+    min-width: 48px;
+
+    border: 1px solid #d7ddea;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #1b1f3b;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.18s ease;
+}
+
+.char-select-item:hover {
+    transform: translateY(-2px);
+
+    border-color: #1b1f3b;
+
+    box-shadow:
+        0 5px 14px rgba(27, 31, 59, 0.08);
+}
+
+.char-select-item.active-selection {
+    border-color: #35d3c5;
+
+    background: #35d3c5;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 14px rgba(53, 211, 197, 0.20);
+}
+
+
+/* ---------------------------------------------------------
+   UNAVAILABLE CHARACTERS
+   --------------------------------------------------------- */
+
+.char-select-item.character-unavailable {
+    border-style: dashed;
+
+    border-color: #dfe3eb;
+
+    background: #f7f8fa;
+
+    color: #a2a8b5;
+
+    opacity: 0.72;
+}
+
+.char-select-item.character-unavailable:hover {
+    transform: none;
+
+    border-color: #bfc5d1;
+
+    background: #f1f3f6;
+
+    color: #7e8595;
+
+    box-shadow: none;
+
+    opacity: 1;
+}
+
+
+/* ---------------------------------------------------------
+   PREVIEW CARD
+   --------------------------------------------------------- */
+
+.preview-card {
+    position: relative;
+
+    padding: 34px;
+
+    border: 1px solid #dce1eb;
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 12px 35px rgba(27, 31, 59, 0.06);
+
+    transition:
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.preview-card:hover {
+    box-shadow:
+        0 16px 42px rgba(27, 31, 59, 0.09);
+}
+
+
+/* ---------------------------------------------------------
+   PREVIEW EYEBROW
+   --------------------------------------------------------- */
+
+.preview-eyebrow {
+    display: inline-block;
+
+    margin-bottom: 24px;
+
+    color: #20bfb2;
+
+    font-size: 0.68rem;
+    font-weight: 900;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   PREVIEW DISPLAY
+   --------------------------------------------------------- */
+
+.preview-display-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/* ---------------------------------------------------------
+   CHARACTER AVATAR
+   --------------------------------------------------------- */
+
+.preview-box-avatar {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 64px;
+
+    width: 64px;
+    height: 64px;
+
+    border-radius: 10px;
+
+    background: #1b1f3b;
+
+    color: #ffffff;
+
+    font-size: 1.65rem;
+    font-weight: 900;
+
+    box-shadow:
+        0 7px 18px rgba(27, 31, 59, 0.16);
+}
+
+
+/* ---------------------------------------------------------
+   PREVIEW TEXT
+   --------------------------------------------------------- */
+
+.preview-text-details {
+    min-width: 0;
+}
+
+.preview-title {
+    margin: 0 0 6px;
+
+    color: #1b1f3b;
+
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.preview-language {
+    margin: 0 0 8px;
+
+    color: #20a99f;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.preview-desc {
+    margin: 0;
+
+    color: #5d6678;
+
+    font-size: 0.86rem;
+    line-height: 1.6;
+}
+
+
+/* ---------------------------------------------------------
+   PREVIEW TIPS
+   --------------------------------------------------------- */
+
+.preview-tips-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin: 26px 0 0;
+    padding: 20px 0 0;
+
+    border-top: 1px solid #edf0f5;
+
+    list-style: none;
+}
+
+.preview-tips-list li {
+    position: relative;
+
+    padding-left: 20px;
+
+    color: #5f6879;
+
+    font-size: 0.8rem;
+
+    line-height: 1.55;
+}
+
+.preview-tips-list li::before {
+    content: "•";
+
+    position: absolute;
+
+    left: 3px;
+    top: 0;
+
+    color: #20bfb2;
+
+    font-weight: 900;
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY STATE
+   --------------------------------------------------------- */
+
+.preview-empty-state {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+.preview-empty-state[hidden] {
+    display: none;
+}
+
+.preview-empty-state .preview-box-avatar {
+    background: #eef0f5;
+
+    color: #8b91a0;
+
+    box-shadow: none;
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY CHARACTER MESSAGE
+   --------------------------------------------------------- */
+
+.buttons-layout-grid > p {
+    grid-column: 1 / -1;
+
+    margin: 10px 0;
+
+    padding: 20px;
+
+    border: 1px dashed #d9deea;
+    border-radius: 12px;
+
+    background: #f8f9fb;
+
+    color: #737b8d;
+
+    font-size: 0.85rem;
+
+    text-align: center;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .buttons-layout-grid {
+        grid-template-columns:
+            repeat(5, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .interactive-alphabet-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sign-language-select {
+        max-width: 100%;
+    }
+
+    .buttons-layout-grid {
+        grid-template-columns:
+            repeat(7, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .preview-card {
+        padding: 24px;
+    }
+
+    .preview-display-row {
+        align-items: flex-start;
+    }
+
+    .preview-box-avatar {
+        flex-basis: 56px;
+
+        width: 56px;
+        height: 56px;
+
+        font-size: 1.4rem;
+    }
+
+    .buttons-layout-grid {
+        grid-template-columns:
+            repeat(5, minmax(0, 1fr));
+
+        gap: 7px;
+    }
+
+    .char-select-item {
+        min-width: 0;
+
+        border-radius: 8px;
+    }
+
+}

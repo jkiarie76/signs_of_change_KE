@@ -13,7 +13,17 @@ if (!globalSettings) {
     throw new Error("global-settings.md was not found.");
 }
 
+const connect = await getEntry(
+    "connect",
+    "connect-page"
+);
+
+if (!connect) {
+    throw new Error("connect-page.md was not found.");
+}
+
 const hero = globalSettings.data.heroes.connect;
+const data = connect.data;
 ---
 
 <BaseLayout
@@ -163,30 +173,20 @@ const hero = globalSettings.data.heroes.connect;
                 <div class="connect-about-content">
 
                     <span class="section-eyebrow">
-                        ABOUT ME
+                        {data.about.eyebrow}
                     </span>
 
                     <h2>
-                        Hi, I'm Jeridah — writer, signer, and reluctant explainer.
+                        {data.about.title}
                     </h2>
 
-                    <p>
-                        I grew up in a mixed hearing–Deaf family, learned
-                        to sign before I learned to read, and started
-                        Signs Of Change KE because most of what the
-                        internet said about Deaf people was written by
-                        hearing people.
-                    </p>
-
-                    <p class="muted-text">
-                        I wanted to create a place with room for both.
-                    </p>
-
-                    <p class="muted-text">
-                        You'll find me in the comments, the newsletter,
-                        and — every other Friday — behind the camera for
-                        our short video letters.
-                    </p>
+                    {
+                        data.about.paragraphs.map((paragraph, index) => (
+                            <p class={index > 0 ? "muted-text" : undefined}>
+                                {paragraph}
+                            </p>
+                        ))
+                    }
 
                 </div>
 
@@ -194,8 +194,8 @@ const hero = globalSettings.data.heroes.connect;
                 <div class="connect-about-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80"
-                        alt="Community writer smiling"
+                        src={data.about.image.src}
+                        alt={data.about.image.alt}
                         loading="lazy"
                     />
 
@@ -215,60 +215,33 @@ const hero = globalSettings.data.heroes.connect;
             <div class="container">
 
                 <span class="section-eyebrow">
-                    MISSION
+                    {data.mission.eyebrow}
                 </span>
 
                 <h2 class="mission-heading">
-                    To tell Deaf stories in the language they deserve —
-                    and invite hearing readers in without dumbing anything down.
+                    {data.mission.heading}
                 </h2>
 
 
                 <div class="mission-grid">
 
-                    <article class="mission-card">
+                    {
+                        data.values.map((value) => (
 
-                        <h3>
-                            Language-first
-                        </h3>
+                            <article class="mission-card">
 
-                        <p>
-                            Sign languages are full languages. We write
-                            about them that way — with grammar, culture,
-                            and history intact.
-                        </p>
+                                <h3>
+                                    {value.title}
+                                </h3>
 
-                    </article>
+                                <p>
+                                    {value.description}
+                                </p>
 
+                            </article>
 
-                    <article class="mission-card">
-
-                        <h3>
-                            Access as design
-                        </h3>
-
-                        <p>
-                            Captions, transcripts, alt text, plain
-                            language, and high-contrast type are the
-                            baseline — not an add-on.
-                        </p>
-
-                    </article>
-
-
-                    <article class="mission-card">
-
-                        <h3>
-                            Community-led
-                        </h3>
-
-                        <p>
-                            Deaf writers, Deaf editors, Deaf sensitivity
-                            readers. Hearing allies are welcomed,
-                            never centered.
-                        </p>
-
-                    </article>
+                        ))
+                    }
 
                 </div>
 
@@ -291,62 +264,84 @@ const hero = globalSettings.data.heroes.connect;
                 <div class="contact-information">
 
                     <span class="section-eyebrow">
-                        SAY HELLO
+                        {data.contact.eyebrow}
                     </span>
 
                     <h2>
-                        Contact
+                        {data.contact.title}
                     </h2>
 
                     <p>
-                        Story pitches, corrections, cultural feedback,
-                        or just a wave. Every message is read by a human.
+                        {data.contact.description}
                     </p>
 
                     <p>
                         <strong>Phone:</strong>
-                        <a href="tel:+254700000000">
-                            0700 000 000
+
+                        <a href={`tel:${data.contact.phone}`}>
+                            {data.contact.phone}
                         </a>
                     </p>
 
                     <p>
                         <strong>Email:</strong>
-                        <a href="mailto:info@signsofchangeke.com">
-                            info@signsofchangeke.com
+
+                        <a href={`mailto:${data.contact.email}`}>
+                            {data.contact.email}
                         </a>
                     </p>
 
 
                     <div class="contact-social-links">
 
-                        <a href="#" aria-label="Instagram">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
+                        {
+                            data.contact.socialLinks.map((social) => (
 
-                        <a href="#" aria-label="Facebook">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
+                                <a
+                                    href={social.url}
+                                    aria-label={social.label}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {
+                                        social.platform === "Instagram" &&
+                                        <i class="fa-brands fa-instagram"></i>
+                                    }
 
-                        <a href="#" aria-label="X">
-                            <i class="fa-brands fa-x-twitter"></i>
-                        </a>
+                                    {
+                                        social.platform === "Facebook" &&
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    }
 
-                        <a href="#" aria-label="TikTok">
-                            <i class="fa-brands fa-tiktok"></i>
-                        </a>
+                                    {
+                                        social.platform === "X" &&
+                                        <i class="fa-brands fa-x-twitter"></i>
+                                    }
 
-                        <a href="#" aria-label="Pinterest">
-                            <i class="fa-brands fa-pinterest-p"></i>
-                        </a>
+                                    {
+                                        social.platform === "TikTok" &&
+                                        <i class="fa-brands fa-tiktok"></i>
+                                    }
 
-                        <a href="#" aria-label="WhatsApp">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
+                                    {
+                                        social.platform === "Pinterest" &&
+                                        <i class="fa-brands fa-pinterest-p"></i>
+                                    }
 
-                        <a href="#" aria-label="YouTube">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
+                                    {
+                                        social.platform === "WhatsApp" &&
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                    }
+
+                                    {
+                                        social.platform === "YouTube" &&
+                                        <i class="fa-brands fa-youtube"></i>
+                                    }
+
+                                </a>
+
+                            ))
+                        }
 
                     </div>
 
@@ -482,103 +477,48 @@ const hero = globalSettings.data.heroes.connect;
             <div class="container faq-container">
 
                 <span class="section-eyebrow">
-                    FAQ
+                    {data.faq.eyebrow}
                 </span>
 
                 <h2>
-                    Frequently Asked Questions
+                    {data.faq.title}
                 </h2>
 
 
                 <div class="faq-list">
 
+                    {
+                        data.faq.questions.map((item) => (
 
-                    <article class="faq-item">
+                            <article class="faq-item">
 
-                        <button
-                            type="button"
-                            class="faq-trigger"
-                            aria-expanded="false"
-                        >
-                            <span>
-                                What is Signs Of Change KE?
-                            </span>
+                                <button
+                                    type="button"
+                                    class="faq-trigger"
+                                    aria-expanded="false"
+                                >
 
-                            <i class="fa-solid fa-chevron-down"></i>
+                                    <span>
+                                        {item.question}
+                                    </span>
 
-                        </button>
+                                    <i class="fa-solid fa-chevron-down"></i>
 
-                        <div class="faq-answer">
-
-                            <p>
-                                Signs Of Change KE is an educational
-                                platform celebrating Deaf culture,
-                                Kenyan Sign Language, community stories,
-                                accessibility and digital inclusion.
-                            </p>
-
-                        </div>
-
-                    </article>
+                                </button>
 
 
-                    <article class="faq-item">
+                                <div class="faq-answer">
 
-                        <button
-                            type="button"
-                            class="faq-trigger"
-                            aria-expanded="false"
-                        >
-                            <span>
-                                Is the sign language course free?
-                            </span>
+                                    <p>
+                                        {item.answer}
+                                    </p>
 
-                            <i class="fa-solid fa-chevron-down"></i>
+                                </div>
 
-                        </button>
+                            </article>
 
-                        <div class="faq-answer">
-
-                            <p>
-                                Yes. Our basic conversational
-                                fingerspelling materials and learning
-                                resources are freely available.
-                            </p>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="faq-item">
-
-                        <button
-                            type="button"
-                            class="faq-trigger"
-                            aria-expanded="false"
-                        >
-                            <span>
-                                How can I contribute?
-                            </span>
-
-                            <i class="fa-solid fa-chevron-down"></i>
-
-                        </button>
-
-                        <div class="faq-answer">
-
-                            <p>
-                                You can share a story, suggest a
-                                community resource, provide cultural
-                                feedback, support an advocacy initiative,
-                                or simply get in touch through our
-                                contact form.
-                            </p>
-
-                        </div>
-
-                    </article>
-
+                        ))
+                    }
 
                 </div>
 

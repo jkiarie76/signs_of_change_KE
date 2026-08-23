@@ -1,3 +1,33 @@
+---
+import { getCollection } from "astro:content";
+
+const signItems = await getCollection("signs");
+
+const publishedSigns = signItems.filter(
+    (item) => item.data.published
+);
+
+const signsData = publishedSigns.map((item) => ({
+    id: item.id,
+
+    character: item.data.character,
+
+    characterType: item.data.characterType,
+
+    signLanguage: item.data.signLanguage,
+
+    country: item.data.country ?? "",
+
+    title: item.data.title,
+
+    description: item.data.description,
+
+    tips: item.data.tips,
+
+    // media: item.data.media,
+}));
+---
+
 <section id="alphabet-section" class="learn-sign-alphabet">
 
     <div class="container">
@@ -26,6 +56,25 @@
 
             <div class="alphabet-selector">
 
+                <!-- SIGN LANGUAGE SELECTOR -->
+
+                <div class="language-selector">
+
+                    <label for="sign-language-select">
+                        Sign Language
+                    </label>
+
+                    <select
+                        id="sign-language-select"
+                        class="sign-language-select"
+                    >
+                        <!-- JavaScript populates languages -->
+                    </select>
+
+                </div>
+
+                <!-- CHARACTER TYPE -->
+
                 <div class="toggle-container">
 
                     <button
@@ -53,9 +102,6 @@
                     id="character-buttons-grid"
                     class="buttons-layout-grid"
                 >
-
-                    <!-- JavaScript generates the characters here -->
-
                 </div>
 
             </div>
@@ -91,14 +137,19 @@
                             class="preview-title"
                             id="preview-title"
                         >
-                            Sign for "A"
                         </h3>
+
+                        <p
+                            class="preview-language"
+                            id="preview-language"
+                        >
+                            
+                        </p>
 
                         <p
                             class="preview-desc"
                             id="preview-desc"
                         >
-                            Closed fist, thumb rests along the side.
                         </p>
 
                     </div>
@@ -106,26 +157,47 @@
                 </div>
 
 
+
+
+                <!-- SIGN MEDIA -->
+
+                <div
+                    class="preview-media"
+                    id="preview-media"
+                >
+                </div>
+
+
                 <ul
                     class="preview-tips-list"
                     id="preview-tips"
                 >
-
-                    <li>
-                        Keep your dominant hand in a comfortable
-                        signing space near your shoulder.
-                    </li>
-
-                    <li>
-                        Palm usually faces the person you're signing to.
-                    </li>
-
-                    <li>
-                        Pause briefly between numbers and letters —
-                        don't rush.
-                    </li>
-
                 </ul>
+
+                <div
+                    class="preview-empty-state"
+                    id="preview-empty-state"
+                    hidden
+                >
+
+                    <div class="preview-box-avatar">
+                        ?
+                    </div>
+
+                    <div class="preview-text-details">
+
+                        <h3 class="preview-title">
+                            Sign Coming Soon
+                        </h3>
+
+                        <p class="preview-desc">
+                            Sign information for this character
+                            has not been published yet.
+                        </p>
+
+                    </div>
+
+                </div>
 
             </article>
 
@@ -134,3 +206,8 @@
     </div>
 
 </section>
+
+
+<script define:vars={{ signsData }}>
+    window.learnSignData = signsData;
+</script>
