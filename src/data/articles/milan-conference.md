@@ -1,17 +1,18 @@
 ---
-
-title: "The Milan Conference of 1880 & Its Lasting Impact"
-category: "History"
-topic: "Education & Policy"
-excerpt: "How an international conference on Deaf education helped shape decades of educational policy and the place of sign language in schools."
-author: "Signs Of Change KE"
-publishedDate: "2026-08-12"
-updatedDate: "2026-08-12"
+title: The Milan Conference of 1880 & Its Lasting Impact
+category: History
+topic: Education & Policy
+excerpt: How an international conference on Deaf education helped shape decades of educational policy and the place of sign language in schools.
+author: Signs Of Change KE
+publishedDate: 2026-08-12
+updatedDate: 2026-08-12
 readTime: 6
 featured: true
+homepageFeatured: false
 featuredImage:
-    src: "/uploads/home/culture_1.jpg"
-    alt: "Historical illustration representing Deaf education"
+  src: /uploads/home/culture_1.jpg
+  alt: Historical illustration representing Deaf education
+seo: null
 ---
 
 The Second International Congress on Education of the Deaf met in Milan, Italy, from 6 to 11 September 1880. The conference brought together educators to debate approaches to educating Deaf children.
