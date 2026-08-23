@@ -2,7 +2,7 @@
 title: The Milan Conference of 1880 & Its Lasting Impact
 category: History
 topic: Education & Policy
-excerpt: How an international conference on Deaf education helped shape decades of educational policy and the place of sign language in schools.
+excerpt: How an international conference on Deaf education helped shape decades of educational policy and the place of sign language in schools. [CMS TEST]
 author: Signs Of Change KE
 publishedDate: 2026-08-12
 updatedDate: 2026-08-12
