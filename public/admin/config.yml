@@ -32,6 +32,7 @@ collections:
   - name: articles
     label: Articles
     label_singular: Article
+    icon: article
     folder: /src/data/articles
     create: true
     slug: "{{slug}}"
@@ -139,6 +140,7 @@ collections:
 
   - name: myths
     label: Myths
+    icon: fact_check
     label_singular: Myth
     folder: /src/data/myths
     create: true
@@ -187,6 +189,7 @@ collections:
 
   - name: etiquette
     label: Deaf Etiquette
+    icon: handshake
     label_singular: Etiquette Item
     folder: /src/data/etiquette
     create: true
@@ -230,6 +233,7 @@ collections:
 
   - name: quotes
     label: Quotes
+    icon: format_quote
     label_singular: Quote
     folder: /src/data/quotes
     create: true
@@ -262,6 +266,7 @@ collections:
 
   - name: videos
     label: Sign Language Videos
+    icon: video_library
     label_singular: Video
     folder: /src/data/videos
     create: true
@@ -325,13 +330,15 @@ collections:
           - gif
           - video
 
-
+  - divider: true
+    label: Community & Advocacy
   # =======================================================
   # EVENTS
   # =======================================================
 
   - name: events
     label: Events
+    icon: event
     label_singular: Event
     folder: /src/data/events
     create: true
@@ -554,6 +561,7 @@ collections:
 
   - name: advocacy
     label: Advocacy
+    icon: campaign
     label_singular: Advocacy Item
     folder: /src/data/advocacy
     create: true
@@ -707,6 +715,7 @@ collections:
 
   - name: signs
     label: Kenyan Sign Language
+    icon: sign_language
     label_singular: Sign
     folder: /src/data/signs
     create: true
@@ -757,14 +766,16 @@ collections:
         widget: boolean
         default: false
 
+  - divider: true
+    label: Site
 
   # =======================================================
   # SITE SETTINGS
   # =======================================================
-
+  
   - name: settings
     label: Site Settings
-
+    icon: settings
     files:
 
       - name: global
@@ -1084,6 +1095,7 @@ collections:
 
   - name: connect
     label: Connect Page
+    icon: connect_without_contact
     label_singular: Connect Page
 
     files:
