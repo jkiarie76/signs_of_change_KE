@@ -4,6 +4,8 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import "../../../styles/deaf-world.css";
 import "../../../styles/article.css";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
 
     const articles = await getCollection("articles");
