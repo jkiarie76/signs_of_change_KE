@@ -1,8 +1,8 @@
 ---
 character: D
 characterType: letter
-signLanguage: Kenyan Sign Language
-country: Kenya
+signLanguage: Uganda Sign Language
+country: Uganda
 title: Letter D
 description: Fold your hands
 tips:
