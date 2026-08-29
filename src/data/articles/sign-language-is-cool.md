@@ -7,7 +7,7 @@ author: By Jeridah
 publishedDate: 2026-08-29
 updatedDate: 2026-08-29
 readTime: 5
-featured: false
+featured: true
 homepageFeatured: true
 featuredImage:
   src: /uploads/home/learn_1.jpg
