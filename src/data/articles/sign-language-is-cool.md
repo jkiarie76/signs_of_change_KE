@@ -8,7 +8,7 @@ publishedDate: 2026-08-29
 updatedDate: 2026-08-29
 readTime: 5
 featured: true
-homepageFeatured: false
+homepageFeatured: true
 featuredImage:
   src: /uploads/home/learn_1.jpg
   alt: sign language is cool image
